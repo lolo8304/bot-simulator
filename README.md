@@ -7,11 +7,10 @@ Copy paste the following code into chrome console when on a bot project page
 
 ```js
 
-
 var MAIN_TREE = null;
 var ITEMS = {};
 var COUNTER = 0;
-
+var DEBUG = false;
 
 $.getJSON("https://botsociety.io/branches/getBranchesByConversationId?conversationId=" + window.location.pathname.split('/').pop()
 , function (data) { 
@@ -34,7 +33,7 @@ function done() {
   var ROOT = null;
   for (var i = 0; i < MAIN_TREE.length; ++i) {
     var node = ITEMS[MAIN_TREE[i]._id];
-    console.log(node);
+    if (DEBUG) { console.log(node); }
     if (node._branches_in.length) {
       if (!ITEMS[node._branches_in[0]].childs) {
         ITEMS[node._branches_in[0]].childs = [];
@@ -45,8 +44,8 @@ function done() {
       ROOT = node;
     }
   }  
-  console.log('ROOT')
-  console.log(ROOT);
+  if (DEBUG) { console.log('ROOT'); }
+  if (DEBUG) { console.log(ROOT); }
   var conversation = [];
   addNodeToConversation(conversation, ROOT);
 
@@ -66,7 +65,7 @@ function addNodeToConversation(conversation, node) {
       }
       conversation.push(step);
     }  
-    console.log(node.messages[i].type, node.messages[i]);
+    if (DEBUG) { console.log(node.messages[i].type, node.messages[i]); }
     if (node.messages[i].type == 'quickreplies' || node.messages[i].type == 'buttons') {
       var answers = [];
       for (var j = 0; j < node.messages[i].attachments[0].choices.length; ++j) {
