@@ -8,7 +8,6 @@ Copy paste the following code into chrome console when on a bot project page
 ```js
 
 
-
 var MAIN_TREE = null;
 var ITEMS = {};
 var COUNTER = 0;
@@ -57,8 +56,15 @@ function done() {
 
 function addNodeToConversation(conversation, node) {
   for (var i = 0; i < node.messages.length; ++i) {
-    if (node.messages[i].type == 'text') {
-      conversation.push({text :  node.messages[i].text });
+    if (node.messages[i].type == 'text' || node.messages[i].type == 'images' || node.messages[i].type == 'buttons') {
+      var step = {dialog: 'A', step: 1, type : node.messages[i].type };
+      if (node.messages[i].type != 'quickreplies') {
+        step.text = node.messages[i].text;
+      }
+      if (node.messages[i].type == 'images') {
+        step.url = node.messages[i].attachments[0].image;
+      }
+      conversation.push(step);
     }  
     console.log(node.messages[i].type, node.messages[i]);
     if (node.messages[i].type == 'quickreplies' || node.messages[i].type == 'buttons') {
@@ -74,7 +80,7 @@ function addNodeToConversation(conversation, node) {
         answer.then = then;
         answers.push(answer);
       }
-     
+
       if (!conversation.length) {
         conversation.push({
         });
