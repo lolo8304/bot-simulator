@@ -7,16 +7,14 @@ Copy paste the following code into chrome console when on a bot project page
 
 ```js
 
-
-
 var MAIN_TREE = null;
 var ITEMS = {};
 var COUNTER = 0;
-
+var DEBUG = false;
 
 $.getJSON("https://botsociety.io/branches/getBranchesByConversationId?conversationId=" + window.location.pathname.split('/').pop()
 , function (data) { 
-  console.log(data);
+  if (DEBUG) { console.log(data); }
   MAIN_TREE = data;
   for (var i = 0; i < data.length; ++i) {
 
@@ -35,7 +33,7 @@ function done() {
   var ROOT = null;
   for (var i = 0; i < MAIN_TREE.length; ++i) {
     var node = ITEMS[MAIN_TREE[i]._id];
-    console.log(node);
+    if (DEBUG) { console.log(node); }
     if (node._branches_in.length) {
       if (!ITEMS[node._branches_in[0]].childs) {
         ITEMS[node._branches_in[0]].childs = [];
@@ -46,41 +44,96 @@ function done() {
       ROOT = node;
     }
   }  
-  console.log('ROOT')
-  console.log(ROOT);
+  if (DEBUG) { console.log('ROOT'); }
+  if (DEBUG) { console.log(ROOT); }
   var conversation = [];
-  addNodeToConversation(conversation, ROOT);
+  var labels = [];
+  var dialogs = [];
+  addNodeToConversation(conversation, labels, dialogs, ROOT);
 
-  console.log(JSON.stringify(conversation));
+  console.log(JSON.stringify({"conversation" : conversation}));
+  var labelsSet = [];
+  var buffer = ""
+  buffer += "{";
+  for (var i = 0; i < labels.length; ++i) {
+    if (!labelsSet[labels[i].key]) {
+      labelsSet[labels[i].key] = JSON.stringify(oneOrSplit(labels[i].text));
+      buffer += 
+        "\t\""
+        + labels[i].key 
+        + "\" : "
+        +JSON.stringify(oneOrSplit(labels[i].text)) + ",";
+    }
+  }
+  buffer += "\"final\" : \"\"";
+  buffer += "}";
+  console.log(buffer);
+
 }
 
+function oneOrSplit(s) {
+  var splitted = s.split("\n");
+  if (splitted.length == 1) { return splitted[0]; }
+  return splitted;
+}
 
-function addNodeToConversation(conversation, node) {
+function addNodeToConversation(conversation, labels, dialogs, node) {
   for (var i = 0; i < node.messages.length; ++i) {
-    if (node.messages[i].type == 'text') {
-      conversation.push({text :  node.messages[i].text });
+    if (node.messages[i].type == 'text' || node.messages[i].type == 'images' || node.messages[i].type == 'buttons') {
+      var step = {type : node.messages[i].type };
+      if (node.messages[i].type != 'quickreplies') {
+        step.text = node.messages[i].text;
+      }
+      if (node.messages[i].type === 'quickreplies' || node.messages[i].type === 'buttons' ) {
+        step.choices = [];
+      }
+      if (node.messages[i].type == 'images') {
+        step.url = node.messages[i].attachments[0].image;
+      }
+      step.fromUser = !node.messages[i].side;
+      if (!step.fromUser) {
+        var s = step.text;
+        var idx=s.indexOf("$.");
+        if (idx >= 0) {
+          var realText = s.substring(0, idx).trim();
+          var variable = s.substring(idx+2);
+          var shortText = "$."+variable;
+          labels.push({"key" : shortText, "text" : realText});
+          step.text = shortText;
+          step.dialog = variable.substring(0, variable.indexOf("."));
+          dialogs.push(step.dialog);
+        }
+        conversation.push(step);
+      } else {
+        var prevConversation = conversation[conversation.length - 1];
+          if (prevConversation.type = "text") {
+            prevConversation.type = "prompt";
+          }
+          prevConversation.answer = step;
+      }
     }  
-    console.log(node.messages[i].type, node.messages[i]);
+    if (DEBUG) { console.log(node.messages[i].type, node.messages[i]); }
     if (node.messages[i].type == 'quickreplies' || node.messages[i].type == 'buttons') {
       var answers = [];
       for (var j = 0; j < node.messages[i].attachments[0].choices.length; ++j) {
         var choice =  node.messages[i].attachments[0].choices[j];
+        step.choices.push(choice.text);
+        labels.push({"key" : choice.text, "text" : choice.text});
         var answer  = {
           text : choice.text,
           then : []
         }
         var then = [];
-        addNodeToConversation(then, ITEMS[choice.branch_id]);
+        addNodeToConversation(then, labels, dialogs, ITEMS[choice.branch_id]);
         answer.then = then;
         answers.push(answer);
       }
-     
+
       if (!conversation.length) {
         conversation.push({
         });
       }
       conversation[conversation.length - 1].answer = answers;
-      conversation[conversation.length - 1].answerType = node.messages[i].type;
     }
   }
 }
