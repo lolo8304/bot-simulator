@@ -1,8 +1,9 @@
-botsociety: 70 {
+{
     "conversation": [
         {
-            "type": "text",
+            "type": "images",
             "text": "Willkommen beim Sports-Village.ch Bot.\nMein Name ist Esko und ich helfen Dir bei der Auswahl der richtigen Wintersport Ausrüstung",
+            "url": "https://s3.amazonaws.com/botsociety.prod.us/cc5b506ba53c5b1fabeskobotsmallpng.png",
             "fromUser": false,
             "dialog": "Intro"
         },
