@@ -1,0 +1,6 @@
+//document following process envs and rename to .env
+//please do not store .env file on GIT
+
+MICROSOFT_APP_ID=
+MICROSOFT_APP_PASSWORD=
+MICROSOFT_LUIS_MODEL=

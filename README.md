@@ -5,7 +5,7 @@ A small tool to extract botsociety bots to JSON
 ATTENTION - only works in edit mode
 
 Copy paste the following code into chrome console when on a bot project page. 
-- see [Javascript](create-JSON-from-bot.js)
+- see [Javascript](chrome/create-JSON-from-bot.js)
 - Goto "More tools" / "Developer tools"
 - Source tab, 
 - subtab "Snippets", 
@@ -27,4 +27,4 @@ GENERATE_LABELS
 
 # examples
 - [example on botsociety.io](https://botsociety.io/s/58deaf67cdf2eb63000d4fa3?b=58deb1a4cdf2eb63000d4fa6)
-- generated files see "example?*.json"
+- generated files see [examples](examples/)
