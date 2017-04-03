@@ -10,7 +10,12 @@ Copy paste the following code into chrome console when on a bot project page
 var MAIN_TREE = null;
 var ITEMS = {};
 var COUNTER = 0;
+
+// control the execution
 var DEBUG = false;
+// true = generate language.json file content with all texts and replace with variable based
+// in label: use $.<dialog>.<label-name>
+var GENERATE_LABELS = true;
 
 $.getJSON("https://botsociety.io/branches/getBranchesByConversationId?conversationId=" + window.location.pathname.split('/').pop()
 , function (data) { 
@@ -27,6 +32,26 @@ $.getJSON("https://botsociety.io/branches/getBranchesByConversationId?conversati
     });
   }
 });
+
+function createLabelString(labels) {
+    var labelsSet = [];
+  var buffer = ""
+  buffer += "{";
+  for (var i = 0; i < labels.length; ++i) {
+    if (!labelsSet[labels[i].key]) {
+      labelsSet[labels[i].key] = JSON.stringify(labels[i].text);
+      buffer += 
+        "\t\""
+        + labels[i].key 
+        + "\" : "
+        +JSON.stringify(labels[i].text) + ",";
+    }
+  }
+  buffer += "\"final\" : \"\"";
+  buffer += "}";
+  return buffer;
+
+}
 
 function done() {
 
@@ -52,22 +77,9 @@ function done() {
   addNodeToConversation(conversation, labels, dialogs, ROOT);
 
   console.log(JSON.stringify({"conversation" : conversation}));
-  var labelsSet = [];
-  var buffer = ""
-  buffer += "{";
-  for (var i = 0; i < labels.length; ++i) {
-    if (!labelsSet[labels[i].key]) {
-      labelsSet[labels[i].key] = JSON.stringify(oneOrSplit(labels[i].text));
-      buffer += 
-        "\t\""
-        + labels[i].key 
-        + "\" : "
-        +JSON.stringify(oneOrSplit(labels[i].text)) + ",";
-    }
+  if (GENERATE_LABELS) {
+    console.log(createLabelString(labels));
   }
-  buffer += "\"final\" : \"\"";
-  buffer += "}";
-  console.log(buffer);
 
 }
 
@@ -99,7 +111,11 @@ function addNodeToConversation(conversation, labels, dialogs, node) {
           var variable = s.substring(idx+2);
           var shortText = "$."+variable;
           labels.push({"key" : shortText, "text" : realText});
-          step.text = shortText;
+          if (GENERATE_LABELS) {
+            step.text = shortText;
+          } else {
+            step.text = realText;
+          }
           step.dialog = variable.substring(0, variable.indexOf("."));
           dialogs.push(step.dialog);
         }
@@ -115,10 +131,16 @@ function addNodeToConversation(conversation, labels, dialogs, node) {
     if (DEBUG) { console.log(node.messages[i].type, node.messages[i]); }
     if (node.messages[i].type == 'quickreplies' || node.messages[i].type == 'buttons') {
       var answers = [];
+      var choicesString = null;
       for (var j = 0; j < node.messages[i].attachments[0].choices.length; ++j) {
         var choice =  node.messages[i].attachments[0].choices[j];
         step.choices.push(choice.text);
         labels.push({"key" : choice.text, "text" : choice.text});
+        if (choicesString) {
+          choicesString += "|"+choice.text;
+        } else {
+          choicesString = choice.text;
+        }
         var answer  = {
           text : choice.text,
           then : []
@@ -133,6 +155,8 @@ function addNodeToConversation(conversation, labels, dialogs, node) {
         conversation.push({
         });
       }
+      conversation[conversation.length - 1].choicesText = step.text+".Choices";
+      labels.push({"key" : step.text+".Choices", "text" : choicesString});
       conversation[conversation.length - 1].answer = answers;
     }
   }
