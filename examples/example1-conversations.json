@@ -1,4 +1,11 @@
 {
+    "bot": {
+        "botname": "Esko Bot",
+        "fans": "45201 people like this",
+        "category": "Sports & Recreation",
+        "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/db0ed4dd01601cbc31bc99734e0f00eskobotjpeg.jpeg",
+        "previewURL": "https://botsociety.io/s/58deaf67cdf2eb63000d4fa3"
+    },
     "conversation": [
         {
             "type": "text",
@@ -20,6 +27,8 @@
             "answer": [
                 {
                     "text": "Ski",
+                    "thenDialog": null,
+                    "thenRef": 0,
                     "then": [
                         {
                             "type": "prompt",
@@ -58,6 +67,8 @@
                             "answer": [
                                 {
                                     "text": "blau",
+                                    "thenDialog": null,
+                                    "thenRef": 0,
                                     "then": [
                                         {
                                             "type": "text",
@@ -78,14 +89,14 @@
                                             "answer": [
                                                 {
                                                     "text": "blau",
+                                                    "thenDialog": null,
+                                                    "thenRef": 1,
                                                     "then": []
                                                 },
                                                 {
                                                     "text": "rot",
-                                                    "then": []
-                                                },
-                                                {
-                                                    "text": "schwarz",
+                                                    "thenDialog": null,
+                                                    "thenRef": 1,
                                                     "then": [
                                                         {
                                                             "type": "text",
@@ -106,6 +117,8 @@
                                                             "answer": [
                                                                 {
                                                                     "text": "unter 12 Jahren",
+                                                                    "thenDialog": null,
+                                                                    "thenRef": 0,
                                                                     "then": [
                                                                         {
                                                                             "type": "buttons",
@@ -121,6 +134,8 @@
                                                                             "answer": [
                                                                                 {
                                                                                     "text": "25-28",
+                                                                                    "thenDialog": null,
+                                                                                    "thenRef": 0,
                                                                                     "then": [
                                                                                         {
                                                                                             "type": "buttons",
@@ -135,6 +150,8 @@
                                                                                             "answer": [
                                                                                                 {
                                                                                                     "text": "blau",
+                                                                                                    "thenDialog": null,
+                                                                                                    "thenRef": 0,
                                                                                                     "then": [
                                                                                                         {
                                                                                                             "type": "text",
@@ -174,6 +191,8 @@
                                                                                                             "answer": [
                                                                                                                 {
                                                                                                                     "text": "Nein, bin happy",
+                                                                                                                    "thenDialog": null,
+                                                                                                                    "thenRef": 0,
                                                                                                                     "then": [
                                                                                                                         {
                                                                                                                             "type": "text",
@@ -185,33 +204,9 @@
                                                                                                                 },
                                                                                                                 {
                                                                                                                     "text": "Ja",
-                                                                                                                    "then": [
-                                                                                                                        {
-                                                                                                                            "type": "buttons",
-                                                                                                                            "text": "In welchem Bereich können wir Dir helfen?",
-                                                                                                                            "choices": [
-                                                                                                                                "Snowboard",
-                                                                                                                                "Langlauf",
-                                                                                                                                "unsere Webseite"
-                                                                                                                            ],
-                                                                                                                            "fromUser": false,
-                                                                                                                            "choicesText": "In welchem Bereich können wir Dir helfen?.Choices",
-                                                                                                                            "answer": [
-                                                                                                                                {
-                                                                                                                                    "text": "Snowboard",
-                                                                                                                                    "then": []
-                                                                                                                                },
-                                                                                                                                {
-                                                                                                                                    "text": "Langlauf",
-                                                                                                                                    "then": []
-                                                                                                                                },
-                                                                                                                                {
-                                                                                                                                    "text": "unsere Webseite",
-                                                                                                                                    "then": []
-                                                                                                                                }
-                                                                                                                            ]
-                                                                                                                        }
-                                                                                                                    ]
+                                                                                                                    "thenDialog": "Intro",
+                                                                                                                    "thenRef": 1,
+                                                                                                                    "then": []
                                                                                                                 }
                                                                                                             ]
                                                                                                         }
@@ -219,10 +214,14 @@
                                                                                                 },
                                                                                                 {
                                                                                                     "text": "rot",
+                                                                                                    "thenDialog": null,
+                                                                                                    "thenRef": 0,
                                                                                                     "then": []
                                                                                                 },
                                                                                                 {
                                                                                                     "text": "schwarz",
+                                                                                                    "thenDialog": null,
+                                                                                                    "thenRef": 0,
                                                                                                     "then": []
                                                                                                 }
                                                                                             ]
@@ -231,213 +230,15 @@
                                                                                 },
                                                                                 {
                                                                                     "text": "29-34",
-                                                                                    "then": [
-                                                                                        {
-                                                                                            "type": "buttons",
-                                                                                            "text": "Welche Piste fährt das Kind?",
-                                                                                            "choices": [
-                                                                                                "blau",
-                                                                                                "rot",
-                                                                                                "schwarz"
-                                                                                            ],
-                                                                                            "fromUser": false,
-                                                                                            "choicesText": "Welche Piste fährt das Kind?.Choices",
-                                                                                            "answer": [
-                                                                                                {
-                                                                                                    "text": "blau",
-                                                                                                    "then": [
-                                                                                                        {
-                                                                                                            "type": "text",
-                                                                                                            "text": "Danke. Ich rechne für Dich nun ein 1.Angebot.",
-                                                                                                            "fromUser": false
-                                                                                                        },
-                                                                                                        {
-                                                                                                            "type": "images",
-                                                                                                            "text": "Jahresmiete",
-                                                                                                            "url": "https://s3.amazonaws.com/botsociety.prod.us/c4233475799177b663f03bf5e140dbc6a2ascreenshot%2020170331%20221454png.png",
-                                                                                                            "fromUser": false
-                                                                                                        },
-                                                                                                        {
-                                                                                                            "type": "text",
-                                                                                                            "text": "Komm in unseren Laden, damit wir das Angebot auf Eure persönlichen Anforderungen zuschneiden können.",
-                                                                                                            "fromUser": false
-                                                                                                        },
-                                                                                                        {
-                                                                                                            "type": "images",
-                                                                                                            "text": "Wir sind von Mo - So, 10-20h in Uster für Dich.",
-                                                                                                            "url": "https://s3.amazonaws.com/botsociety.prod.us/76fa777fef930fd9f907141locationpng.png",
-                                                                                                            "fromUser": false
-                                                                                                        },
-                                                                                                        {
-                                                                                                            "type": "buttons",
-                                                                                                            "text": "Können wir noch etwas für Dich tun?",
-                                                                                                            "choices": [
-                                                                                                                "Nein, bin happy",
-                                                                                                                "Ja"
-                                                                                                            ],
-                                                                                                            "fromUser": false,
-                                                                                                            "choicesText": "Können wir noch etwas für Dich tun?.Choices",
-                                                                                                            "answer": [
-                                                                                                                {
-                                                                                                                    "text": "Nein, bin happy",
-                                                                                                                    "then": [
-                                                                                                                        {
-                                                                                                                            "type": "text",
-                                                                                                                            "text": "Besten Dank - wir freuen uns auf Deinen Besuch bei uns im Sports-Village.ch in Uster",
-                                                                                                                            "fromUser": false
-                                                                                                                        }
-                                                                                                                    ]
-                                                                                                                },
-                                                                                                                {
-                                                                                                                    "text": "Ja",
-                                                                                                                    "then": [
-                                                                                                                        {
-                                                                                                                            "type": "buttons",
-                                                                                                                            "text": "In welchem Bereich können wir Dir helfen?",
-                                                                                                                            "choices": [
-                                                                                                                                "Snowboard",
-                                                                                                                                "Langlauf",
-                                                                                                                                "unsere Webseite"
-                                                                                                                            ],
-                                                                                                                            "fromUser": false,
-                                                                                                                            "choicesText": "In welchem Bereich können wir Dir helfen?.Choices",
-                                                                                                                            "answer": [
-                                                                                                                                {
-                                                                                                                                    "text": "Snowboard",
-                                                                                                                                    "then": []
-                                                                                                                                },
-                                                                                                                                {
-                                                                                                                                    "text": "Langlauf",
-                                                                                                                                    "then": []
-                                                                                                                                },
-                                                                                                                                {
-                                                                                                                                    "text": "unsere Webseite",
-                                                                                                                                    "then": []
-                                                                                                                                }
-                                                                                                                            ]
-                                                                                                                        }
-                                                                                                                    ]
-                                                                                                                }
-                                                                                                            ]
-                                                                                                        }
-                                                                                                    ]
-                                                                                                },
-                                                                                                {
-                                                                                                    "text": "rot",
-                                                                                                    "then": []
-                                                                                                },
-                                                                                                {
-                                                                                                    "text": "schwarz",
-                                                                                                    "then": []
-                                                                                                }
-                                                                                            ]
-                                                                                        }
-                                                                                    ]
+                                                                                    "thenDialog": null,
+                                                                                    "thenRef": 0,
+                                                                                    "then": []
                                                                                 },
                                                                                 {
                                                                                     "text": "> 34",
-                                                                                    "then": [
-                                                                                        {
-                                                                                            "type": "buttons",
-                                                                                            "text": "Welche Piste fährt das Kind?",
-                                                                                            "choices": [
-                                                                                                "blau",
-                                                                                                "rot",
-                                                                                                "schwarz"
-                                                                                            ],
-                                                                                            "fromUser": false,
-                                                                                            "choicesText": "Welche Piste fährt das Kind?.Choices",
-                                                                                            "answer": [
-                                                                                                {
-                                                                                                    "text": "blau",
-                                                                                                    "then": [
-                                                                                                        {
-                                                                                                            "type": "text",
-                                                                                                            "text": "Danke. Ich rechne für Dich nun ein 1.Angebot.",
-                                                                                                            "fromUser": false
-                                                                                                        },
-                                                                                                        {
-                                                                                                            "type": "images",
-                                                                                                            "text": "Jahresmiete",
-                                                                                                            "url": "https://s3.amazonaws.com/botsociety.prod.us/c4233475799177b663f03bf5e140dbc6a2ascreenshot%2020170331%20221454png.png",
-                                                                                                            "fromUser": false
-                                                                                                        },
-                                                                                                        {
-                                                                                                            "type": "text",
-                                                                                                            "text": "Komm in unseren Laden, damit wir das Angebot auf Eure persönlichen Anforderungen zuschneiden können.",
-                                                                                                            "fromUser": false
-                                                                                                        },
-                                                                                                        {
-                                                                                                            "type": "images",
-                                                                                                            "text": "Wir sind von Mo - So, 10-20h in Uster für Dich.",
-                                                                                                            "url": "https://s3.amazonaws.com/botsociety.prod.us/76fa777fef930fd9f907141locationpng.png",
-                                                                                                            "fromUser": false
-                                                                                                        },
-                                                                                                        {
-                                                                                                            "type": "buttons",
-                                                                                                            "text": "Können wir noch etwas für Dich tun?",
-                                                                                                            "choices": [
-                                                                                                                "Nein, bin happy",
-                                                                                                                "Ja"
-                                                                                                            ],
-                                                                                                            "fromUser": false,
-                                                                                                            "choicesText": "Können wir noch etwas für Dich tun?.Choices",
-                                                                                                            "answer": [
-                                                                                                                {
-                                                                                                                    "text": "Nein, bin happy",
-                                                                                                                    "then": [
-                                                                                                                        {
-                                                                                                                            "type": "text",
-                                                                                                                            "text": "Besten Dank - wir freuen uns auf Deinen Besuch bei uns im Sports-Village.ch in Uster",
-                                                                                                                            "fromUser": false
-                                                                                                                        }
-                                                                                                                    ]
-                                                                                                                },
-                                                                                                                {
-                                                                                                                    "text": "Ja",
-                                                                                                                    "then": [
-                                                                                                                        {
-                                                                                                                            "type": "buttons",
-                                                                                                                            "text": "In welchem Bereich können wir Dir helfen?",
-                                                                                                                            "choices": [
-                                                                                                                                "Snowboard",
-                                                                                                                                "Langlauf",
-                                                                                                                                "unsere Webseite"
-                                                                                                                            ],
-                                                                                                                            "fromUser": false,
-                                                                                                                            "choicesText": "In welchem Bereich können wir Dir helfen?.Choices",
-                                                                                                                            "answer": [
-                                                                                                                                {
-                                                                                                                                    "text": "Snowboard",
-                                                                                                                                    "then": []
-                                                                                                                                },
-                                                                                                                                {
-                                                                                                                                    "text": "Langlauf",
-                                                                                                                                    "then": []
-                                                                                                                                },
-                                                                                                                                {
-                                                                                                                                    "text": "unsere Webseite",
-                                                                                                                                    "then": []
-                                                                                                                                }
-                                                                                                                            ]
-                                                                                                                        }
-                                                                                                                    ]
-                                                                                                                }
-                                                                                                            ]
-                                                                                                        }
-                                                                                                    ]
-                                                                                                },
-                                                                                                {
-                                                                                                    "text": "rot",
-                                                                                                    "then": []
-                                                                                                },
-                                                                                                {
-                                                                                                    "text": "schwarz",
-                                                                                                    "then": []
-                                                                                                }
-                                                                                            ]
-                                                                                        }
-                                                                                    ]
+                                                                                    "thenDialog": null,
+                                                                                    "thenRef": 0,
+                                                                                    "then": []
                                                                                 }
                                                                             ]
                                                                         }
@@ -445,15 +246,25 @@
                                                                 },
                                                                 {
                                                                     "text": "12 - 18 Jahre",
+                                                                    "thenDialog": null,
+                                                                    "thenRef": 0,
                                                                     "then": []
                                                                 },
                                                                 {
                                                                     "text": "älter als 18 Jahre",
+                                                                    "thenDialog": null,
+                                                                    "thenRef": 0,
                                                                     "then": []
                                                                 }
                                                             ]
                                                         }
                                                     ]
+                                                },
+                                                {
+                                                    "text": "schwarz",
+                                                    "thenDialog": null,
+                                                    "thenRef": 1,
+                                                    "then": []
                                                 }
                                             ]
                                         }
@@ -461,10 +272,14 @@
                                 },
                                 {
                                     "text": "rot",
+                                    "thenDialog": null,
+                                    "thenRef": 0,
                                     "then": []
                                 },
                                 {
                                     "text": "schwarz",
+                                    "thenDialog": null,
+                                    "thenRef": 0,
                                     "then": []
                                 }
                             ]
@@ -473,6 +288,8 @@
                 },
                 {
                     "text": "Langlauf",
+                    "thenDialog": null,
+                    "thenRef": 1,
                     "then": [
                         {
                             "type": "text",
@@ -490,6 +307,8 @@
                 },
                 {
                     "text": "Snowboard",
+                    "thenDialog": null,
+                    "thenRef": 2,
                     "then": [
                         {
                             "type": "text",
