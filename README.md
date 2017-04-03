@@ -23,4 +23,3 @@ GENERATE_LABELS
 - true: will generate an addition console.entry with all texts captured in the dialogs
 - use formatted information in all text fields as $.<dialog-name>.<label-name>
 - console entry can be used directly as <locale>.json file for localization
-- in the json
