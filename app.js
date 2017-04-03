@@ -13,7 +13,7 @@ var c = require("./converstation-simulation");
 
 // Setup Restify Server
 var server = restify.createServer();
-var port = process.env.port || process.env.PORT || 3979;
+var port = process.env.port || process.env.PORT || 3978;
 
 server.listen(port, function () {
   console.log('%s listening to %s', server.name, server.url);
@@ -32,6 +32,27 @@ var bot = new builder.UniversalBot(connector);
 
 var example = c.conversation().object();
 var rootDialog = example.conversation[0];
+var botdata = example.bot;
+
+bot.on('conversationUpdate', function (message) {
+   // Check for group conversations
+      // Send a hello message when bot is added
+      if (message.membersAdded) {
+          message.membersAdded.forEach(function (identity) {
+              if (identity.id != message.address.bot.id) {
+                  var name = identity.name ? identity.name : "yall";
+                  if (message.address.conversation.isGroup) {
+                    name = "yall";
+                  }
+                  var reply = new builder.Message()
+                          .address(message.address)
+                          .text("Hallo %s. My Name is %s and type **start** to talk to me.\n\nI am an auto generated bot from %s", name, botdata.botname, botdata.previewURL);
+                  bot.send(reply);
+              }
+          });
+      }
+});
+
 
 function findDialog(dialogName, conversations) {
   if (!conversations) {
@@ -49,6 +70,17 @@ function findDialog(dialogName, conversations) {
   return null;
 }
 
+function findFirstNonEmptyAnswersNotEnitityIndex(currentDialog, entity) {
+  //search for first non-empty then[]
+  for (var i = 0; i < currentDialog.answer.length; ++i) {    
+    if (currentDialog.answer[i].text != entity && currentDialog.answer[i].then.length > 0) {
+      return i
+    }
+  }
+  return null;
+}
+
+
 function findNextConversations(currentDialogObject, results) {
   var currentDialog = currentDialogObject.current
   if (currentDialog.type == "prompt") {
@@ -57,22 +89,33 @@ function findNextConversations(currentDialogObject, results) {
   } else {
     if (results.response) {
       var entity = results.response.entity;
+
+
       for (var i = 0; i < currentDialog.answer.length; ++i) {    
         if (currentDialog.answer[i].text === entity) {
           //thenRef Index is used with pattern $=? to reuse existing trees to not copy
           var thenRefDialog = currentDialog.answer[i].thenDialog;
+          var thenRefIndex = currentDialog.answer[i].thenRef;
           if (thenRefDialog) {
             var dialog = findDialog(thenRefDialog);
             if (dialog) {
-              console.log("answered with "+entity+", but will use Dialog named "+thenRefDialog);
+              console.log("*** answered with <"+entity+">, but will use Dialog named <"+thenRefDialog+">");
               return dialog;
             } else {
-              console.log("dialog <"+dialog+"> not found as referenced dialog");
+              console.log("*** dialog <"+dialog+"> not found as referenced dialog");
             }
           }
-          var thenRefIndex = currentDialog.answer[i].thenRef;
           if (i != thenRefIndex) {
-            console.log("answered with "+entity+", but will use "+currentDialog.answer[thenRefIndex].text);
+            console.log("*** answered with <"+entity+">, but will use <"+currentDialog.answer[thenRefIndex].text+">");
+          } else {
+            //no special markers defined. if no then[] search for first NON-empty then[] in same conversations
+            if (currentDialog.answer[thenRefIndex].then.length == 0) {
+                var idx = findFirstNonEmptyAnswersNotEnitityIndex(currentDialog, entity);
+                if (idx) {
+                  console.log("*** answered with <"+entity+">, but will use 1st non empty answer <"+currentDialog.answer[idx].text+">");
+                  return{conversations: currentDialog.answer[idx].then, index: 0};
+                }
+            }
           }
           return {conversations: currentDialog.answer[thenRefIndex].then, index: 0};
         }
@@ -87,6 +130,15 @@ var currentDialog;
 bot.dialog('/', [
   function (session, args, next) {
     if (!args) {
+      var card = new builder.HeroCard(session)
+          .text("Hi - my name is %s",botdata.botname)
+          .subtitle(botdata.fans+", category: "+botdata.category)
+          .images([
+                builder.CardImage.create(session, botdata.imageURL)
+          ]);
+      var msg = new builder.Message(session).addAttachment(card);
+      session.send(msg);
+      
       currentDialog = startDialog(session, example.conversation, 0);
     } else {
       currentDialog = startDialog(session, args.conversations, args.index);
