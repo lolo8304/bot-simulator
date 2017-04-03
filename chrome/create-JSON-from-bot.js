@@ -6,16 +6,23 @@ var COUNTER = 0;
 var DEBUG = false;
 // true = generate language.json file content with all texts and replace with variable based
 // in label: use $.<dialog>.<label-name>
-var GENERATE_LABELS = true;
+var GENERATE_LABELS = false;
 
-$.getJSON("https://botsociety.io/branches/getBranchesByConversationId?conversationId=" + window.location.pathname.split('/').pop()
+var botname = document.querySelectorAll('div[class^="botname"]')[0].innerText;
+var fans = document.querySelectorAll('div[class^="fans"]')[0].innerText;
+var category = document.querySelectorAll('div[class^="page_category"]')[0].innerText;
+var image = document.querySelectorAll('div[class^="profile-picture"]')[0].attributes["data-picture"].nodeValue;
+var conversationId = window.location.pathname.split('/').pop();
+var previewURL = "https://botsociety.io/s/"+conversationId;
+
+$.getJSON("https://botsociety.io/branches/getBranchesByConversationId?conversationId=" + conversationId
 , function (data) { 
   if (DEBUG) { console.log(data); }
   MAIN_TREE = data;
   for (var i = 0; i < data.length; ++i) {
 
     $.getJSON("https://botsociety.io/branches/" + data[i]._id, function(item) {
-      ITEMS[item._id] = item;
+      if (item) { ITEMS[item._id] = item; }
       COUNTER++;
       if (COUNTER == MAIN_TREE.length) {
         done();
@@ -51,6 +58,9 @@ function done() {
     var node = ITEMS[MAIN_TREE[i]._id];
     if (DEBUG) { console.log(node); }
     if (node._branches_in.length) {
+      if (!ITEMS[node._branches_in[0]]) {
+        console.log(node._branches_in[0]);
+      }
       if (!ITEMS[node._branches_in[0]].childs) {
         ITEMS[node._branches_in[0]].childs = [];
       }
@@ -67,7 +77,8 @@ function done() {
   var dialogs = [];
   addNodeToConversation(conversation, labels, dialogs, ROOT);
 
-  console.log(JSON.stringify({"conversation" : conversation}));
+  var bot = { "botname" : botname, "fans" : fans, "category" : category, "imageURL" : image, "previewURL": previewURL};
+  console.log(JSON.stringify({"bot": bot, "conversation" : conversation}));
   if (GENERATE_LABELS) {
     console.log(createLabelString(labels));
   }
@@ -82,10 +93,10 @@ function oneOrSplit(s) {
 
 function addNodeToConversation(conversation, labels, dialogs, node) {
   for (var i = 0; i < node.messages.length; ++i) {
-    if (node.messages[i].type == 'text' || node.messages[i].type == 'images' || node.messages[i].type == 'buttons') {
+    if (node.messages[i].type == 'text' || node.messages[i].type == 'images' || node.messages[i].type == 'buttons' || node.messages[i].type === 'quickreplies') {
       var step = {type : node.messages[i].type };
       if (node.messages[i].type != 'quickreplies') {
-        step.text = node.messages[i].text;
+        step.text = node.messages[i].text || "";
       }
       if (node.messages[i].type === 'quickreplies' || node.messages[i].type === 'buttons' ) {
         step.choices = [];
@@ -113,10 +124,14 @@ function addNodeToConversation(conversation, labels, dialogs, node) {
         conversation.push(step);
       } else {
         var prevConversation = conversation[conversation.length - 1];
+        if (prevConversation) {
+          //if last message was a text and user is answering --> prompt
+          //if null then answer was a choice 
           if (prevConversation.type = "text") {
             prevConversation.type = "prompt";
           }
           prevConversation.answer = step;
+        }
       }
     }  
     if (DEBUG) { console.log(node.messages[i].type, node.messages[i]); }
@@ -125,15 +140,31 @@ function addNodeToConversation(conversation, labels, dialogs, node) {
       var choicesString = null;
       for (var j = 0; j < node.messages[i].attachments[0].choices.length; ++j) {
         var choice =  node.messages[i].attachments[0].choices[j];
-        step.choices.push(choice.text);
-        labels.push({"key" : choice.text, "text" : choice.text});
+        var choiceText = choice.text;
+        
+        var idx = choiceText.indexOf("$=");
+        var choiceThenRef = j;
+        if (idx >= 0) {
+          choiceThenRef = parseInt(choiceText.substring(idx+2).trim());
+          choiceText = choiceText.substring(0, idx).trim();
+        }
+        idx = choiceText.indexOf("$.");
+        var choiceThenRefDialog = null;
+        if (idx >= 0) {
+          choiceThenRefDialog = choiceText.substring(idx+2).trim();
+          choiceText = choiceText.substring(0, idx).trim();
+        }
+        step.choices.push(choiceText);
+        labels.push({"key" : choiceText, "text" : choiceText});
         if (choicesString) {
-          choicesString += "|"+choice.text;
+          choicesString += "|"+choiceText;
         } else {
-          choicesString = choice.text;
+          choicesString = choiceText;
         }
         var answer  = {
-          text : choice.text,
+          text : choiceText,
+          thenDialog: choiceThenRefDialog,
+          thenRef: choiceThenRef,
           then : []
         }
         var then = [];
