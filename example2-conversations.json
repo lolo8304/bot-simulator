@@ -1,0 +1,505 @@
+botsociety: 70 {
+    "conversation": [
+        {
+            "type": "text",
+            "text": "Willkommen beim Sports-Village.ch Bot.\nMein Name ist Esko und ich helfen Dir bei der Auswahl der richtigen Wintersport Ausrüstung",
+            "fromUser": false,
+            "dialog": "Intro"
+        },
+        {
+            "type": "buttons",
+            "text": "Wählen Sie unter folgenden Angeboten aus",
+            "choices": [
+                "Ski",
+                "Langlauf",
+                "Snowboard"
+            ],
+            "fromUser": false,
+            "dialog": "Intro",
+            "choicesText": "Wählen Sie unter folgenden Angeboten aus.Choices",
+            "answer": [
+                {
+                    "text": "Ski",
+                    "then": [
+                        {
+                            "type": "prompt",
+                            "text": "Für welche Personen benötigst Du eine Miete?\n\nBsp: 2 Kinder und 2 Erwachsene\n1 Kind, 2 Erwachsene",
+                            "fromUser": false,
+                            "dialog": "Ski",
+                            "answer": {
+                                "type": "text",
+                                "text": "1 Kind 2 Erwachsene",
+                                "fromUser": true
+                            }
+                        },
+                        {
+                            "type": "text",
+                            "text": "Ok - das bedeutet insgsamt 3 Personen. Lass uns beginnen.",
+                            "fromUser": false,
+                            "dialog": "Ski"
+                        },
+                        {
+                            "type": "text",
+                            "text": "Beginnen wir mit dem 1.Erwachsenen",
+                            "fromUser": false,
+                            "dialog": "Person"
+                        },
+                        {
+                            "type": "buttons",
+                            "text": "Welche Piste fährt der Erwachsene am liebsten?",
+                            "choices": [
+                                "blau",
+                                "rot",
+                                "schwarz"
+                            ],
+                            "fromUser": false,
+                            "dialog": "Person",
+                            "choicesText": "Welche Piste fährt der Erwachsene am liebsten?.Choices",
+                            "answer": [
+                                {
+                                    "text": "blau",
+                                    "then": [
+                                        {
+                                            "type": "text",
+                                            "text": "Nun zum 2.Erwachsenen",
+                                            "fromUser": false,
+                                            "dialog": "Person"
+                                        },
+                                        {
+                                            "type": "buttons",
+                                            "text": "Welche Piste fährt der Erwachsene am liebsten?",
+                                            "choices": [
+                                                "blau",
+                                                "rot",
+                                                "schwarz"
+                                            ],
+                                            "fromUser": false,
+                                            "choicesText": "Welche Piste fährt der Erwachsene am liebsten?.Choices",
+                                            "answer": [
+                                                {
+                                                    "text": "blau",
+                                                    "then": []
+                                                },
+                                                {
+                                                    "text": "rot",
+                                                    "then": []
+                                                },
+                                                {
+                                                    "text": "schwarz",
+                                                    "then": [
+                                                        {
+                                                            "type": "text",
+                                                            "text": "Nun zum Kind oder Jugendlichen",
+                                                            "fromUser": false
+                                                        },
+                                                        {
+                                                            "type": "buttons",
+                                                            "text": "Wie alt ist Dein Kind oder Jugendlicher?",
+                                                            "choices": [
+                                                                "unter 12 Jahren",
+                                                                "12 - 18 Jahre",
+                                                                "älter als 18 Jahre"
+                                                            ],
+                                                            "fromUser": false,
+                                                            "dialog": "Person",
+                                                            "choicesText": "Wie alt ist Dein Kind oder Jugendlicher?.Choices",
+                                                            "answer": [
+                                                                {
+                                                                    "text": "unter 12 Jahren",
+                                                                    "then": [
+                                                                        {
+                                                                            "type": "buttons",
+                                                                            "text": "Welche Schuhgrösse hat Dein Kind?",
+                                                                            "choices": [
+                                                                                "25-28",
+                                                                                "29-34",
+                                                                                "> 34"
+                                                                            ],
+                                                                            "fromUser": false,
+                                                                            "dialog": "Person",
+                                                                            "choicesText": "Welche Schuhgrösse hat Dein Kind?.Choices",
+                                                                            "answer": [
+                                                                                {
+                                                                                    "text": "25-28",
+                                                                                    "then": [
+                                                                                        {
+                                                                                            "type": "buttons",
+                                                                                            "text": "Welche Piste fährt das Kind oder Jugendlicher am liebsten?",
+                                                                                            "choices": [
+                                                                                                "blau",
+                                                                                                "rot",
+                                                                                                "schwarz"
+                                                                                            ],
+                                                                                            "fromUser": false,
+                                                                                            "choicesText": "Welche Piste fährt das Kind oder Jugendlicher am liebsten?.Choices",
+                                                                                            "answer": [
+                                                                                                {
+                                                                                                    "text": "blau",
+                                                                                                    "then": [
+                                                                                                        {
+                                                                                                            "type": "text",
+                                                                                                            "text": "Danke. Ich rechne für Dich nun ein 1.Angebot für die 3 Personen.",
+                                                                                                            "fromUser": false,
+                                                                                                            "dialog": "Resultat"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "images",
+                                                                                                            "text": "Jahresmiete $Resultat.TitelTabelle",
+                                                                                                            "url": "https://s3.amazonaws.com/botsociety.prod.us/c4233475799177b663f03bf5e140dbc6a2ascreenshot%2020170331%20221454png.png",
+                                                                                                            "fromUser": false
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "text",
+                                                                                                            "text": "Komm in unseren Laden, damit wir das Angebot auf Eure persönlichen Anforderungen zuschneiden können.",
+                                                                                                            "fromUser": false,
+                                                                                                            "dialog": "Resultat"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "images",
+                                                                                                            "text": "Wir sind von Mo - So, 10-20h in Uster für Dich.",
+                                                                                                            "url": "https://s3.amazonaws.com/botsociety.prod.us/76fa777fef930fd9f907141locationpng.png",
+                                                                                                            "fromUser": false,
+                                                                                                            "dialog": "Resultat"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "buttons",
+                                                                                                            "text": "Können wir noch etwas für Dich tun?",
+                                                                                                            "choices": [
+                                                                                                                "Nein, bin happy",
+                                                                                                                "Ja"
+                                                                                                            ],
+                                                                                                            "fromUser": false,
+                                                                                                            "dialog": "Resultat",
+                                                                                                            "choicesText": "Können wir noch etwas für Dich tun?.Choices",
+                                                                                                            "answer": [
+                                                                                                                {
+                                                                                                                    "text": "Nein, bin happy",
+                                                                                                                    "then": [
+                                                                                                                        {
+                                                                                                                            "type": "text",
+                                                                                                                            "text": "Besten Dank - wir freuen uns auf Deinen Besuch bei uns im Sports-Village.ch in Uster oder auf unserer WebSeite http://sports-village.ch",
+                                                                                                                            "fromUser": false,
+                                                                                                                            "dialog": "Resultat"
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "text": "Ja",
+                                                                                                                    "then": [
+                                                                                                                        {
+                                                                                                                            "type": "buttons",
+                                                                                                                            "text": "In welchem Bereich können wir Dir helfen?",
+                                                                                                                            "choices": [
+                                                                                                                                "Snowboard",
+                                                                                                                                "Langlauf",
+                                                                                                                                "unsere Webseite"
+                                                                                                                            ],
+                                                                                                                            "fromUser": false,
+                                                                                                                            "choicesText": "In welchem Bereich können wir Dir helfen?.Choices",
+                                                                                                                            "answer": [
+                                                                                                                                {
+                                                                                                                                    "text": "Snowboard",
+                                                                                                                                    "then": []
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    "text": "Langlauf",
+                                                                                                                                    "then": []
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    "text": "unsere Webseite",
+                                                                                                                                    "then": []
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                },
+                                                                                                {
+                                                                                                    "text": "rot",
+                                                                                                    "then": []
+                                                                                                },
+                                                                                                {
+                                                                                                    "text": "schwarz",
+                                                                                                    "then": []
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "text": "29-34",
+                                                                                    "then": [
+                                                                                        {
+                                                                                            "type": "buttons",
+                                                                                            "text": "Welche Piste fährt das Kind?",
+                                                                                            "choices": [
+                                                                                                "blau",
+                                                                                                "rot",
+                                                                                                "schwarz"
+                                                                                            ],
+                                                                                            "fromUser": false,
+                                                                                            "choicesText": "Welche Piste fährt das Kind?.Choices",
+                                                                                            "answer": [
+                                                                                                {
+                                                                                                    "text": "blau",
+                                                                                                    "then": [
+                                                                                                        {
+                                                                                                            "type": "text",
+                                                                                                            "text": "Danke. Ich rechne für Dich nun ein 1.Angebot.",
+                                                                                                            "fromUser": false
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "images",
+                                                                                                            "text": "Jahresmiete",
+                                                                                                            "url": "https://s3.amazonaws.com/botsociety.prod.us/c4233475799177b663f03bf5e140dbc6a2ascreenshot%2020170331%20221454png.png",
+                                                                                                            "fromUser": false
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "text",
+                                                                                                            "text": "Komm in unseren Laden, damit wir das Angebot auf Eure persönlichen Anforderungen zuschneiden können.",
+                                                                                                            "fromUser": false
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "images",
+                                                                                                            "text": "Wir sind von Mo - So, 10-20h in Uster für Dich.",
+                                                                                                            "url": "https://s3.amazonaws.com/botsociety.prod.us/76fa777fef930fd9f907141locationpng.png",
+                                                                                                            "fromUser": false
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "buttons",
+                                                                                                            "text": "Können wir noch etwas für Dich tun?",
+                                                                                                            "choices": [
+                                                                                                                "Nein, bin happy",
+                                                                                                                "Ja"
+                                                                                                            ],
+                                                                                                            "fromUser": false,
+                                                                                                            "choicesText": "Können wir noch etwas für Dich tun?.Choices",
+                                                                                                            "answer": [
+                                                                                                                {
+                                                                                                                    "text": "Nein, bin happy",
+                                                                                                                    "then": [
+                                                                                                                        {
+                                                                                                                            "type": "text",
+                                                                                                                            "text": "Besten Dank - wir freuen uns auf Deinen Besuch bei uns im Sports-Village.ch in Uster",
+                                                                                                                            "fromUser": false
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "text": "Ja",
+                                                                                                                    "then": [
+                                                                                                                        {
+                                                                                                                            "type": "buttons",
+                                                                                                                            "text": "In welchem Bereich können wir Dir helfen?",
+                                                                                                                            "choices": [
+                                                                                                                                "Snowboard",
+                                                                                                                                "Langlauf",
+                                                                                                                                "unsere Webseite"
+                                                                                                                            ],
+                                                                                                                            "fromUser": false,
+                                                                                                                            "choicesText": "In welchem Bereich können wir Dir helfen?.Choices",
+                                                                                                                            "answer": [
+                                                                                                                                {
+                                                                                                                                    "text": "Snowboard",
+                                                                                                                                    "then": []
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    "text": "Langlauf",
+                                                                                                                                    "then": []
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    "text": "unsere Webseite",
+                                                                                                                                    "then": []
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                },
+                                                                                                {
+                                                                                                    "text": "rot",
+                                                                                                    "then": []
+                                                                                                },
+                                                                                                {
+                                                                                                    "text": "schwarz",
+                                                                                                    "then": []
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "text": "> 34",
+                                                                                    "then": [
+                                                                                        {
+                                                                                            "type": "buttons",
+                                                                                            "text": "Welche Piste fährt das Kind?",
+                                                                                            "choices": [
+                                                                                                "blau",
+                                                                                                "rot",
+                                                                                                "schwarz"
+                                                                                            ],
+                                                                                            "fromUser": false,
+                                                                                            "choicesText": "Welche Piste fährt das Kind?.Choices",
+                                                                                            "answer": [
+                                                                                                {
+                                                                                                    "text": "blau",
+                                                                                                    "then": [
+                                                                                                        {
+                                                                                                            "type": "text",
+                                                                                                            "text": "Danke. Ich rechne für Dich nun ein 1.Angebot.",
+                                                                                                            "fromUser": false
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "images",
+                                                                                                            "text": "Jahresmiete",
+                                                                                                            "url": "https://s3.amazonaws.com/botsociety.prod.us/c4233475799177b663f03bf5e140dbc6a2ascreenshot%2020170331%20221454png.png",
+                                                                                                            "fromUser": false
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "text",
+                                                                                                            "text": "Komm in unseren Laden, damit wir das Angebot auf Eure persönlichen Anforderungen zuschneiden können.",
+                                                                                                            "fromUser": false
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "images",
+                                                                                                            "text": "Wir sind von Mo - So, 10-20h in Uster für Dich.",
+                                                                                                            "url": "https://s3.amazonaws.com/botsociety.prod.us/76fa777fef930fd9f907141locationpng.png",
+                                                                                                            "fromUser": false
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "buttons",
+                                                                                                            "text": "Können wir noch etwas für Dich tun?",
+                                                                                                            "choices": [
+                                                                                                                "Nein, bin happy",
+                                                                                                                "Ja"
+                                                                                                            ],
+                                                                                                            "fromUser": false,
+                                                                                                            "choicesText": "Können wir noch etwas für Dich tun?.Choices",
+                                                                                                            "answer": [
+                                                                                                                {
+                                                                                                                    "text": "Nein, bin happy",
+                                                                                                                    "then": [
+                                                                                                                        {
+                                                                                                                            "type": "text",
+                                                                                                                            "text": "Besten Dank - wir freuen uns auf Deinen Besuch bei uns im Sports-Village.ch in Uster",
+                                                                                                                            "fromUser": false
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "text": "Ja",
+                                                                                                                    "then": [
+                                                                                                                        {
+                                                                                                                            "type": "buttons",
+                                                                                                                            "text": "In welchem Bereich können wir Dir helfen?",
+                                                                                                                            "choices": [
+                                                                                                                                "Snowboard",
+                                                                                                                                "Langlauf",
+                                                                                                                                "unsere Webseite"
+                                                                                                                            ],
+                                                                                                                            "fromUser": false,
+                                                                                                                            "choicesText": "In welchem Bereich können wir Dir helfen?.Choices",
+                                                                                                                            "answer": [
+                                                                                                                                {
+                                                                                                                                    "text": "Snowboard",
+                                                                                                                                    "then": []
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    "text": "Langlauf",
+                                                                                                                                    "then": []
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    "text": "unsere Webseite",
+                                                                                                                                    "then": []
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                },
+                                                                                                {
+                                                                                                    "text": "rot",
+                                                                                                    "then": []
+                                                                                                },
+                                                                                                {
+                                                                                                    "text": "schwarz",
+                                                                                                    "then": []
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "text": "12 - 18 Jahre",
+                                                                    "then": []
+                                                                },
+                                                                {
+                                                                    "text": "älter als 18 Jahre",
+                                                                    "then": []
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "text": "rot",
+                                    "then": []
+                                },
+                                {
+                                    "text": "schwarz",
+                                    "then": []
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "text": "Langlauf",
+                    "then": [
+                        {
+                            "type": "text",
+                            "text": "Für Langlauf besuche uns in unseren Laden, damit wir das Angebot auf Eure persönlichen Anforderungen zuschneiden können.",
+                            "fromUser": false,
+                            "dialog": "Langlauf"
+                        },
+                        {
+                            "type": "text",
+                            "text": "Dennoch besten Dank - wir freuen uns auf Deinen Besuch bei uns im Sports-Village.ch in Uster oder auf unserer WebSeite http://sports-village.ch\"",
+                            "fromUser": false,
+                            "dialog": "Resultat"
+                        }
+                    ]
+                },
+                {
+                    "text": "Snowboard",
+                    "then": [
+                        {
+                            "type": "text",
+                            "text": "Für Snowboard besuche uns in unseren Laden, damit wir das Angebot auf Eure persönlichen Anforderungen zuschneiden können.",
+                            "fromUser": false,
+                            "dialog": "Snowboard"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
