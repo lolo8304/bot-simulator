@@ -105,6 +105,7 @@ function addNodeToConversation(conversation, labels, dialogs, node) {
         step.url = node.messages[i].attachments[0].image;
       }
       step.fromUser = !node.messages[i].side;
+      step.id = node.messages[i]._id;
       if (!step.fromUser) {
         var s = step.text;
         var idx=s.indexOf("$.");
