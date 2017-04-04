@@ -1,4 +1,4 @@
-# botsociety.io designed Bot to real functional Bot
+# From a "botsociety.io designed bot" to "real functional Bot"
 A small tool to extract botsociety bots to JSON and run it as a real chat-bot using microsoft bot-framework.
 In Botsociety it is not possible to test the different Connectors and real interaction with small devices.
 
