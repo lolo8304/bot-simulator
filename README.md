@@ -52,11 +52,17 @@ Solution: use $ markers in texts.
 
 examples
 - "What is your favorite colour?": standard
-- "What is your favorite colour? **$.Colour.title**": additional label and dialog marker
-- "Why do you like Green $.Green.title? **$.Green.title**": additional label and dialog marker
+- "What is your favorite colour? **$.Intro.willkommen**": additional label and dialog marker
+- "Why do you like Green? **$.Intro.title**": additional label and dialog marker
+
+![ScreenShot](images/marker.dialog.label.png)
 - choices "blue|red|green": standard answers
-- choices "blue|red **$=0**|green **$=0**": answers marked on 2nd and 3rd answer to use the 1st answer (index 0)
-- choices "blue|red|green **$.Green**": answer no 3 is opening dialog "Green"
+- choices "blue **$=1**|red|green **$=1**": answers marked on 1st and 3rd answer to use the 2nd answer (index 1)
+
+![ScreenShot](images/marker.choices.reference.png)
+- choices "no I am happy|yes **$.Intro**": answer no 2 is opening dialog "Intro"
+
+![ScreenShot](images/markers.dialog.link.png)
 
 
 ## How to configure bot-framework
