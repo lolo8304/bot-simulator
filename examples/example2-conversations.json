@@ -1,7 +1,7 @@
 {
     "bot": {
         "botname": "Esko Bot",
-        "fans": "45201 people like this",
+        "fans": "45,201 people like this",
         "category": "Sports & Recreation",
         "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/db0ed4dd01601cbc31bc99734e0f00eskobotjpeg.jpeg",
         "previewURL": "https://botsociety.io/s/58deaf67cdf2eb63000d4fa3"
@@ -9,8 +9,9 @@
     "conversation": [
         {
             "type": "text",
-            "text": "Willkommen beim Sports-Village.ch Bot.\nMein Name ist Esko und ich helfe Dir bei der Auswahl der richtigen Wintersport Ausrüstung",
+            "text": "Willkommen beim http://Sports-Village.ch Bot.\nMein Name ist Esko und ich helfe Dir bei der Auswahl der richtigen Wintersport Ausrüstung",
             "fromUser": false,
+            "id": "58e2de67360a760c00317931",
             "dialog": "Intro"
         },
         {
@@ -22,6 +23,7 @@
                 "Snowboard"
             ],
             "fromUser": false,
+            "id": "58deb1a4cdf2eb63000d4fa8",
             "dialog": "Intro",
             "choicesText": "Wählen Sie unter folgenden Angeboten aus.Choices",
             "answer": [
@@ -34,23 +36,27 @@
                             "type": "prompt",
                             "text": "Für welche Personen benötigst Du eine Miete?\n\nBsp: 2 Kinder und 2 Erwachsene\n1 Kind, 2 Erwachsene",
                             "fromUser": false,
+                            "id": "58deb245cdf2eb63000d4faa",
                             "dialog": "Ski",
                             "answer": {
                                 "type": "text",
                                 "text": "1 Kind 2 Erwachsene",
-                                "fromUser": true
+                                "fromUser": true,
+                                "id": "58deb257cdf2eb63000d4fab"
                             }
                         },
                         {
                             "type": "text",
                             "text": "Ok - das bedeutet insgsamt 3 Personen. Lass uns beginnen.",
                             "fromUser": false,
+                            "id": "58df65a94ddf508f00351a0c",
                             "dialog": "Ski"
                         },
                         {
                             "type": "text",
                             "text": "Beginnen wir mit dem 1.Erwachsenen",
                             "fromUser": false,
+                            "id": "58deb27fcdf2eb63000d4fac",
                             "dialog": "Person"
                         },
                         {
@@ -62,6 +68,7 @@
                                 "schwarz"
                             ],
                             "fromUser": false,
+                            "id": "58deb2b3cdf2eb63000d4fb0",
                             "dialog": "Person",
                             "choicesText": "Welche Piste fährt der Erwachsene am liebsten?.Choices",
                             "answer": [
@@ -74,6 +81,7 @@
                                             "type": "text",
                                             "text": "Nun zum 2.Erwachsenen",
                                             "fromUser": false,
+                                            "id": "58deb304cdf2eb63000d4fb1",
                                             "dialog": "Person"
                                         },
                                         {
@@ -85,6 +93,7 @@
                                                 "schwarz"
                                             ],
                                             "fromUser": false,
+                                            "id": "58deb315cdf2eb63000d4fb5",
                                             "choicesText": "Welche Piste fährt der Erwachsene am liebsten?.Choices",
                                             "answer": [
                                                 {
@@ -101,7 +110,8 @@
                                                         {
                                                             "type": "text",
                                                             "text": "Nun zum Kind oder Jugendlichen",
-                                                            "fromUser": false
+                                                            "fromUser": false,
+                                                            "id": "58e2a8e05ea3980b0020e370"
                                                         },
                                                         {
                                                             "type": "buttons",
@@ -112,6 +122,7 @@
                                                                 "älter als 18 Jahre"
                                                             ],
                                                             "fromUser": false,
+                                                            "id": "58e2a8e15ea3980b0020e371",
                                                             "dialog": "Person",
                                                             "choicesText": "Wie alt ist Dein Kind oder Jugendlicher?.Choices",
                                                             "answer": [
@@ -129,6 +140,7 @@
                                                                                 "> 34"
                                                                             ],
                                                                             "fromUser": false,
+                                                                            "id": "58e2a8e15ea3980b0020e373",
                                                                             "dialog": "Person",
                                                                             "choicesText": "Welche Schuhgrösse hat Dein Kind?.Choices",
                                                                             "answer": [
@@ -146,6 +158,7 @@
                                                                                                 "schwarz"
                                                                                             ],
                                                                                             "fromUser": false,
+                                                                                            "id": "58e2a8e15ea3980b0020e375",
                                                                                             "choicesText": "Welche Piste fährt das Kind oder Jugendlicher am liebsten?.Choices",
                                                                                             "answer": [
                                                                                                 {
@@ -157,18 +170,21 @@
                                                                                                             "type": "text",
                                                                                                             "text": "Danke. Ich rechne für Dich nun ein 1.Angebot für die 3 Personen.",
                                                                                                             "fromUser": false,
+                                                                                                            "id": "58e2a8e15ea3980b0020e377",
                                                                                                             "dialog": "Resultat"
                                                                                                         },
                                                                                                         {
                                                                                                             "type": "images",
                                                                                                             "text": "Jahresmiete $Resultat.TitelTabelle",
                                                                                                             "url": "https://s3.amazonaws.com/botsociety.prod.us/c4233475799177b663f03bf5e140dbc6a2ascreenshot%2020170331%20221454png.png",
-                                                                                                            "fromUser": false
+                                                                                                            "fromUser": false,
+                                                                                                            "id": "58e2a8e15ea3980b0020e378"
                                                                                                         },
                                                                                                         {
                                                                                                             "type": "text",
                                                                                                             "text": "Komm in unseren Laden, damit wir das Angebot auf Eure persönlichen Anforderungen zuschneiden können.",
                                                                                                             "fromUser": false,
+                                                                                                            "id": "58e2a8e15ea3980b0020e379",
                                                                                                             "dialog": "Resultat"
                                                                                                         },
                                                                                                         {
@@ -176,6 +192,7 @@
                                                                                                             "text": "Wir sind von Mo - So, 10-20h in Uster für Dich.",
                                                                                                             "url": "https://s3.amazonaws.com/botsociety.prod.us/76fa777fef930fd9f907141locationpng.png",
                                                                                                             "fromUser": false,
+                                                                                                            "id": "58e2a8e15ea3980b0020e37a",
                                                                                                             "dialog": "Resultat"
                                                                                                         },
                                                                                                         {
@@ -186,6 +203,7 @@
                                                                                                                 "Ja"
                                                                                                             ],
                                                                                                             "fromUser": false,
+                                                                                                            "id": "58e2a8e15ea3980b0020e37b",
                                                                                                             "dialog": "Resultat",
                                                                                                             "choicesText": "Können wir noch etwas für Dich tun?.Choices",
                                                                                                             "answer": [
@@ -198,6 +216,7 @@
                                                                                                                             "type": "text",
                                                                                                                             "text": "Besten Dank - wir freuen uns auf Deinen Besuch bei uns im Sports-Village.ch in Uster oder auf unserer WebSeite http://sports-village.ch",
                                                                                                                             "fromUser": false,
+                                                                                                                            "id": "58e2a8e15ea3980b0020e37d",
                                                                                                                             "dialog": "Resultat"
                                                                                                                         }
                                                                                                                     ]
@@ -295,12 +314,14 @@
                             "type": "text",
                             "text": "Für Langlauf besuche uns in unseren Laden, damit wir das Angebot auf Eure persönlichen Anforderungen zuschneiden können.",
                             "fromUser": false,
+                            "id": "58debcddcdf2eb63000d4fcc",
                             "dialog": "Langlauf"
                         },
                         {
                             "type": "text",
                             "text": "Dennoch besten Dank - wir freuen uns auf Deinen Besuch bei uns im Sports-Village.ch in Uster oder auf unserer WebSeite http://sports-village.ch\"",
                             "fromUser": false,
+                            "id": "58e090c59dc7bd19015ee559",
                             "dialog": "Resultat"
                         }
                     ]
@@ -314,6 +335,7 @@
                             "type": "text",
                             "text": "Für Snowboard besuche uns in unseren Laden, damit wir das Angebot auf Eure persönlichen Anforderungen zuschneiden können.",
                             "fromUser": false,
+                            "id": "58debd05cdf2eb63000d4fcd",
                             "dialog": "Snowboard"
                         }
                     ]

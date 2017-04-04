@@ -33,6 +33,25 @@ var bot = new builder.UniversalBot(connector);
 var example = c.conversation().object();
 var rootDialog = example.conversation[0];
 var botdata = example.bot;
+var messages = {};
+prepareConversations(example.conversation);
+
+function prepareConversations(conversations) {
+  for (var i = 0; i < conversations.length; ++i) {
+    var c = conversations[i];
+    messages[c.id] = {
+      current: c,
+      conversations: conversations,
+      index: i
+    }
+    if (c.answer) {
+      for (var j = 0; j < c.answer.length; ++j) {
+        var a = c.answer[j];
+        prepareConversations(a.then);
+      }
+    }
+  }
+}
 
 bot.on('conversationUpdate', function (message) {
    // Check for group conversations
@@ -125,7 +144,7 @@ function findNextConversations(currentDialogObject, results) {
   }
 }
 
-var currentDialog;
+//var currentDialog;
 
 bot.dialog('/', [
   function (session, args, next) {
@@ -137,20 +156,22 @@ bot.dialog('/', [
                 builder.CardImage.create(session, botdata.imageURL)
           ]);
       var msg = new builder.Message(session).addAttachment(card);
-      session.send(msg);
-      
-      currentDialog = startDialog(session, example.conversation, 0);
+      session.send(msg);      
+      startDialog(session, example.conversation, 0);
     } else {
-      currentDialog = startDialog(session, args.conversations, args.index);
+      var currentDialog = messages[session.userData.currentMessage];
+      startDialog(session, currentDialog.conversations, currentDialog.index);
     }
   },
   function (session, results, next) {
-      var conversations = findNextConversations(currentDialog, results);
-      if (conversations) {
-        session.replaceDialog("/", conversations);
-      } else {
-        session.endDialog();
-      }
+    var currentDialog = messages[session.userData.currentMessage];
+    var conversations = findNextConversations(currentDialog, results);
+    if (conversations) {
+      session.userData.currentMessage = conversations.conversations[conversations.index].id;
+      session.replaceDialog("/", conversations.conversations[conversations.index].id);
+    } else {
+      session.endDialog();
+    }
   }
 ]);
 
@@ -163,6 +184,7 @@ function startDialog(session, conversations, i) {
 function runDialog(session, conversations, i) {
   var nextDialog = conversations[i];
   if (!nextDialog) { return; }
+  session.userData.currentMessage = nextDialog.id;
     
   if (nextDialog.type === "text") {
     session.send(nextDialog.text);
