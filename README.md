@@ -1,6 +1,8 @@
-# From a "botsociety.io designed bot" to "real functional Bot"
+# From a "botsociety.io designed bot" to "functional Bot"
+https://botsociety.io is a great design tool for Chat-Bots - very simple, intuitive and effient.
+But in Botsociety it is not possible to test the different Connectors and real interaction with small devices. For UX tests it is important to test the bot-conversation with real users on different devices.
+
 A small tool to extract botsociety bots to JSON and run it as a real chat-bot using Microsoft bot-framework.
-In Botsociety it is not possible to test the different Connectors and real interaction with small devices. For UX tests it is important to test the bot-conversation with real users on different devices.
 
 ## Principle explained
 - you create your own bot mockup or open an existing one using botsociety.io 
@@ -21,51 +23,51 @@ In Botsociety it is not possible to test the different Connectors and real inter
 ## Preconditions to run bot
 - installed nodejs (>6.0)
 - clone / fork git repo locally
-```bash
-git clone https://github.axa.com/pierre-loic-doulcet/botsociety-to-JSON
-```
+  ```bash
+  git clone https://github.axa.com/pierre-loic-doulcet/botsociety-to-JSON
+  ```
 - register a new bot at https://dev.botframework.com/ (no need to deploy yet. just defining)
 - create the needed APP-ID and APP-PASSWORD at botframework.com 
 - download https://docs.botframework.com/en-us/tools/bot-framework-emulator/  and run it locally
 - download https://ngrok.com/
 - configure the emulator
 
-![ScreenShot](images/emulator.settings.png)
+  ![ScreenShot](images/emulator.settings.png)
 
-![ScreenShot](images/ngrok.png)
+  ![ScreenShot](images/ngrok.png)
 - copy _env file to .env
 - adapt according to the Microsoft Botframework settings
-```bash
-//document following entries. they will be used as process.env.*
-//please do not store .env file on GIT. .gitignore is already done
-MICROSOFT_APP_ID=....
-MICROSOFT_APP_PASSWORD=...
-//adapt the port if needed
-PORT=3978
-```
+  ```bash
+  //document following entries. they will be used as process.env.*
+  //please do not store .env file on GIT. .gitignore is already done
+  MICROSOFT_APP_ID=....
+  MICROSOFT_APP_PASSWORD=...
+  //adapt the port if needed
+  PORT=3978
+  ```
 - example bot entries are stored in 'converstation-simulation.js'
 - run on command line
-```bash
-cd botsociety-to-JSON
-npm install
-npm start
-```
+  ```bash
+  cd botsociety-to-JSON
+  npm install
+  npm start
+  ```
 - to use automatic restart use nodemon, if you are able to install globally. If not use nodemon from local node_modules directory
-```bash
-//install nodem
-sudo npm install -g nodemon
-./startnode.sh
-```
+  ```bash
+  //install nodemon
+  sudo npm install -g nodemon
+  ./startnode.sh
+  ```
 - go to emulator
 - run "new conversation" 
 
-![ScreenShot](images/new-conversation.png)
+  ![ScreenShot](images/new-conversation.png)
 
-![ScreenShot](images/chat1.png)
+  ![ScreenShot](images/chat1.png)
 - enter "start" in chat line
 - the you should see this
 
-![ScreenShot](images/chat2.png)
+  ![ScreenShot](images/chat2.png)
 
 
 # Capture your bot and run it
@@ -109,14 +111,14 @@ examples
 - "What is your favorite colour? **$.Intro.willkommen**": additional label and dialog marker
 - "Why do you like Green? **$.Intro.title**": additional label and dialog marker
 
-![ScreenShot](images/marker.dialog.label.png)
+  ![ScreenShot](images/marker.dialog.label.png)
 - choices "blue|red|green": standard answers
 - choices "blue **$=1**|red|green **$=1**": answers marked on 1st and 3rd answer to use the 2nd answer (index 1)
 
-![ScreenShot](images/marker.choices.reference.png)
+  ![ScreenShot](images/marker.choices.reference.png)
 - choices "no I am happy|yes **$.Intro**": answer no 2 is opening dialog "Intro"
 
-![ScreenShot](images/markers.dialog.link.png)
+  ![ScreenShot](images/markers.dialog.link.png)
 
 
 

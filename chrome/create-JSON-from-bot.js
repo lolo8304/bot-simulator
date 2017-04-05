@@ -8,11 +8,17 @@ var DEBUG = false;
 // in label: use $.<dialog>.<label-name>
 var GENERATE_LABELS = false;
 
+var botnameDiv=document.querySelectorAll('div[class^="botname"]')[0];
+if (!botnameDiv) {
+  alert("Please open a conversation in edit or preview mode.");
+
+} else {
 var botname = document.querySelectorAll('div[class^="botname"]')[0].innerText;
 var fans = document.querySelectorAll('div[class^="fans"]')[0].innerText;
 var category = document.querySelectorAll('div[class^="page_category"]')[0].innerText;
 var image = document.querySelectorAll('div[class^="profile-picture"]')[0].attributes["data-picture"].nodeValue;
-var conversationId = window.location.pathname.split('/').pop();
+var conversationId = prompt("Use conversationId (default=from URL)", window.location.pathname.split('/').pop());
+
 var previewURL = "https://botsociety.io/s/"+conversationId;
 
 $.getJSON("https://botsociety.io/branches/getBranchesByConversationId?conversationId=" + conversationId
@@ -183,4 +189,5 @@ function addNodeToConversation(conversation, labels, dialogs, node) {
       conversation[conversation.length - 1].answer = answers;
     }
   }
+}
 }
