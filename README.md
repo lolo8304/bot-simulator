@@ -85,7 +85,7 @@ sudo npm install -g nodemon
 - paste in [conversation-simulation.js](conversation-simulation.js)
 - restart or autostart by nodemon
 - "new conversation" or just type start
-
+- iterate and iterate ...
 
 # Examples
 - [example on botsociety.io](https://botsociety.io/s/58deaf67cdf2eb63000d4fa3?b=58deb1a4cdf2eb63000d4fa6)
@@ -93,9 +93,9 @@ sudo npm install -g nodemon
 
 
 ## How to add $ markers in texts 
-Pain
+Issue with botsociety.io
 
-To have a fully functional all-the-time working botsociety.io design you have to invest a lot of time and especially if you want to use the same reactions on all possible "choices".
+To have a fully functional all-the-time working botsociety.io design, you have to invest a lot of time and especially if you want to verify the UX on all possible "choices".
 **Important:** Markers are not really needed to have a functional demo. All choices with no further answers will proceed with 1st non empty answer.
 
 Solution: use $ markers in texts.
