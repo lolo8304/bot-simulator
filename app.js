@@ -59,7 +59,6 @@ function prepareConversations(conversations) {
 /** GET conversations stored in botly */
 
 server.get('/conversations', function (req, res, next) {
-  res.contentType("application/json");
   res.send(JSON.stringify(conversations_db));
   return next();
 });
