@@ -34,7 +34,7 @@ var conversations_db = {};
 var example = c.conversation().object();
 var rootDialog = example.conversation[0];
 var botdata = example.bot;
-conversations_db.push(example.bot.conversationId, example);
+conversations_db[example.bot.conversationId]= example;
 
 var messages = {};
 prepareConversations(example.conversation);
