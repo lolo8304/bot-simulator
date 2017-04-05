@@ -79,11 +79,9 @@ server.post('/conversations/:conversationId', function (req, res, next) {
     botdata: data.bot,
     messages: prepareConversations(data.conversation, {})
   };
-  return next();
 });
 server.get('/conversations/:conversationId', function (req, res, next) {
   res.send(_db[req.params.conversationId]);
-  return next();
 });
 
 
