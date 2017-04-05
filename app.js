@@ -24,22 +24,23 @@ var connector = new builder.ChatConnector({
   appId: process.env.MICROSOFT_APP_ID,
   appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
+// This line MUST appear before any route declaration such as the one below
+server.use(restify.bodyParser());
 
 // Listen for messages from users 
 server.post('/api/messages', connector.listen());
 
 var bot = new builder.UniversalBot(connector);
 
-var conversations_db = {};
+var _db = {};
 var example = c.conversation().object();
-var rootDialog = example.conversation[0];
-var botdata = example.bot;
-conversations_db[example.bot.conversationId]= example;
+_db[example.bot.conversationId]= {
+  conversation: example.conversation, 
+  botdata: example.bot,
+  messages: prepareConversations(example.conversation, {})
+};
 
-var messages = {};
-prepareConversations(example.conversation);
-
-function prepareConversations(conversations) {
+function prepareConversations(conversations, messages) {
   for (var i = 0; i < conversations.length; ++i) {
     var c = conversations[i];
     messages[c.id] = {
@@ -50,19 +51,40 @@ function prepareConversations(conversations) {
     if (c.answer) {
       for (var j = 0; j < c.answer.length; ++j) {
         var a = c.answer[j];
-        prepareConversations(a.then);
+        prepareConversations(a.then, messages);
       }
     }
   }
+  return messages;
 }
 
 /** GET conversations stored in botly */
 
 server.get('/conversations', function (req, res, next) {
-  res.send(JSON.stringify(conversations_db));
+  res.send(_db);
   return next();
 });
+server.use(
+  function crossOrigin(req,res,next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    return next();
+  }
+);
 
+server.post('/conversations/:conversationId', function (req, res, next) {
+  var data = JSON.parse(decodeURIComponent(req.body));
+  _db[req.params.conversationId]= {
+    conversation: data.conversation, 
+    botdata: data.bot,
+    messages: prepareConversations(data.conversation, {})
+  };
+  return next();
+});
+server.get('/conversations/:conversationId', function (req, res, next) {
+  res.send(_db[req.params.conversationId]);
+  return next();
+});
 
 
 
@@ -78,7 +100,7 @@ bot.on('conversationUpdate', function (message) {
                   }
                   var reply = new builder.Message()
                           .address(message.address)
-                          .text("Hallo %s. My Name is %s and type **start** to talk to me.\n\nI am an auto generated bot from %s", name, botdata.botname, botdata.previewURL);
+                          .text("Hallo %s.\n\nWe are all auto generated test-bots from https://botsociety.io.\n\nUse **start list** to see my colleagues.\n\nHave fun.", name);
                   bot.send(reply);
               }
           });
@@ -86,16 +108,16 @@ bot.on('conversationUpdate', function (message) {
 });
 
 
-function findDialog(dialogName, conversations) {
+function findDialog(session, dialogName, conversations) {
   if (!conversations) {
-    conversations = example.conversation;
+    conversations = _db[session.userData.conversationId].conversation;
   }
   for (var i = 0; i < conversations.length; ++i) {
     if (conversations[i].dialog === dialogName) {
       return {conversations: conversations, index: i}
     }
     for (var j = 0; j < conversations[i].answer.length; ++j) {
-      var dialog = findDialog(dialogName, conversations[i].answer[j].then);
+      var dialog = findDialog(session, dialogName, conversations[i].answer[j].then);
       if (dialog) { return dialog; }
     }
   }
@@ -113,7 +135,7 @@ function findFirstNonEmptyAnswersNotEnitityIndex(currentDialog, entity) {
 }
 
 
-function findNextConversations(currentDialogObject, results) {
+function findNextConversations(session, currentDialogObject, results) {
   var currentDialog = currentDialogObject.current
   if (currentDialog.type == "prompt") {
     //next in same list of conversations
@@ -129,7 +151,7 @@ function findNextConversations(currentDialogObject, results) {
           var thenRefDialog = currentDialog.answer[i].thenDialog;
           var thenRefIndex = currentDialog.answer[i].thenRef;
           if (thenRefDialog) {
-            var dialog = findDialog(thenRefDialog);
+            var dialog = findDialog(session, thenRefDialog);
             if (dialog) {
               console.log("*** answered with <"+entity+">, but will use Dialog named <"+thenRefDialog+">");
               return dialog;
@@ -162,6 +184,64 @@ function findNextConversations(currentDialogObject, results) {
 bot.dialog('/', [
   function (session, args, next) {
     if (!args) {
+      if (session.message.text.toLowerCase() == "start") {
+        session.userData.conversationId = example.bot.conversationId;
+        session.userData.conversationId = example.bot.conversationId;
+      } else if (session.message.text.toLowerCase() == "start list") {
+        var keys = [];
+        for (var key in _db) {
+          if (_db.hasOwnProperty(key) && _db[key]) {
+            keys.push(key);
+          }
+        }
+        if (keys.length > 0) {
+          session.send("The following demo bots are installed");
+          var msg = new builder.Message(session);
+          msg.attachmentLayout(builder.AttachmentLayout.carousel)
+          for (var key in _db) {
+            if (_db.hasOwnProperty(key)) {
+              var botdata = _db[key].botdata;
+              var card = new builder.HeroCard(session)
+                  .text("Hi - my name is %s",botdata.botname)
+                  .subtitle(botdata.fans+", category: "+botdata.category)
+                  .images([
+                        builder.CardImage.create(session, botdata.imageURL)
+                  ])
+                  .buttons([
+                        builder.CardAction.imBack(session, "start "+key, "start Bot"),
+                        builder.CardAction.imBack(session, "remove "+key, "remove Bot"),
+                        builder.CardAction.openUrl(session, botdata.previewURL, 'botsociety.io')
+                  ]);
+              msg.addAttachment(card);
+            }
+          }       
+          session.send(msg);
+        } else {
+          session.send("no bots are installed. Install them via 'chrome plugin' from https://botsociety.io");
+          session.endDialog();
+          return;
+        }
+        session.userData.conversationId = null;
+        session.endDialog();
+        return;
+      } else if (session.message.text.indexOf("start ") >= 0) {
+        var idx = session.message.text.indexOf("start ");
+        session.userData.conversationId = session.message.text.substring(idx+6).trim();
+      } else if (session.message.text.indexOf("remove ") >= 0) {
+        var idx = session.message.text.indexOf("remove ");
+        var conversationId = session.message.text.substring(idx+6).trim();
+        session.userData.conversationId = null;
+        _db[conversationId] = null;
+        delete _db[conversationId];
+        session.endDialog();
+        return;
+      };
+      if (!session.userData.conversationId) {
+        session.send("no bot is installed. use **start list** to get them");
+        session.endDialog();
+        return;
+      }
+      var botdata = _db[session.userData.conversationId].botdata;
       var card = new builder.HeroCard(session)
           .text("Hi - my name is %s",botdata.botname)
           .subtitle(botdata.fans+", category: "+botdata.category)
@@ -169,16 +249,17 @@ bot.dialog('/', [
                 builder.CardImage.create(session, botdata.imageURL)
           ]);
       var msg = new builder.Message(session).addAttachment(card);
-      session.send(msg);      
-      startDialog(session, example.conversation, 0);
+      session.send("A simulated Bot from %s", botdata.previewURL)
+      session.send(msg);
+      startDialog(session, _db[session.userData.conversationId].conversation, 0);
     } else {
-      var currentDialog = messages[session.userData.currentMessage];
+      var currentDialog = _db[session.userData.conversationId].messages[session.userData.currentMessage];
       startDialog(session, currentDialog.conversations, currentDialog.index);
     }
   },
   function (session, results, next) {
-    var currentDialog = messages[session.userData.currentMessage];
-    var conversations = findNextConversations(currentDialog, results);
+    var currentDialog = _db[session.userData.conversationId].messages[session.userData.currentMessage];
+    var conversations = findNextConversations(session, currentDialog, results);
     if (conversations) {
       session.userData.currentMessage = conversations.conversations[conversations.index].id;
       session.replaceDialog("/", conversations.conversations[conversations.index].id);

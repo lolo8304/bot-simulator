@@ -7,6 +7,8 @@ var DEBUG = false;
 // true = generate language.json file content with all texts and replace with variable based
 // in label: use $.<dialog>.<label-name>
 var GENERATE_LABELS = false;
+var ADD_CONVERSATION = true;
+var ADD_CONVERSATION_URL = "https://9a59ae3a.ngrok.io"
 
 var botnameDiv=document.querySelectorAll('div[class^="botname"]')[0];
 if (!botnameDiv) {
@@ -83,8 +85,13 @@ function done() {
   var dialogs = [];
   addNodeToConversation(conversation, labels, dialogs, ROOT);
 
-  var bot = { "botname" : botname, "fans" : fans, "category" : category, "imageURL" : image, "previewURL": previewURL};
-  console.log(JSON.stringify({"bot": bot, "conversation" : conversation}));
+  var bot = { "conversationId": conversationId, "botname" : botname, "fans" : fans, "category" : category, "imageURL" : image, "previewURL": previewURL};
+  var conversationData = {"bot": bot, "conversation" : conversation};
+  console.log(JSON.stringify(conversationData));
+  if (ADD_CONVERSATION) {
+    $.post(ADD_CONVERSATION_URL+"/conversations/"+conversationId, JSON.stringify(conversationData), function(response) {
+    }, 'json');
+  }
   if (GENERATE_LABELS) {
     console.log(createLabelString(labels));
   }
