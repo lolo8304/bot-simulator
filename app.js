@@ -30,9 +30,12 @@ server.post('/api/messages', connector.listen());
 
 var bot = new builder.UniversalBot(connector);
 
+var conversations_db = {};
 var example = c.conversation().object();
 var rootDialog = example.conversation[0];
 var botdata = example.bot;
+conversations_db.push(example.bot.conversationId, example);
+
 var messages = {};
 prepareConversations(example.conversation);
 
@@ -52,6 +55,17 @@ function prepareConversations(conversations) {
     }
   }
 }
+
+/** GET conversations stored in botly */
+
+server.get('/conversations', function (req, res, next) {
+  res.contentType("application/json");
+  res.send(JSON.stringify(conversations_db));
+  return next();
+});
+
+
+
 
 bot.on('conversationUpdate', function (message) {
    // Check for group conversations
