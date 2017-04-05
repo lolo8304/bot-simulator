@@ -7,7 +7,11 @@ var DEBUG = false;
 // true = generate language.json file content with all texts and replace with variable based
 // in label: use $.<dialog>.<label-name>
 var GENERATE_LABELS = false;
-var ADD_CONVERSATION = true;
+
+// true = install content of bot directly in botframework endpoint
+var ADD_CONVERSATION = false;
+//test local: start ngrok in command line with your port
+//    ngrok http 3979
 var ADD_CONVERSATION_URL = "https://9a59ae3a.ngrok.io"
 
 var botnameDiv=document.querySelectorAll('div[class^="botname"]')[0];
