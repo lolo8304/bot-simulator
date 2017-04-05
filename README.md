@@ -1,42 +1,96 @@
 # From a "botsociety.io designed bot" to "real functional Bot"
-A small tool to extract botsociety bots to JSON and run it as a real chat-bot using microsoft bot-framework.
-In Botsociety it is not possible to test the different Connectors and real interaction with small devices.
+A small tool to extract botsociety bots to JSON and run it as a real chat-bot using Microsoft bot-framework.
+In Botsociety it is not possible to test the different Connectors and real interaction with small devices. For UX tests it is important to test the bot-conversation with real users on different devices.
 
-## Overall description
+## Principle explained
+- you create your own bot mockup or open an existing one using botsociety.io 
+- run a script inside "chrome" browser to capture all internal details of the Bot
+- use the output and store it in a defined javascript file
+- register a new bot at Microsoft (to get APP-ID and Password)
+- run the bot locally with NodeJS or on server
+- test it with different connectors: web, skype, slack, facebook
+
+# Installations
+
+## Preconditions to capture bot
+- https://botsociety.io and register a free account
+- login with your account. this is needed to run the scripts.
+- create your own "bot mockups" and "edit" it
+- or open link from a colleague and press "pause" it
+
+## Preconditions to run bot
+- installed nodejs (>6.0)
 - clone / fork git repo locally
-- create / edit botsociety.io design
-- optimized botsociety.io texts with some [$ markers](#how-to-add-markers-in-texts)
-- run script in Chrome in edit mode in Botsociety.io
-- copy  output in console (including image URLs to botsociety.io images)
-- register Bot as Microsoft Bot framework (APP-ID + password)
-- paste ouput as inner part of [conversation-simulation.js](conversation-simulation.js)
-- start chat-bot using Emulator and other connectors
+```bash
+git clone https://github.axa.com/pierre-loic-doulcet/botsociety-to-JSON
+```
+- register a new bot at https://dev.botframework.com/ (no need to deploy yet. just defining)
+- create the needed APP-ID and APP-PASSWORD at botframework.com 
+- download https://docs.botframework.com/en-us/tools/bot-framework-emulator/  and run it locally
+- download https://ngrok.com/
+- configure the emulator
 
-## How to use
-ATTENTION - only works in edit mode in botsociety.io
+![ScreenShot](images/emulator.settings.png)
 
-Copy paste the following code into chrome console when on a bot project page. 
-- see [Javascript](chrome/create-JSON-from-bot.js)
-- Goto "More tools" / "Developer tools"
-- Source tab
-- subtab "Snippets"
-- new snippet
-- paste
-- use "run" in context sensitive menu to run it
+![ScreenShot](images/ngrok.png)
+- copy _env file to .env
+- adapt according to the Microsoft Botframework settings
+```bash
+//document following entries. they will be used as process.env.*
+//please do not store .env file on GIT. .gitignore is already done
+MICROSOFT_APP_ID=....
+MICROSOFT_APP_PASSWORD=...
+//adapt the port if needed
+PORT=3978
+```
+- example bot entries are stored in 'converstation-simulation.js'
+- run on command line
+```bash
+cd botsociety-to-JSON
+npm install
+npm start
+```
+- to use automatic restart use nodemon, if you are able to install globally. If not use nodemon from local node_modules directory
+```bash
+//install nodem
+sudo npm install -g nodemon
+./startnode.sh
+```
+- go to emulator
+- run "new conversation" 
 
-## How to configure Generator
+![ScreenShot](images/new-conversation.png)
 
-following options are able to control the generation
+![ScreenShot](images/chat1.png)
+- enter "start" in chat line
+- the you should see this
 
-DEBUG = true | false
-- default = false
-- if true, many console.log(...) are used to be able to inspect the real objects from botsociety.io
+![ScreenShot](images/chat2.png)
 
-GENERATE_LABELS
-- default = false, not needed for simulation
-- true: will generate an addition console.entry with all texts captured in the dialogs
-- use formatted information in all text fields as $.dialog-name.label-name - see [$ markers](#how-to-add-markers-in-texts)
-- console entry can be used directly as locale.json file for localization
+
+# Capture your bot and run it
+- login botsociety.io and open your bot
+- copy content of (chrome/create-JSON-from-bot.js) file
+- open "Developer tools, Source, Snippets" - new snippet
+- past content of (chrome/create-JSON-from-bot.js) file
+- run "snippet" via "content menu / run"
+- copy  output in console from {{ ... }}
+- paste ouput as inner part of [conversation-simulation.js](conversation-simulation.js) as written "paste here"
+- start not using "npm start" or "nodemon"
+- start chat-bot using Emulator
+
+# Update bot after change in botsociety.io
+- run script again in chrome
+- copy
+- paste in [conversation-simulation.js](conversation-simulation.js)
+- restart or autostart by nodemon
+- "new conversation" or just type start
+
+
+# Examples
+- [example on botsociety.io](https://botsociety.io/s/58deaf67cdf2eb63000d4fa3?b=58deb1a4cdf2eb63000d4fa6)
+- generated files see [examples](examples/)
+
 
 ## How to add $ markers in texts 
 Pain
@@ -65,13 +119,20 @@ examples
 ![ScreenShot](images/markers.dialog.link.png)
 
 
-## How to configure bot-framework
-- register new Bot Microsoft Botframework https://dev.botframework.com/
-- copy [_env](_env) file to .env locally - do not share 
-- copy APP-ID and Password from settings into .env
-- paste output from console into [converstation-simulation.js](converstation-simulation.js)
 
+# Developer support
+use the following options only for futher use of the "labels" or for debugging.
 
-## examples
-- [example on botsociety.io](https://botsociety.io/s/58deaf67cdf2eb63000d4fa3?b=58deb1a4cdf2eb63000d4fa6)
-- generated files see [examples](examples/)
+## How to configure Generator
+
+following options are able to control the generation
+
+DEBUG = true | false
+- default = false
+- if true, many console.log(...) are used to be able to inspect the real objects from botsociety.io
+
+GENERATE_LABELS
+- default = false, not needed for simulation
+- true: will generate an addition console.entry with all texts captured in the dialogs
+- use formatted information in all text fields as $.dialog-name.label-name - see [$ markers](#how-to-add-markers-in-texts)
+- console entry can be used directly as locale.json file for localization
