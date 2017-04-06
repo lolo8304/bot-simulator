@@ -239,7 +239,7 @@ bot.dialog('/', [
         session.endDialog();
         return;
       }
-      if (!session.userData.conversationId) {
+      if (!session.userData.conversationId || !_db[session.userData.conversationId]) {
         console.log("no conversationId found - using default "+example.bot.conversationId);
         session.userData.conversationId = example.bot.conversationId;
       }
