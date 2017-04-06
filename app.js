@@ -177,7 +177,42 @@ function findNextConversations(session, currentDialogObject, results) {
   }
 }
 
-//var currentDialog;
+
+function startList(session) {
+  var keys = [];
+  for (var key in _db) {
+    if (_db.hasOwnProperty(key) && _db[key]) {
+      keys.push(key);
+    }
+  }
+  if (keys.length > 0) {
+    session.send("The following demo bots are installed");
+    var msg = new builder.Message(session);
+    msg.attachmentLayout(builder.AttachmentLayout.carousel)
+    for (var key in _db) {
+      if (_db.hasOwnProperty(key)) {
+        var botdata = _db[key].botdata;
+        var card = new builder.HeroCard(session)
+            .text("Hi - my name is %s",botdata.botname)
+            .subtitle(botdata.fans+", category: "+botdata.category)
+            .images([
+                  builder.CardImage.create(session, botdata.imageURL)
+            ])
+            .buttons([
+                  builder.CardAction.imBack(session, "start "+key, "start Bot"),
+                  builder.CardAction.imBack(session, "remove "+key, "remove Bot"),
+                  builder.CardAction.openUrl(session, botdata.previewURL, 'botsociety.io')
+            ]);
+        msg.addAttachment(card);
+      }
+    }       
+    session.send(msg);
+  } else {
+    session.send("no bots are installed. Install them via 'chrome plugin' from https://botsociety.io");
+  }
+  session.userData.conversationId = null;
+  session.endDialog();
+}
 
 bot.dialog('/', [
   function (session, args, next) {
@@ -186,42 +221,8 @@ bot.dialog('/', [
         session.userData.conversationId = example.bot.conversationId;
         session.userData.conversationId = example.bot.conversationId;
       } else if (session.message.text.toLowerCase() == "start list") {
-        var keys = [];
-        for (var key in _db) {
-          if (_db.hasOwnProperty(key) && _db[key]) {
-            keys.push(key);
-          }
-        }
-        if (keys.length > 0) {
-          session.send("The following demo bots are installed");
-          var msg = new builder.Message(session);
-          msg.attachmentLayout(builder.AttachmentLayout.carousel)
-          for (var key in _db) {
-            if (_db.hasOwnProperty(key)) {
-              var botdata = _db[key].botdata;
-              var card = new builder.HeroCard(session)
-                  .text("Hi - my name is %s",botdata.botname)
-                  .subtitle(botdata.fans+", category: "+botdata.category)
-                  .images([
-                        builder.CardImage.create(session, botdata.imageURL)
-                  ])
-                  .buttons([
-                        builder.CardAction.imBack(session, "start "+key, "start Bot"),
-                        builder.CardAction.imBack(session, "remove "+key, "remove Bot"),
-                        builder.CardAction.openUrl(session, botdata.previewURL, 'botsociety.io')
-                  ]);
-              msg.addAttachment(card);
-            }
-          }       
-          session.send(msg);
-        } else {
-          session.send("no bots are installed. Install them via 'chrome plugin' from https://botsociety.io");
-          session.endDialog();
+          startList(session);
           return;
-        }
-        session.userData.conversationId = null;
-        session.endDialog();
-        return;
       } else if (session.message.text.indexOf("start ") >= 0) {
         var idx = session.message.text.indexOf("start ");
         session.userData.conversationId = session.message.text.substring(idx+6).trim();
@@ -233,7 +234,10 @@ bot.dialog('/', [
         delete _db[conversationId];
         session.endDialog();
         return;
-      };
+      } else {
+        session.endDialog();
+        return;
+      }
       if (!session.userData.conversationId) {
         session.send("no bot is installed. use **start list** to get them");
         session.endDialog();
@@ -269,7 +273,8 @@ bot.dialog('/', [
       session.endDialog();
     }
   }
-]);
+]).cancelAction('/', "OK - I cancel it. Bye. Use **start list** to get back.", { matches: /(start|hallo|bye|goodbye|start .*|tschüss)/i });
+
 
 function startDialog(session, conversations, i) {
     var lastDialogObject = runDialog(session, conversations, i);
