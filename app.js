@@ -239,6 +239,10 @@ bot.dialog('/', [
         session.endDialog();
         return;
       }
+      if (!session.userData.conversationId) {
+        console.log("no conversationId found - using default "+example.bot.conversationId);
+        session.userData.conversationId = example.bot.conversationId;
+      }
       var botdata = _db[session.userData.conversationId].botdata;
       var card = new builder.HeroCard(session)
           .text("Hi - my name is %s",botdata.botname)
