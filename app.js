@@ -142,7 +142,6 @@ function findNextConversations(session, currentDialogObject, results) {
     if (results.response) {
       var entity = results.response.entity;
 
-
       for (var i = 0; i < currentDialog.answer.length; ++i) {    
         if (currentDialog.answer[i].text === entity) {
           //thenRef Index is used with pattern $=? to reuse existing trees to not copy
@@ -258,6 +257,10 @@ bot.dialog('/', [
       session.send("A simulated Bot from %s", botdata.previewURL)
       session.send(msg);
       startDialog(session, _db[session.userData.conversationId].conversation, 0);
+    } else if (args.action == "SetCarouselAction") {
+      //forward dialog action response of carousel to response based on answer
+      //answer has format "SetCarouselAction <button>"
+      next({response: { entity: args.data.substring("SetCarouselAction".length+1)}});
     } else {
       var currentDialog = _db[session.userData.conversationId].messages[session.userData.currentMessage];
       startDialog(session, currentDialog.conversations, currentDialog.index);
@@ -266,14 +269,16 @@ bot.dialog('/', [
   function (session, results, next) {
     var currentDialog = _db[session.userData.conversationId].messages[session.userData.currentMessage];
     var conversations = findNextConversations(session, currentDialog, results);
-    if (conversations) {
+    if (conversations && conversations.index < conversations.conversations.length) {
       session.userData.currentMessage = conversations.conversations[conversations.index].id;
       session.replaceDialog("/", conversations.conversations[conversations.index].id);
     } else {
       session.endDialog();
     }
   }
-]).cancelAction('/', "OK - I cancel it. Bye. Use **start list** to get back.", { matches: /(start|hallo|bye|goodbye|start .*|tschüss)/i });
+])
+.cancelAction('/', "OK - I cancel it. Bye. Use **start list** to get back.", { matches: /(start|hallo|bye|goodbye|start .*|tschüss)/i })
+.beginDialogAction('SetCarouselAction', '/', { matches: /SetCarouselAction.*/i });
 
 
 function startDialog(session, conversations, i) {
@@ -299,6 +304,29 @@ function runDialog(session, conversations, i) {
       var msg = new builder.Message(session).addAttachment(card);
       session.send(msg);
       return runDialog(session, conversations, i+1);
+  } else if (nextDialog.type === "tbuttons") {
+      var msg = new builder.Message(session);
+      for (var i = 0; i < nextDialog.carousel.length; ++i) {
+        var nextDialogCarousel = nextDialog.carousel[i];
+        var card = new builder.HeroCard(session)
+            .text(nextDialogCarousel.text)
+            .subtitle(nextDialogCarousel.subtitle)
+            .images([
+                  builder.CardImage.create(session, nextDialogCarousel.imageURL)
+            ]);
+        var buttons = [];
+        for (var j = 0; j < nextDialogCarousel.choices.length; ++j) {
+          var nextChoice = nextDialogCarousel.choices[j];
+          buttons.push(
+                  builder.CardAction.
+                  dialogAction(session, "SetCarouselAction", "SetCarouselAction "+nextChoice, nextChoice)
+          );
+        }
+        card.buttons(buttons);
+        msg.attachmentLayout(builder.AttachmentLayout.carousel);
+        msg.addAttachment(card);
+      }
+      session.send(msg);
   } else if (nextDialog.type === "buttons") {
     builder.Prompts.choice(
       session, nextDialog.text, 
@@ -315,4 +343,3 @@ function runDialog(session, conversations, i) {
     conversations: conversations,
     index: i};
 }
-

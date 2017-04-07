@@ -1,0 +1,110 @@
+{
+  "bot": {
+    "conversationId": "58e7a8417eea840d00dfc5ad",
+    "botname": "Test",
+    "fans": "779 people like this",
+    "category": "Board Game",
+    "imageURL": "/images/facebook_default.jpg",
+    "previewURL": "https://botsociety.io/s/58e7a8417eea840d00dfc5ad"
+  },
+  "conversation": [
+    {
+      "type": "text",
+      "text": "Hello",
+      "fromUser": false,
+      "id": "58e7a89b7eea840d00dfc5b5"
+    },
+    {
+      "type": "text",
+      "text": "2nd Hallo",
+      "fromUser": false,
+      "id": "58e7bb484849280c00ae0bea"
+    },
+    {
+      "type": "tbuttons",
+      "text": "",
+      "carousel": [
+        {
+          "text": "Title Text",
+          "type": "tbuttons",
+          "subtitle": "Subtitle Text",
+          "image": "https://s3.amazonaws.com/botsociety.prod.us/508435e43eddb05f85e0a949f866a28a4f71eskobotsmallpng.png",
+          "choices": [
+            "Button 1 Text",
+            "Button 2 Text",
+            "Button 3 Text"
+          ],
+          "choicesText": "Title Text.Choices",
+          "answer": [
+            {
+              "text": "Button 1 Text",
+              "thenDialog": null,
+              "thenRef": 0,
+              "then": [
+                {
+                  "type": "text",
+                  "text": "Button 1 pressed",
+                  "fromUser": false,
+                  "id": "58e7c8824849280c00ae0c66"
+                }
+              ]
+            },
+            {
+              "text": "Button 2 Text",
+              "thenDialog": null,
+              "thenRef": 1,
+              "then": []
+            },
+            {
+              "text": "Button 3 Text",
+              "thenDialog": null,
+              "thenRef": 2,
+              "then": [
+                {
+                  "type": "text",
+                  "text": "Button 3 pressed",
+                  "fromUser": false,
+                  "id": "58e7c8a34849280c00ae0c68"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Titel 2 Text",
+          "type": "tbuttons",
+          "subtitle": "Subtitle 2 Text",
+          "image": "https://s3.amazonaws.com/botsociety.prod.us/6310ed2ffae76af6fclocationpng.png",
+          "choices": [
+            "Button 2.1 text",
+            "Button 2.2 text"
+          ],
+          "choicesText": "Titel 2 Text.Choices",
+          "answer": [
+            {
+              "text": "Button 2.1 text",
+              "thenDialog": null,
+              "thenRef": 0,
+              "then": [
+                {
+                  "type": "text",
+                  "text": "Button 2.1 pressed",
+                  "fromUser": false,
+                  "id": "58e7c8b24849280c00ae0c69"
+                }
+              ]
+            },
+            {
+              "text": "Button 2.2 text",
+              "thenDialog": null,
+              "thenRef": 1,
+              "then": []
+            }
+          ]
+        }
+      ],
+      "fromUser": false,
+      "id": "58e7a88f7eea840d00dfc5b4"
+    }
+  ]
+}
