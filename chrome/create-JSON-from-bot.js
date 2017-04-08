@@ -12,7 +12,7 @@ var GENERATE_LABELS = false;
 var ADD_CONVERSATION = false;
 //test local: start ngrok in command line with your port
 //    ngrok http 3979
-var ADD_CONVERSATION_URL = "https://9a59ae3a.ngrok.io"
+//var ADD_CONVERSATION_URL = "https://3a5607ee.ngrok.io"
 
 var botnameDiv=document.querySelectorAll('div[class^="botname"]')[0];
 if (!botnameDiv) {
@@ -23,7 +23,7 @@ var botname = document.querySelectorAll('div[class^="botname"]')[0].innerText;
 var fans = document.querySelectorAll('div[class^="fans"]')[0].innerText;
 var category = document.querySelectorAll('div[class^="page_category"]')[0].innerText;
 var image = document.querySelectorAll('div[class^="profile-picture"]')[0].attributes["data-picture"].nodeValue;
-var conversationId = prompt("Use conversationId (default=from URL)", window.location.pathname.split('/').pop());
+var conversationId = window.location.pathname.split('/').pop();
 
 var previewURL = "https://botsociety.io/s/"+conversationId;
 
@@ -73,10 +73,12 @@ function done() {
       if (!ITEMS[node._branches_in[0]]) {
         console.log(node._branches_in[0]);
       }
-      if (!ITEMS[node._branches_in[0]].childs) {
-        ITEMS[node._branches_in[0]].childs = [];
+      if (ITEMS[node._branches_in[0]] != undefined) {
+        if (!ITEMS[node._branches_in[0]].childs) {
+          ITEMS[node._branches_in[0]].childs = [];
+        }
+        ITEMS[node._branches_in[0]].childs.push(node);
       }
-      ITEMS[node._branches_in[0]].childs.push(node);
     }
     else {
       ROOT = node;
@@ -110,22 +112,27 @@ function oneOrSplit(s) {
 
 function addNodeToConversation(conversation, labels, dialogs, node) {
   for (var i = 0; i < node.messages.length; ++i) {
-    if (node.messages[i].type == 'text' || node.messages[i].type == 'images' || node.messages[i].type == 'buttons' || node.messages[i].type === 'quickreplies') {
-      var step = {type : node.messages[i].type };
-      if (node.messages[i].type != 'quickreplies') {
-        step.text = node.messages[i].text || "";
+    var cur = node.messages[i];
+    if (cur.type == 'text' || cur.type == 'images' || cur.type == 'buttons' || cur.type === 'quickreplies' || cur.type === 'tbuttons') {
+      var step = {type : cur.type };
+      if (cur.type != 'quickreplies') {
+        step.text = cur.text || "";
       }
-      if (node.messages[i].type === 'quickreplies' || node.messages[i].type === 'buttons' ) {
+      if (cur.type === 'quickreplies' || cur.type === 'buttons' ) {
         step.choices = [];
       }
-      if (node.messages[i].type == 'images') {
-        step.url = node.messages[i].attachments[0].image;
+      if (cur.type == 'images') {
+        step.url = cur.attachments[0].image;
       }
-      step.fromUser = !node.messages[i].side;
-      step.id = node.messages[i]._id;
+      if (cur.type == 'tbuttons') {
+        step.carousel = [];
+        step.answer = [];
+      }
+      step.fromUser = !cur.side;
+      step.id = cur._id;
       if (!step.fromUser) {
         var s = step.text;
-        var idx=s.indexOf("$.");
+        var idx=s ? s.indexOf("$.") : -1;
         if (idx >= 0) {
           var realText = s.substring(0, idx).trim();
           var variable = s.substring(idx+2);
@@ -152,52 +159,74 @@ function addNodeToConversation(conversation, labels, dialogs, node) {
         }
       }
     }  
-    if (DEBUG) { console.log(node.messages[i].type, node.messages[i]); }
-    if (node.messages[i].type == 'quickreplies' || node.messages[i].type == 'buttons') {
-      var answers = [];
-      var choicesString = null;
-      for (var j = 0; j < node.messages[i].attachments[0].choices.length; ++j) {
-        var choice =  node.messages[i].attachments[0].choices[j];
-        var choiceText = choice.text;
-        
-        var idx = choiceText.indexOf("$=");
-        var choiceThenRef = j;
-        if (idx >= 0) {
-          choiceThenRef = parseInt(choiceText.substring(idx+2).trim());
-          choiceText = choiceText.substring(0, idx).trim();
+    if (DEBUG) { console.log(cur.type, cur); }
+    if (cur.type == 'quickreplies' || cur.type == 'buttons' || cur.type == 'tbuttons') {
+      for (var t = 0; t < cur.attachments.length; ++t) {
+        var attn = cur.attachments[t];
+        var newStep = step;
+        if (cur.type == 'tbuttons') {
+          newStep = {
+            text: attn.labels[0], type: step.type,
+            subtitle: attn.labels[1],
+            imageURL: attn.image,
+            choices: []
+          }
+          step.carousel.push(newStep);
         }
-        idx = choiceText.indexOf("$.");
-        var choiceThenRefDialog = null;
-        if (idx >= 0) {
-          choiceThenRefDialog = choiceText.substring(idx+2).trim();
-          choiceText = choiceText.substring(0, idx).trim();
-        }
-        step.choices.push(choiceText);
-        labels.push({"key" : choiceText, "text" : choiceText});
-        if (choicesString) {
-          choicesString += "|"+choiceText;
-        } else {
-          choicesString = choiceText;
-        }
-        var answer  = {
-          text : choiceText,
-          thenDialog: choiceThenRefDialog,
-          thenRef: choiceThenRef,
-          then : []
-        }
-        var then = [];
-        addNodeToConversation(then, labels, dialogs, ITEMS[choice.branch_id]);
-        answer.then = then;
-        answers.push(answer);
-      }
+        var answers = [];
+        var choicesString = null;
+        for (var j = 0; j < attn.choices.length; ++j) {
+          var choice =  attn.choices[j];
+          var choiceText = choice.text;
 
-      if (!conversation.length) {
-        conversation.push({
-        });
+          var idx = choiceText.indexOf("$=");
+          var choiceThenRef = j;
+          if (idx >= 0) {
+            choiceThenRef = parseInt(choiceText.substring(idx+2).trim());
+            choiceText = choiceText.substring(0, idx).trim();
+          }
+          idx = choiceText.indexOf("$.");
+          var choiceThenRefDialog = null;
+          if (idx >= 0) {
+            choiceThenRefDialog = choiceText.substring(idx+2).trim();
+            choiceText = choiceText.substring(0, idx).trim();
+          }
+          newStep.choices.push(choiceText);
+          labels.push({"key" : choiceText, "text" : choiceText});
+          if (choicesString) {
+            choicesString += "|"+choiceText;
+          } else {
+            choicesString = choiceText;
+          }
+          var answer  = {
+            text : choiceText,
+            thenDialog: choiceThenRefDialog,
+            thenRef: choiceThenRef,
+            then : []
+          }
+          var then = [];
+          addNodeToConversation(then, labels, dialogs, ITEMS[choice.branch_id]);
+          answer.then = then;
+          answers.push(answer);
+        }
+
+        if (!conversation.length) {
+          conversation.push({
+          });
+        }
+        if (cur.type == "tbuttons") {
+          newStep.choicesText = newStep.text+".Choices";
+          labels.push({"key" : newStep.text+".Choices", "text" : choicesString});
+          newStep.answer = answers;
+          for (var k = 0; k < answers.length; ++k) {
+            step.answer.push(answers[k]);
+          }
+        } else {
+          conversation[conversation.length - 1].choicesText = newStep.text+".Choices";
+          labels.push({"key" : newStep.text+".Choices", "text" : choicesString});
+          conversation[conversation.length - 1].answer = answers;
+        }
       }
-      conversation[conversation.length - 1].choicesText = step.text+".Choices";
-      labels.push({"key" : step.text+".Choices", "text" : choicesString});
-      conversation[conversation.length - 1].answer = answers;
     }
   }
 }

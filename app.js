@@ -216,18 +216,19 @@ function startList(session) {
 bot.dialog('/', [
   function (session, args, next) {
     if (!args) {
-      if (session.message.text.toLowerCase() == "start") {
+      var message = session.message.text.toLowerCase();
+      if (message == "start") {
         session.userData.conversationId = example.bot.conversationId;
         session.userData.conversationId = example.bot.conversationId;
-      } else if (session.message.text.toLowerCase() == "start list") {
+      } else if (message == "start list") {
           startList(session);
           return;
-      } else if (session.message.text.indexOf("start ") >= 0) {
-        var idx = session.message.text.indexOf("start ");
-        session.userData.conversationId = session.message.text.substring(idx+6).trim();
-      } else if (session.message.text.indexOf("remove ") >= 0) {
-        var idx = session.message.text.indexOf("remove ");
-        var conversationId = session.message.text.substring(idx+6).trim();
+      } else if (message.indexOf("start ") >= 0) {
+        var idx = message.indexOf("start ");
+        session.userData.conversationId = message.substring(idx+6).trim();
+      } else if (message.indexOf("remove ") >= 0) {
+        var idx = message.indexOf("remove ");
+        var conversationId = message.substring(idx+6).trim();
         session.userData.conversationId = null;
         _db[conversationId] = null;
         delete _db[conversationId];
@@ -248,13 +249,12 @@ bot.dialog('/', [
       }
       var botdata = _db[session.userData.conversationId].botdata;
       var card = new builder.HeroCard(session)
-          .text("Hi - my name is %s",botdata.botname)
+          .text("Hi - my name is %s, a simulated bot from botsociety.io",botdata.botname)
           .subtitle(botdata.fans+", category: "+botdata.category)
           .images([
                 builder.CardImage.create(session, botdata.imageURL)
           ]);
       var msg = new builder.Message(session).addAttachment(card);
-      session.send("A simulated Bot from %s", botdata.previewURL)
       session.send(msg);
       startDialog(session, _db[session.userData.conversationId].conversation, 0);
     } else if (args.action == "SetCarouselAction") {
@@ -277,7 +277,7 @@ bot.dialog('/', [
     }
   }
 ])
-.cancelAction('/', "OK - I cancel it. Bye. Use **start list** to get back.", { matches: /(start|hallo|bye|goodbye|start .*|tschüss)/i })
+.cancelAction('/', "OK - I cancel it. Bye. Use **start list** to get back.", { matches: /(stop|start|hallo|bye|goodbye|start .*|tschüss)/i })
 .beginDialogAction('SetCarouselAction', '/', { matches: /SetCarouselAction.*/i });
 
 
