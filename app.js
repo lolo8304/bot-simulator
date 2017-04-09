@@ -33,12 +33,16 @@ server.post('/api/messages', connector.listen());
 var bot = new builder.UniversalBot(connector);
 
 var _db = {};
-var example = c.conversation().object();
-_db[example.bot.conversationId]= {
-  conversation: example.conversation, 
-  botdata: example.bot,
-  messages: prepareConversations(example.conversation, {})
-};
+var examples = c.conversation().object[];
+var example = examples[0];
+for (var i = 0; i < examples.length; ++i) {
+  var exampleToLoad = examples[i];
+  _db[exampleToLoad.bot.conversationId]= {
+    conversation: exampleToLoad.conversation, 
+    botdata: exampleToLoad.bot,
+    messages: prepareConversations(exampleToLoad.conversation, {})
+  };
+}
 
 function prepareConversations(conversations, messages) {
   for (var i = 0; i < conversations.length; ++i) {
