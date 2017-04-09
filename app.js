@@ -33,7 +33,7 @@ server.post('/api/messages', connector.listen());
 var bot = new builder.UniversalBot(connector);
 
 var _db = {};
-var examples = c.conversation().object[];
+var examples = c.conversation().object();
 var example = examples[0];
 for (var i = 0; i < examples.length; ++i) {
   var exampleToLoad = examples[i];
