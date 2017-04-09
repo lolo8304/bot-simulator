@@ -4,7 +4,7 @@
     "botname": "Test",
     "fans": "779 people like this",
     "category": "Board Game",
-    "imageURL": "/images/facebook_default.jpg",
+    "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/6ed4bd6dfd434fea87c4tabellepng.png",
     "previewURL": "https://botsociety.io/s/58e7a8417eea840d00dfc5ad"
   },
   "conversation": [
@@ -28,7 +28,7 @@
           "text": "Title Text",
           "type": "tbuttons",
           "subtitle": "Subtitle Text",
-          "image": "https://s3.amazonaws.com/botsociety.prod.us/508435e43eddb05f85e0a949f866a28a4f71eskobotsmallpng.png",
+          "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/508435e43eddb05f85e0a949f866a28a4f71eskobotsmallpng.png",
           "choices": [
             "Button 1 Text",
             "Button 2 Text",
@@ -65,6 +65,18 @@
                   "text": "Button 3 pressed",
                   "fromUser": false,
                   "id": "58e7c8a34849280c00ae0c68"
+                },
+                {
+                  "type": "prompt",
+                  "text": "das ist ein weiterer Text",
+                  "fromUser": false,
+                  "id": "58e7f6fe4849280c00ae0d48",
+                  "answer": {
+                    "type": "text",
+                    "text": "ok",
+                    "fromUser": true,
+                    "id": "58e7f70d4849280c00ae0d49"
+                  }
                 }
               ]
             }
@@ -74,7 +86,7 @@
           "text": "Titel 2 Text",
           "type": "tbuttons",
           "subtitle": "Subtitle 2 Text",
-          "image": "https://s3.amazonaws.com/botsociety.prod.us/6310ed2ffae76af6fclocationpng.png",
+          "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/6310ed2ffae76af6fclocationpng.png",
           "choices": [
             "Button 2.1 text",
             "Button 2.2 text"
@@ -101,6 +113,71 @@
               "then": []
             }
           ]
+        }
+      ],
+      "answer": [
+        {
+          "text": "Button 1 Text",
+          "thenDialog": null,
+          "thenRef": 0,
+          "then": [
+            {
+              "type": "text",
+              "text": "Button 1 pressed",
+              "fromUser": false,
+              "id": "58e7c8824849280c00ae0c66"
+            }
+          ]
+        },
+        {
+          "text": "Button 2 Text",
+          "thenDialog": null,
+          "thenRef": 1,
+          "then": []
+        },
+        {
+          "text": "Button 3 Text",
+          "thenDialog": null,
+          "thenRef": 2,
+          "then": [
+            {
+              "type": "text",
+              "text": "Button 3 pressed",
+              "fromUser": false,
+              "id": "58e7c8a34849280c00ae0c68"
+            },
+            {
+              "type": "prompt",
+              "text": "das ist ein weiterer Text",
+              "fromUser": false,
+              "id": "58e7f6fe4849280c00ae0d48",
+              "answer": {
+                "type": "text",
+                "text": "ok",
+                "fromUser": true,
+                "id": "58e7f70d4849280c00ae0d49"
+              }
+            }
+          ]
+        },
+        {
+          "text": "Button 2.1 text",
+          "thenDialog": null,
+          "thenRef": 0,
+          "then": [
+            {
+              "type": "text",
+              "text": "Button 2.1 pressed",
+              "fromUser": false,
+              "id": "58e7c8b24849280c00ae0c69"
+            }
+          ]
+        },
+        {
+          "text": "Button 2.2 text",
+          "thenDialog": null,
+          "thenRef": 1,
+          "then": []
         }
       ],
       "fromUser": false,

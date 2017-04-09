@@ -1,0 +1,2163 @@
+{
+  "bot": {
+    "conversationId": "58d9319930316abb078da48e",
+    "botname": "Meldung Glasschaden",
+    "fans": "0 people like this",
+    "category": "",
+    "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/5a43e9ae9cc727ebc747dca4axa_logosvgpng.png",
+    "previewURL": "https://botsociety.io/s/58d9319930316abb078da48e"
+  },
+  "conversation": [
+    {
+      "type": "text",
+      "text": "Hallo! Wie können wir Ihnen weiterhelfen?",
+      "fromUser": false,
+      "id": "58d9323c30316abb078da4af"
+    },
+    {
+      "type": "tbuttons",
+      "text": "",
+      "carousel": [
+        {
+          "text": "Schaden melden",
+          "type": "tbuttons",
+          "subtitle": "Bitte auswählen",
+          "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/ad81fb134e43bac63schadenpng.png",
+          "choices": [
+            "Auto",
+            "Hausrat",
+            "Sonstige Schäden"
+          ],
+          "choicesText": "Schaden melden.Choices",
+          "answer": [
+            {
+              "text": "Auto",
+              "thenDialog": null,
+              "thenRef": 0,
+              "then": [
+                {
+                  "type": "text",
+                  "text": "Gerne! Welchen Autoschaden möchten Sie melden?",
+                  "fromUser": false,
+                  "id": "58da13c3fc176e870f1bddfc"
+                },
+                {
+                  "type": "tbuttons",
+                  "text": "",
+                  "carousel": [
+                    {
+                      "text": "Glasschaden",
+                      "type": "tbuttons",
+                      "subtitle": "Bitte auswählen",
+                      "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/44f3a471d9f6124b67e93d48848c90820bglasschadenjpg.jpg",
+                      "choices": [
+                        "Glassschaden"
+                      ],
+                      "choicesText": "Glasschaden.Choices",
+                      "answer": [
+                        {
+                          "text": "Glassschaden",
+                          "thenDialog": null,
+                          "thenRef": 0,
+                          "then": [
+                            {
+                              "type": "prompt",
+                              "text": "Gerne erfassen wir mit Ihnen einen Glasschaden. Um Sie besser bedienen zu können, brauchen wir einige Angaben. Wie lautet Ihr Vorname und Name?",
+                              "fromUser": false,
+                              "id": "58e340a15ae3221a004ff068",
+                              "answer": {
+                                "type": "text",
+                                "text": "Mike Ackermann",
+                                "fromUser": true,
+                                "id": "58e340fd5ae3221a004ff069"
+                              }
+                            },
+                            {
+                              "type": "prompt",
+                              "text": "Bitte geben Sie uns noch Ihr Geburtsdatum an",
+                              "fromUser": false,
+                              "id": "58e3423d5ae3221a004ff06f",
+                              "answer": {
+                                "type": "text",
+                                "text": "10.02.1982",
+                                "fromUser": true,
+                                "id": "58e342705ae3221a004ff070"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "Danke Herr Ackermann :-) ! \nFür welches Ihrer Fahrzeuge möchten Sie einen Glasschaden melden?",
+                              "fromUser": false,
+                              "id": "58de362fa3e20df32a8342bd"
+                            },
+                            {
+                              "type": "buttons",
+                              "text": "Wählen Sie Ihr Fahrzeug aus:",
+                              "choices": [
+                                "Renault Espace ZH170180",
+                                "Mini Cooper 3 Door ZH450123"
+                              ],
+                              "fromUser": false,
+                              "id": "58de36d2a3e20df32a8342c7",
+                              "choicesText": "Wählen Sie Ihr Fahrzeug aus:.Choices",
+                              "answer": [
+                                {
+                                  "text": "Renault Espace ZH170180",
+                                  "thenDialog": null,
+                                  "thenRef": 0,
+                                  "then": []
+                                },
+                                {
+                                  "text": "Mini Cooper 3 Door ZH450123",
+                                  "thenDialog": null,
+                                  "thenRef": 1,
+                                  "then": [
+                                    {
+                                      "type": "prompt",
+                                      "text": "Wann (Datum, Uhrzeit) ist der Schaden aufgetreten?",
+                                      "fromUser": false,
+                                      "id": "58de372ca3e20df32a8342cc",
+                                      "answer": {
+                                        "type": "text",
+                                        "text": "Am 04.04.2017 um 10:30 :-(",
+                                        "fromUser": true,
+                                        "id": "58de37a1a3e20df32a8342cd"
+                                      }
+                                    },
+                                    {
+                                      "type": "prompt",
+                                      "text": "Können Sie uns bitte den Schadenort übermitteln? Tipp: Nutzen Sie die Lokalisierungs-Funktion vom Messenger :-) .",
+                                      "url": "https://s3.amazonaws.com/botsociety.prod.us/e944ae1754f390etipp%20locationpng.png",
+                                      "fromUser": false,
+                                      "id": "58e343f65ae3221a004ff07d",
+                                      "answer": {
+                                        "type": "text",
+                                        "text": "Pionierstrasse 3, 8400 Winterthur",
+                                        "fromUser": true,
+                                        "id": "58e3496c5b774c51013f55e3"
+                                      }
+                                    },
+                                    {
+                                      "type": "buttons",
+                                      "text": "Danke! Wurde dabei die Windschutz- Seiten- Dach- oder Heckscheibe beschädigt?",
+                                      "choices": [
+                                        "Ja",
+                                        "Nein"
+                                      ],
+                                      "fromUser": false,
+                                      "id": "58e34c76994d985b01575e81",
+                                      "choicesText": "Danke! Wurde dabei die Windschutz- Seiten- Dach- oder Heckscheibe beschädigt?.Choices",
+                                      "answer": [
+                                        {
+                                          "text": "Ja",
+                                          "thenDialog": null,
+                                          "thenRef": 0,
+                                          "then": [
+                                            {
+                                              "type": "prompt",
+                                              "text": "Der Glasschaden an Ihrem Mini Cooper 3 ist über Ihre Autoversicherung gedeckt. Mittels Angabe von PLZ oder Ort können Sie nun ganz einfach einen Partner für die Reparatur Ihres Autos finden.",
+                                              "fromUser": false,
+                                              "id": "58e34e60994d985b01575e82",
+                                              "answer": {
+                                                "type": "text",
+                                                "text": "8217 Wilchingen",
+                                                "fromUser": true,
+                                                "id": "58e34e7a994d985b01575e83"
+                                              }
+                                            },
+                                            {
+                                              "type": "text",
+                                              "text": "Alles klar! Bei Berücksichtigung einer der folgenden Partner-Betriebe entfällt der Selbstbehalt :-)",
+                                              "fromUser": false,
+                                              "id": "58e35f831a707a0c00c99540"
+                                            },
+                                            {
+                                              "type": "tbuttons",
+                                              "text": "",
+                                              "dialog": "GaragenAuswahl",
+                                              "carousel": [
+                                                {
+                                                  "text": "Müller Garage",
+                                                  "type": "tbuttons",
+                                                  "subtitle": "Dorfstrasse 17, 8217 Wilchingen",
+                                                  "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/d5f665352b49d3d07262d63a2e52157babf1802garage%20wilchingenpng.png",
+                                                  "choices": [
+                                                    "Auswählen",
+                                                    "Mehr Details",
+                                                    "Karte"
+                                                  ],
+                                                  "choicesText": "Müller Garage.Choices",
+                                                  "answer": [
+                                                    {
+                                                      "text": "Auswählen",
+                                                      "thenDialog": null,
+                                                      "thenRef": 0,
+                                                      "then": []
+                                                    },
+                                                    {
+                                                      "text": "Mehr Details",
+                                                      "thenDialog": null,
+                                                      "thenRef": 1,
+                                                      "then": []
+                                                    },
+                                                    {
+                                                      "text": "Karte",
+                                                      "thenDialog": null,
+                                                      "thenRef": 2,
+                                                      "then": []
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "text": "Carroserie J. Bräm",
+                                                  "type": "tbuttons",
+                                                  "subtitle": "Unterrietstrasse 44, 8217 Wilchingen",
+                                                  "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/0f3e562ed636d347eac41440c21b2garage%20brmpng.png",
+                                                  "choices": [
+                                                    "Auswählen",
+                                                    "Mehr Details",
+                                                    "Karte"
+                                                  ],
+                                                  "choicesText": "Carroserie J. Bräm.Choices",
+                                                  "answer": [
+                                                    {
+                                                      "text": "Auswählen",
+                                                      "thenDialog": null,
+                                                      "thenRef": 0,
+                                                      "then": []
+                                                    },
+                                                    {
+                                                      "text": "Mehr Details",
+                                                      "thenDialog": null,
+                                                      "thenRef": 1,
+                                                      "then": []
+                                                    },
+                                                    {
+                                                      "text": "Karte",
+                                                      "thenDialog": null,
+                                                      "thenRef": 2,
+                                                      "then": []
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "text": "Garage Wyland",
+                                                  "type": "tbuttons",
+                                                  "subtitle": "Hauptstrasse 97, 8217 Wilchingen",
+                                                  "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/3795f6a9f7d65b3b60a11c411a11garage%20wylandpng.png",
+                                                  "choices": [
+                                                    "Auswählen",
+                                                    "Mehr Informationen",
+                                                    "Karte"
+                                                  ],
+                                                  "choicesText": "Garage Wyland.Choices",
+                                                  "answer": [
+                                                    {
+                                                      "text": "Auswählen",
+                                                      "thenDialog": null,
+                                                      "thenRef": 0,
+                                                      "then": [
+                                                        {
+                                                          "type": "text",
+                                                          "text": "Bestens! Hier die Angaben der ausgewählten Garage:",
+                                                          "fromUser": false,
+                                                          "id": "58e36d191a707a0c00c99610"
+                                                        },
+                                                        {
+                                                          "type": "text",
+                                                          "text": "Darf Sie die Wyland Garage anhand der folgenden Angaben kontaktieren?\n\nMike Ackermann\nTel. +41 79 507 45 23\nm.ackermann@gmail.com",
+                                                          "fromUser": false,
+                                                          "id": "58e375681a707a0c00c99657"
+                                                        },
+                                                        {
+                                                          "type": "images",
+                                                          "text": "Wyland Garage\nHauptstrasse 97\n8217 Wilchingen\nTel. 052 681 21 14\ninfo@wyland-garage.ch",
+                                                          "url": "https://s3.amazonaws.com/botsociety.prod.us/5e471d85394d6ef20d3864wyland_garage1jpg.jpg",
+                                                          "fromUser": false,
+                                                          "id": "58e36e871a707a0c00c9961d"
+                                                        },
+                                                        {
+                                                          "type": "quickreplies",
+                                                          "choices": [
+                                                            "Ja gerne",
+                                                            "Angaben anpassen",
+                                                            "Andere Garage wählen"
+                                                          ],
+                                                          "fromUser": false,
+                                                          "id": "58e3762c1a707a0c00c9965a",
+                                                          "choicesText": "undefined.Choices",
+                                                          "answer": [
+                                                            {
+                                                              "text": "Ja gerne",
+                                                              "thenDialog": null,
+                                                              "thenRef": 0,
+                                                              "then": [
+                                                                {
+                                                                  "type": "text",
+                                                                  "text": "Vielen Dank! Sie finden unter folgendem Link alle Angaben zu Ihrem Schaden-fall. Bei Rückfragen stehen wir gerne zur Verfügung. Wir wünschen Ihnen einen schönen Tag :-) !",
+                                                                  "fromUser": false,
+                                                                  "id": "58e381ac1a707a0c00c99734"
+                                                                }
+                                                              ]
+                                                            },
+                                                            {
+                                                              "text": "Angaben anpassen",
+                                                              "thenDialog": null,
+                                                              "thenRef": 1,
+                                                              "then": []
+                                                            },
+                                                            {
+                                                              "text": "Andere Garage wählen",
+                                                              "thenDialog": "GaragenAuswahl",
+                                                              "thenRef": 2,
+                                                              "then": []
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "text": "Mehr Informationen",
+                                                      "thenDialog": null,
+                                                      "thenRef": 1,
+                                                      "then": []
+                                                    },
+                                                    {
+                                                      "text": "Karte",
+                                                      "thenDialog": null,
+                                                      "thenRef": 2,
+                                                      "then": []
+                                                    }
+                                                  ]
+                                                }
+                                              ],
+                                              "answer": [
+                                                {
+                                                  "text": "Auswählen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 0,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Mehr Details",
+                                                  "thenDialog": null,
+                                                  "thenRef": 1,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Karte",
+                                                  "thenDialog": null,
+                                                  "thenRef": 2,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Auswählen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 0,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Mehr Details",
+                                                  "thenDialog": null,
+                                                  "thenRef": 1,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Karte",
+                                                  "thenDialog": null,
+                                                  "thenRef": 2,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Auswählen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 0,
+                                                  "then": [
+                                                    {
+                                                      "type": "text",
+                                                      "text": "Bestens! Hier die Angaben der ausgewählten Garage:",
+                                                      "fromUser": false,
+                                                      "id": "58e36d191a707a0c00c99610"
+                                                    },
+                                                    {
+                                                      "type": "text",
+                                                      "text": "Darf Sie die Wyland Garage anhand der folgenden Angaben kontaktieren?\n\nMike Ackermann\nTel. +41 79 507 45 23\nm.ackermann@gmail.com",
+                                                      "fromUser": false,
+                                                      "id": "58e375681a707a0c00c99657"
+                                                    },
+                                                    {
+                                                      "type": "images",
+                                                      "text": "Wyland Garage\nHauptstrasse 97\n8217 Wilchingen\nTel. 052 681 21 14\ninfo@wyland-garage.ch",
+                                                      "url": "https://s3.amazonaws.com/botsociety.prod.us/5e471d85394d6ef20d3864wyland_garage1jpg.jpg",
+                                                      "fromUser": false,
+                                                      "id": "58e36e871a707a0c00c9961d"
+                                                    },
+                                                    {
+                                                      "type": "quickreplies",
+                                                      "choices": [
+                                                        "Ja gerne",
+                                                        "Angaben anpassen",
+                                                        "Andere Garage wählen"
+                                                      ],
+                                                      "fromUser": false,
+                                                      "id": "58e3762c1a707a0c00c9965a",
+                                                      "choicesText": "undefined.Choices",
+                                                      "answer": [
+                                                        {
+                                                          "text": "Ja gerne",
+                                                          "thenDialog": null,
+                                                          "thenRef": 0,
+                                                          "then": [
+                                                            {
+                                                              "type": "text",
+                                                              "text": "Vielen Dank! Sie finden unter folgendem Link alle Angaben zu Ihrem Schaden-fall. Bei Rückfragen stehen wir gerne zur Verfügung. Wir wünschen Ihnen einen schönen Tag :-) !",
+                                                              "fromUser": false,
+                                                              "id": "58e381ac1a707a0c00c99734"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "text": "Angaben anpassen",
+                                                          "thenDialog": null,
+                                                          "thenRef": 1,
+                                                          "then": []
+                                                        },
+                                                        {
+                                                          "text": "Andere Garage wählen",
+                                                          "thenDialog": null,
+                                                          "thenRef": 2,
+                                                          "then": []
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "text": "Mehr Informationen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 1,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Karte",
+                                                  "thenDialog": null,
+                                                  "thenRef": 2,
+                                                  "then": []
+                                                }
+                                              ],
+                                              "fromUser": false,
+                                              "id": "58e36c291a707a0c00c9960b"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "text": "Nein",
+                                          "thenDialog": null,
+                                          "thenRef": 1,
+                                          "then": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "text": "Parkschaden",
+                      "type": "tbuttons",
+                      "subtitle": "Bitte auswählen",
+                      "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/95cf58eb6137b9parkschadenjpg.jpg",
+                      "choices": [
+                        "Parkschaden"
+                      ],
+                      "choicesText": "Parkschaden.Choices",
+                      "answer": [
+                        {
+                          "text": "Parkschaden",
+                          "thenDialog": null,
+                          "thenRef": 0,
+                          "then": []
+                        }
+                      ]
+                    },
+                    {
+                      "text": "Marderschaden",
+                      "type": "tbuttons",
+                      "subtitle": "Bitte auswählen",
+                      "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/69e82fe6c453a189marderschadenjpg.jpg",
+                      "choices": [
+                        "Marderschaden"
+                      ],
+                      "choicesText": "Marderschaden.Choices",
+                      "answer": [
+                        {
+                          "text": "Marderschaden",
+                          "thenDialog": null,
+                          "thenRef": 0,
+                          "then": []
+                        }
+                      ]
+                    },
+                    {
+                      "text": "Hagelschaden",
+                      "type": "tbuttons",
+                      "subtitle": "Bitte auswählen",
+                      "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/b03a9a718a581fa8be7f5ca84fehagelschadenjpg.jpg",
+                      "choices": [
+                        "Hagelschaden"
+                      ],
+                      "choicesText": "Hagelschaden.Choices",
+                      "answer": [
+                        {
+                          "text": "Hagelschaden",
+                          "thenDialog": null,
+                          "thenRef": 0,
+                          "then": []
+                        }
+                      ]
+                    },
+                    {
+                      "text": "Weitere Schäden",
+                      "type": "tbuttons",
+                      "subtitle": "Bitte auswählen",
+                      "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/6c9ee2abe91e4057fec074weitere%20schdenjpg.jpg",
+                      "choices": [
+                        "Verkehrsunfall",
+                        "Einbruch/Diebstahl",
+                        "Weitere Schäden"
+                      ],
+                      "choicesText": "Weitere Schäden.Choices",
+                      "answer": [
+                        {
+                          "text": "Verkehrsunfall",
+                          "thenDialog": null,
+                          "thenRef": 0,
+                          "then": []
+                        },
+                        {
+                          "text": "Einbruch/Diebstahl",
+                          "thenDialog": null,
+                          "thenRef": 1,
+                          "then": []
+                        },
+                        {
+                          "text": "Weitere Schäden",
+                          "thenDialog": null,
+                          "thenRef": 2,
+                          "then": []
+                        }
+                      ]
+                    }
+                  ],
+                  "answer": [
+                    {
+                      "text": "Glassschaden",
+                      "thenDialog": null,
+                      "thenRef": 0,
+                      "then": [
+                        {
+                          "type": "prompt",
+                          "text": "Gerne erfassen wir mit Ihnen einen Glasschaden. Um Sie besser bedienen zu können, brauchen wir einige Angaben. Wie lautet Ihr Vorname und Name?",
+                          "fromUser": false,
+                          "id": "58e340a15ae3221a004ff068",
+                          "answer": {
+                            "type": "text",
+                            "text": "Mike Ackermann",
+                            "fromUser": true,
+                            "id": "58e340fd5ae3221a004ff069"
+                          }
+                        },
+                        {
+                          "type": "prompt",
+                          "text": "Bitte geben Sie uns noch Ihr Geburtsdatum an",
+                          "fromUser": false,
+                          "id": "58e3423d5ae3221a004ff06f",
+                          "answer": {
+                            "type": "text",
+                            "text": "10.02.1982",
+                            "fromUser": true,
+                            "id": "58e342705ae3221a004ff070"
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "Danke Herr Ackermann :-) ! \nFür welches Ihrer Fahrzeuge möchten Sie einen Glasschaden melden?",
+                          "fromUser": false,
+                          "id": "58de362fa3e20df32a8342bd"
+                        },
+                        {
+                          "type": "buttons",
+                          "text": "Wählen Sie Ihr Fahrzeug aus:",
+                          "choices": [
+                            "Renault Espace ZH170180",
+                            "Mini Cooper 3 Door ZH450123"
+                          ],
+                          "fromUser": false,
+                          "id": "58de36d2a3e20df32a8342c7",
+                          "choicesText": "Wählen Sie Ihr Fahrzeug aus:.Choices",
+                          "answer": [
+                            {
+                              "text": "Renault Espace ZH170180",
+                              "thenDialog": null,
+                              "thenRef": 0,
+                              "then": []
+                            },
+                            {
+                              "text": "Mini Cooper 3 Door ZH450123",
+                              "thenDialog": null,
+                              "thenRef": 1,
+                              "then": [
+                                {
+                                  "type": "prompt",
+                                  "text": "Wann (Datum, Uhrzeit) ist der Schaden aufgetreten?",
+                                  "fromUser": false,
+                                  "id": "58de372ca3e20df32a8342cc",
+                                  "answer": {
+                                    "type": "text",
+                                    "text": "Am 04.04.2017 um 10:30 :-(",
+                                    "fromUser": true,
+                                    "id": "58de37a1a3e20df32a8342cd"
+                                  }
+                                },
+                                {
+                                  "type": "prompt",
+                                  "text": "Können Sie uns bitte den Schadenort übermitteln? Tipp: Nutzen Sie die Lokalisierungs-Funktion vom Messenger :-) .",
+                                  "url": "https://s3.amazonaws.com/botsociety.prod.us/e944ae1754f390etipp%20locationpng.png",
+                                  "fromUser": false,
+                                  "id": "58e343f65ae3221a004ff07d",
+                                  "answer": {
+                                    "type": "text",
+                                    "text": "Pionierstrasse 3, 8400 Winterthur",
+                                    "fromUser": true,
+                                    "id": "58e3496c5b774c51013f55e3"
+                                  }
+                                },
+                                {
+                                  "type": "buttons",
+                                  "text": "Danke! Wurde dabei die Windschutz- Seiten- Dach- oder Heckscheibe beschädigt?",
+                                  "choices": [
+                                    "Ja",
+                                    "Nein"
+                                  ],
+                                  "fromUser": false,
+                                  "id": "58e34c76994d985b01575e81",
+                                  "choicesText": "Danke! Wurde dabei die Windschutz- Seiten- Dach- oder Heckscheibe beschädigt?.Choices",
+                                  "answer": [
+                                    {
+                                      "text": "Ja",
+                                      "thenDialog": null,
+                                      "thenRef": 0,
+                                      "then": [
+                                        {
+                                          "type": "prompt",
+                                          "text": "Der Glasschaden an Ihrem Mini Cooper 3 ist über Ihre Autoversicherung gedeckt. Mittels Angabe von PLZ oder Ort können Sie nun ganz einfach einen Partner für die Reparatur Ihres Autos finden.",
+                                          "fromUser": false,
+                                          "id": "58e34e60994d985b01575e82",
+                                          "answer": {
+                                            "type": "text",
+                                            "text": "8217 Wilchingen",
+                                            "fromUser": true,
+                                            "id": "58e34e7a994d985b01575e83"
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "Alles klar! Bei Berücksichtigung einer der folgenden Partner-Betriebe entfällt der Selbstbehalt :-)",
+                                          "fromUser": false,
+                                          "id": "58e35f831a707a0c00c99540"
+                                        },
+                                        {
+                                          "type": "tbuttons",
+                                          "text": "",
+                                          "carousel": [
+                                            {
+                                              "text": "Müller Garage",
+                                              "type": "tbuttons",
+                                              "subtitle": "Dorfstrasse 17, 8217 Wilchingen",
+                                              "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/d5f665352b49d3d07262d63a2e52157babf1802garage%20wilchingenpng.png",
+                                              "choices": [
+                                                "Auswählen",
+                                                "Mehr Details",
+                                                "Karte"
+                                              ],
+                                              "choicesText": "Müller Garage.Choices",
+                                              "answer": [
+                                                {
+                                                  "text": "Auswählen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 0,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Mehr Details",
+                                                  "thenDialog": null,
+                                                  "thenRef": 1,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Karte",
+                                                  "thenDialog": null,
+                                                  "thenRef": 2,
+                                                  "then": []
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "text": "Carroserie J. Bräm",
+                                              "type": "tbuttons",
+                                              "subtitle": "Unterrietstrasse 44, 8217 Wilchingen",
+                                              "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/0f3e562ed636d347eac41440c21b2garage%20brmpng.png",
+                                              "choices": [
+                                                "Auswählen",
+                                                "Mehr Details",
+                                                "Karte"
+                                              ],
+                                              "choicesText": "Carroserie J. Bräm.Choices",
+                                              "answer": [
+                                                {
+                                                  "text": "Auswählen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 0,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Mehr Details",
+                                                  "thenDialog": null,
+                                                  "thenRef": 1,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Karte",
+                                                  "thenDialog": null,
+                                                  "thenRef": 2,
+                                                  "then": []
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "text": "Garage Wyland",
+                                              "type": "tbuttons",
+                                              "subtitle": "Hauptstrasse 97, 8217 Wilchingen",
+                                              "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/3795f6a9f7d65b3b60a11c411a11garage%20wylandpng.png",
+                                              "choices": [
+                                                "Auswählen",
+                                                "Mehr Informationen",
+                                                "Karte"
+                                              ],
+                                              "choicesText": "Garage Wyland.Choices",
+                                              "answer": [
+                                                {
+                                                  "text": "Auswählen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 0,
+                                                  "then": [
+                                                    {
+                                                      "type": "text",
+                                                      "text": "Bestens! Hier die Angaben der ausgewählten Garage:",
+                                                      "fromUser": false,
+                                                      "id": "58e36d191a707a0c00c99610"
+                                                    },
+                                                    {
+                                                      "type": "text",
+                                                      "text": "Darf Sie die Wyland Garage anhand der folgenden Angaben kontaktieren?\n\nMike Ackermann\nTel. +41 79 507 45 23\nm.ackermann@gmail.com",
+                                                      "fromUser": false,
+                                                      "id": "58e375681a707a0c00c99657"
+                                                    },
+                                                    {
+                                                      "type": "images",
+                                                      "text": "Wyland Garage\nHauptstrasse 97\n8217 Wilchingen\nTel. 052 681 21 14\ninfo@wyland-garage.ch",
+                                                      "url": "https://s3.amazonaws.com/botsociety.prod.us/5e471d85394d6ef20d3864wyland_garage1jpg.jpg",
+                                                      "fromUser": false,
+                                                      "id": "58e36e871a707a0c00c9961d"
+                                                    },
+                                                    {
+                                                      "type": "quickreplies",
+                                                      "choices": [
+                                                        "Ja gerne",
+                                                        "Angaben anpassen",
+                                                        "Andere Garage wählen"
+                                                      ],
+                                                      "fromUser": false,
+                                                      "id": "58e3762c1a707a0c00c9965a",
+                                                      "choicesText": "undefined.Choices",
+                                                      "answer": [
+                                                        {
+                                                          "text": "Ja gerne",
+                                                          "thenDialog": null,
+                                                          "thenRef": 0,
+                                                          "then": [
+                                                            {
+                                                              "type": "text",
+                                                              "text": "Vielen Dank! Sie finden unter folgendem Link alle Angaben zu Ihrem Schaden-fall. Bei Rückfragen stehen wir gerne zur Verfügung. Wir wünschen Ihnen einen schönen Tag :-) !",
+                                                              "fromUser": false,
+                                                              "id": "58e381ac1a707a0c00c99734"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "text": "Angaben anpassen",
+                                                          "thenDialog": null,
+                                                          "thenRef": 1,
+                                                          "then": []
+                                                        },
+                                                        {
+                                                          "text": "Andere Garage wählen",
+                                                          "thenDialog": null,
+                                                          "thenRef": 2,
+                                                          "then": []
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "text": "Mehr Informationen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 1,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Karte",
+                                                  "thenDialog": null,
+                                                  "thenRef": 2,
+                                                  "then": []
+                                                }
+                                              ]
+                                            }
+                                          ],
+                                          "answer": [
+                                            {
+                                              "text": "Auswählen",
+                                              "thenDialog": null,
+                                              "thenRef": 0,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Mehr Details",
+                                              "thenDialog": null,
+                                              "thenRef": 1,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Karte",
+                                              "thenDialog": null,
+                                              "thenRef": 2,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Auswählen",
+                                              "thenDialog": null,
+                                              "thenRef": 0,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Mehr Details",
+                                              "thenDialog": null,
+                                              "thenRef": 1,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Karte",
+                                              "thenDialog": null,
+                                              "thenRef": 2,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Auswählen",
+                                              "thenDialog": null,
+                                              "thenRef": 0,
+                                              "then": [
+                                                {
+                                                  "type": "text",
+                                                  "text": "Bestens! Hier die Angaben der ausgewählten Garage:",
+                                                  "fromUser": false,
+                                                  "id": "58e36d191a707a0c00c99610"
+                                                },
+                                                {
+                                                  "type": "text",
+                                                  "text": "Darf Sie die Wyland Garage anhand der folgenden Angaben kontaktieren?\n\nMike Ackermann\nTel. +41 79 507 45 23\nm.ackermann@gmail.com",
+                                                  "fromUser": false,
+                                                  "id": "58e375681a707a0c00c99657"
+                                                },
+                                                {
+                                                  "type": "images",
+                                                  "text": "Wyland Garage\nHauptstrasse 97\n8217 Wilchingen\nTel. 052 681 21 14\ninfo@wyland-garage.ch",
+                                                  "url": "https://s3.amazonaws.com/botsociety.prod.us/5e471d85394d6ef20d3864wyland_garage1jpg.jpg",
+                                                  "fromUser": false,
+                                                  "id": "58e36e871a707a0c00c9961d"
+                                                },
+                                                {
+                                                  "type": "quickreplies",
+                                                  "choices": [
+                                                    "Ja gerne",
+                                                    "Angaben anpassen",
+                                                    "Andere Garage wählen"
+                                                  ],
+                                                  "fromUser": false,
+                                                  "id": "58e3762c1a707a0c00c9965a",
+                                                  "choicesText": "undefined.Choices",
+                                                  "answer": [
+                                                    {
+                                                      "text": "Ja gerne",
+                                                      "thenDialog": null,
+                                                      "thenRef": 0,
+                                                      "then": [
+                                                        {
+                                                          "type": "text",
+                                                          "text": "Vielen Dank! Sie finden unter folgendem Link alle Angaben zu Ihrem Schaden-fall. Bei Rückfragen stehen wir gerne zur Verfügung. Wir wünschen Ihnen einen schönen Tag :-) !",
+                                                          "fromUser": false,
+                                                          "id": "58e381ac1a707a0c00c99734"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "text": "Angaben anpassen",
+                                                      "thenDialog": null,
+                                                      "thenRef": 1,
+                                                      "then": []
+                                                    },
+                                                    {
+                                                      "text": "Andere Garage wählen",
+                                                      "thenDialog": null,
+                                                      "thenRef": 2,
+                                                      "then": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "text": "Mehr Informationen",
+                                              "thenDialog": null,
+                                              "thenRef": 1,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Karte",
+                                              "thenDialog": null,
+                                              "thenRef": 2,
+                                              "then": []
+                                            }
+                                          ],
+                                          "fromUser": false,
+                                          "id": "58e36c291a707a0c00c9960b"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "text": "Nein",
+                                      "thenDialog": null,
+                                      "thenRef": 1,
+                                      "then": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "text": "Parkschaden",
+                      "thenDialog": null,
+                      "thenRef": 0,
+                      "then": []
+                    },
+                    {
+                      "text": "Marderschaden",
+                      "thenDialog": null,
+                      "thenRef": 0,
+                      "then": []
+                    },
+                    {
+                      "text": "Hagelschaden",
+                      "thenDialog": null,
+                      "thenRef": 0,
+                      "then": []
+                    },
+                    {
+                      "text": "Verkehrsunfall",
+                      "thenDialog": null,
+                      "thenRef": 0,
+                      "then": []
+                    },
+                    {
+                      "text": "Einbruch/Diebstahl",
+                      "thenDialog": null,
+                      "thenRef": 1,
+                      "then": []
+                    },
+                    {
+                      "text": "Weitere Schäden",
+                      "thenDialog": null,
+                      "thenRef": 2,
+                      "then": []
+                    }
+                  ],
+                  "fromUser": false,
+                  "id": "58da1614c4e3869b0ff5b516"
+                }
+              ]
+            },
+            {
+              "text": "Hausrat",
+              "thenDialog": null,
+              "thenRef": 1,
+              "then": []
+            },
+            {
+              "text": "Sonstige Schäden",
+              "thenDialog": null,
+              "thenRef": 2,
+              "then": []
+            }
+          ]
+        },
+        {
+          "text": "Kontakt & Services",
+          "type": "tbuttons",
+          "subtitle": "Bitte auswählen",
+          "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/47cfa19f76cb828ec581f96kontaktpng.png",
+          "choices": [
+            "Kontaktformular",
+            "AXA 24-Stunden-Telefon",
+            "Agentur- & Beratersuche"
+          ],
+          "choicesText": "Kontakt & Services.Choices",
+          "answer": [
+            {
+              "text": "Kontaktformular",
+              "thenDialog": null,
+              "thenRef": 0,
+              "then": []
+            },
+            {
+              "text": "AXA 24-Stunden-Telefon",
+              "thenDialog": null,
+              "thenRef": 1,
+              "then": []
+            },
+            {
+              "text": "Agentur- & Beratersuche",
+              "thenDialog": null,
+              "thenRef": 2,
+              "then": []
+            }
+          ]
+        },
+        {
+          "text": "Adresse ändern",
+          "type": "tbuttons",
+          "subtitle": "Bitte auswählen",
+          "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/683331126e74a4022c80adressepng.png",
+          "choices": [
+            "Adressänderung",
+            "Namensänderung",
+            "Weitere"
+          ],
+          "choicesText": "Adresse ändern.Choices",
+          "answer": [
+            {
+              "text": "Adressänderung",
+              "thenDialog": null,
+              "thenRef": 0,
+              "then": []
+            },
+            {
+              "text": "Namensänderung",
+              "thenDialog": null,
+              "thenRef": 1,
+              "then": []
+            },
+            {
+              "text": "Weitere",
+              "thenDialog": null,
+              "thenRef": 2,
+              "then": []
+            }
+          ]
+        },
+        {
+          "text": "Prämie berechnen",
+          "type": "tbuttons",
+          "subtitle": "Bitte auswählen",
+          "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/cde01778a1c2770f0ff4ee8bdprmiepng.png",
+          "choices": [
+            "Auto",
+            "Hausrat",
+            "Weitere Versicherungen"
+          ],
+          "choicesText": "Prämie berechnen.Choices",
+          "answer": [
+            {
+              "text": "Auto",
+              "thenDialog": null,
+              "thenRef": 0,
+              "then": []
+            },
+            {
+              "text": "Hausrat",
+              "thenDialog": null,
+              "thenRef": 1,
+              "then": []
+            },
+            {
+              "text": "Weitere Versicherungen",
+              "thenDialog": null,
+              "thenRef": 2,
+              "then": []
+            }
+          ]
+        }
+      ],
+      "answer": [
+        {
+          "text": "Auto",
+          "thenDialog": null,
+          "thenRef": 0,
+          "then": [
+            {
+              "type": "text",
+              "text": "Gerne! Welchen Autoschaden möchten Sie melden?",
+              "fromUser": false,
+              "id": "58da13c3fc176e870f1bddfc"
+            },
+            {
+              "type": "tbuttons",
+              "text": "",
+              "carousel": [
+                {
+                  "text": "Glasschaden",
+                  "type": "tbuttons",
+                  "subtitle": "Bitte auswählen",
+                  "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/44f3a471d9f6124b67e93d48848c90820bglasschadenjpg.jpg",
+                  "choices": [
+                    "Glassschaden"
+                  ],
+                  "choicesText": "Glasschaden.Choices",
+                  "answer": [
+                    {
+                      "text": "Glassschaden",
+                      "thenDialog": null,
+                      "thenRef": 0,
+                      "then": [
+                        {
+                          "type": "prompt",
+                          "text": "Gerne erfassen wir mit Ihnen einen Glasschaden. Um Sie besser bedienen zu können, brauchen wir einige Angaben. Wie lautet Ihr Vorname und Name?",
+                          "fromUser": false,
+                          "id": "58e340a15ae3221a004ff068",
+                          "answer": {
+                            "type": "text",
+                            "text": "Mike Ackermann",
+                            "fromUser": true,
+                            "id": "58e340fd5ae3221a004ff069"
+                          }
+                        },
+                        {
+                          "type": "prompt",
+                          "text": "Bitte geben Sie uns noch Ihr Geburtsdatum an",
+                          "fromUser": false,
+                          "id": "58e3423d5ae3221a004ff06f",
+                          "answer": {
+                            "type": "text",
+                            "text": "10.02.1982",
+                            "fromUser": true,
+                            "id": "58e342705ae3221a004ff070"
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "text": "Danke Herr Ackermann :-) ! \nFür welches Ihrer Fahrzeuge möchten Sie einen Glasschaden melden?",
+                          "fromUser": false,
+                          "id": "58de362fa3e20df32a8342bd"
+                        },
+                        {
+                          "type": "buttons",
+                          "text": "Wählen Sie Ihr Fahrzeug aus:",
+                          "choices": [
+                            "Renault Espace ZH170180",
+                            "Mini Cooper 3 Door ZH450123"
+                          ],
+                          "fromUser": false,
+                          "id": "58de36d2a3e20df32a8342c7",
+                          "choicesText": "Wählen Sie Ihr Fahrzeug aus:.Choices",
+                          "answer": [
+                            {
+                              "text": "Renault Espace ZH170180",
+                              "thenDialog": null,
+                              "thenRef": 0,
+                              "then": []
+                            },
+                            {
+                              "text": "Mini Cooper 3 Door ZH450123",
+                              "thenDialog": null,
+                              "thenRef": 1,
+                              "then": [
+                                {
+                                  "type": "prompt",
+                                  "text": "Wann (Datum, Uhrzeit) ist der Schaden aufgetreten?",
+                                  "fromUser": false,
+                                  "id": "58de372ca3e20df32a8342cc",
+                                  "answer": {
+                                    "type": "text",
+                                    "text": "Am 04.04.2017 um 10:30 :-(",
+                                    "fromUser": true,
+                                    "id": "58de37a1a3e20df32a8342cd"
+                                  }
+                                },
+                                {
+                                  "type": "prompt",
+                                  "text": "Können Sie uns bitte den Schadenort übermitteln? Tipp: Nutzen Sie die Lokalisierungs-Funktion vom Messenger :-) .",
+                                  "url": "https://s3.amazonaws.com/botsociety.prod.us/e944ae1754f390etipp%20locationpng.png",
+                                  "fromUser": false,
+                                  "id": "58e343f65ae3221a004ff07d",
+                                  "answer": {
+                                    "type": "text",
+                                    "text": "Pionierstrasse 3, 8400 Winterthur",
+                                    "fromUser": true,
+                                    "id": "58e3496c5b774c51013f55e3"
+                                  }
+                                },
+                                {
+                                  "type": "buttons",
+                                  "text": "Danke! Wurde dabei die Windschutz- Seiten- Dach- oder Heckscheibe beschädigt?",
+                                  "choices": [
+                                    "Ja",
+                                    "Nein"
+                                  ],
+                                  "fromUser": false,
+                                  "id": "58e34c76994d985b01575e81",
+                                  "choicesText": "Danke! Wurde dabei die Windschutz- Seiten- Dach- oder Heckscheibe beschädigt?.Choices",
+                                  "answer": [
+                                    {
+                                      "text": "Ja",
+                                      "thenDialog": null,
+                                      "thenRef": 0,
+                                      "then": [
+                                        {
+                                          "type": "prompt",
+                                          "text": "Der Glasschaden an Ihrem Mini Cooper 3 ist über Ihre Autoversicherung gedeckt. Mittels Angabe von PLZ oder Ort können Sie nun ganz einfach einen Partner für die Reparatur Ihres Autos finden.",
+                                          "fromUser": false,
+                                          "id": "58e34e60994d985b01575e82",
+                                          "answer": {
+                                            "type": "text",
+                                            "text": "8217 Wilchingen",
+                                            "fromUser": true,
+                                            "id": "58e34e7a994d985b01575e83"
+                                          }
+                                        },
+                                        {
+                                          "type": "text",
+                                          "text": "Alles klar! Bei Berücksichtigung einer der folgenden Partner-Betriebe entfällt der Selbstbehalt :-)",
+                                          "fromUser": false,
+                                          "id": "58e35f831a707a0c00c99540"
+                                        },
+                                        {
+                                          "type": "tbuttons",
+                                          "text": "",
+                                          "carousel": [
+                                            {
+                                              "text": "Müller Garage",
+                                              "type": "tbuttons",
+                                              "subtitle": "Dorfstrasse 17, 8217 Wilchingen",
+                                              "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/d5f665352b49d3d07262d63a2e52157babf1802garage%20wilchingenpng.png",
+                                              "choices": [
+                                                "Auswählen",
+                                                "Mehr Details",
+                                                "Karte"
+                                              ],
+                                              "choicesText": "Müller Garage.Choices",
+                                              "answer": [
+                                                {
+                                                  "text": "Auswählen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 0,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Mehr Details",
+                                                  "thenDialog": null,
+                                                  "thenRef": 1,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Karte",
+                                                  "thenDialog": null,
+                                                  "thenRef": 2,
+                                                  "then": []
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "text": "Carroserie J. Bräm",
+                                              "type": "tbuttons",
+                                              "subtitle": "Unterrietstrasse 44, 8217 Wilchingen",
+                                              "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/0f3e562ed636d347eac41440c21b2garage%20brmpng.png",
+                                              "choices": [
+                                                "Auswählen",
+                                                "Mehr Details",
+                                                "Karte"
+                                              ],
+                                              "choicesText": "Carroserie J. Bräm.Choices",
+                                              "answer": [
+                                                {
+                                                  "text": "Auswählen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 0,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Mehr Details",
+                                                  "thenDialog": null,
+                                                  "thenRef": 1,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Karte",
+                                                  "thenDialog": null,
+                                                  "thenRef": 2,
+                                                  "then": []
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "text": "Garage Wyland",
+                                              "type": "tbuttons",
+                                              "subtitle": "Hauptstrasse 97, 8217 Wilchingen",
+                                              "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/3795f6a9f7d65b3b60a11c411a11garage%20wylandpng.png",
+                                              "choices": [
+                                                "Auswählen",
+                                                "Mehr Informationen",
+                                                "Karte"
+                                              ],
+                                              "choicesText": "Garage Wyland.Choices",
+                                              "answer": [
+                                                {
+                                                  "text": "Auswählen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 0,
+                                                  "then": [
+                                                    {
+                                                      "type": "text",
+                                                      "text": "Bestens! Hier die Angaben der ausgewählten Garage:",
+                                                      "fromUser": false,
+                                                      "id": "58e36d191a707a0c00c99610"
+                                                    },
+                                                    {
+                                                      "type": "text",
+                                                      "text": "Darf Sie die Wyland Garage anhand der folgenden Angaben kontaktieren?\n\nMike Ackermann\nTel. +41 79 507 45 23\nm.ackermann@gmail.com",
+                                                      "fromUser": false,
+                                                      "id": "58e375681a707a0c00c99657"
+                                                    },
+                                                    {
+                                                      "type": "images",
+                                                      "text": "Wyland Garage\nHauptstrasse 97\n8217 Wilchingen\nTel. 052 681 21 14\ninfo@wyland-garage.ch",
+                                                      "url": "https://s3.amazonaws.com/botsociety.prod.us/5e471d85394d6ef20d3864wyland_garage1jpg.jpg",
+                                                      "fromUser": false,
+                                                      "id": "58e36e871a707a0c00c9961d"
+                                                    },
+                                                    {
+                                                      "type": "quickreplies",
+                                                      "choices": [
+                                                        "Ja gerne",
+                                                        "Angaben anpassen",
+                                                        "Andere Garage wählen"
+                                                      ],
+                                                      "fromUser": false,
+                                                      "id": "58e3762c1a707a0c00c9965a",
+                                                      "choicesText": "undefined.Choices",
+                                                      "answer": [
+                                                        {
+                                                          "text": "Ja gerne",
+                                                          "thenDialog": null,
+                                                          "thenRef": 0,
+                                                          "then": [
+                                                            {
+                                                              "type": "text",
+                                                              "text": "Vielen Dank! Sie finden unter folgendem Link alle Angaben zu Ihrem Schaden-fall. Bei Rückfragen stehen wir gerne zur Verfügung. Wir wünschen Ihnen einen schönen Tag :-) !",
+                                                              "fromUser": false,
+                                                              "id": "58e381ac1a707a0c00c99734"
+                                                            }
+                                                          ]
+                                                        },
+                                                        {
+                                                          "text": "Angaben anpassen",
+                                                          "thenDialog": null,
+                                                          "thenRef": 1,
+                                                          "then": []
+                                                        },
+                                                        {
+                                                          "text": "Andere Garage wählen",
+                                                          "thenDialog": null,
+                                                          "thenRef": 2,
+                                                          "then": []
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "text": "Mehr Informationen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 1,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Karte",
+                                                  "thenDialog": null,
+                                                  "thenRef": 2,
+                                                  "then": []
+                                                }
+                                              ]
+                                            }
+                                          ],
+                                          "answer": [
+                                            {
+                                              "text": "Auswählen",
+                                              "thenDialog": null,
+                                              "thenRef": 0,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Mehr Details",
+                                              "thenDialog": null,
+                                              "thenRef": 1,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Karte",
+                                              "thenDialog": null,
+                                              "thenRef": 2,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Auswählen",
+                                              "thenDialog": null,
+                                              "thenRef": 0,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Mehr Details",
+                                              "thenDialog": null,
+                                              "thenRef": 1,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Karte",
+                                              "thenDialog": null,
+                                              "thenRef": 2,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Auswählen",
+                                              "thenDialog": null,
+                                              "thenRef": 0,
+                                              "then": [
+                                                {
+                                                  "type": "text",
+                                                  "text": "Bestens! Hier die Angaben der ausgewählten Garage:",
+                                                  "fromUser": false,
+                                                  "id": "58e36d191a707a0c00c99610"
+                                                },
+                                                {
+                                                  "type": "text",
+                                                  "text": "Darf Sie die Wyland Garage anhand der folgenden Angaben kontaktieren?\n\nMike Ackermann\nTel. +41 79 507 45 23\nm.ackermann@gmail.com",
+                                                  "fromUser": false,
+                                                  "id": "58e375681a707a0c00c99657"
+                                                },
+                                                {
+                                                  "type": "images",
+                                                  "text": "Wyland Garage\nHauptstrasse 97\n8217 Wilchingen\nTel. 052 681 21 14\ninfo@wyland-garage.ch",
+                                                  "url": "https://s3.amazonaws.com/botsociety.prod.us/5e471d85394d6ef20d3864wyland_garage1jpg.jpg",
+                                                  "fromUser": false,
+                                                  "id": "58e36e871a707a0c00c9961d"
+                                                },
+                                                {
+                                                  "type": "quickreplies",
+                                                  "choices": [
+                                                    "Ja gerne",
+                                                    "Angaben anpassen",
+                                                    "Andere Garage wählen"
+                                                  ],
+                                                  "fromUser": false,
+                                                  "id": "58e3762c1a707a0c00c9965a",
+                                                  "choicesText": "undefined.Choices",
+                                                  "answer": [
+                                                    {
+                                                      "text": "Ja gerne",
+                                                      "thenDialog": null,
+                                                      "thenRef": 0,
+                                                      "then": [
+                                                        {
+                                                          "type": "text",
+                                                          "text": "Vielen Dank! Sie finden unter folgendem Link alle Angaben zu Ihrem Schaden-fall. Bei Rückfragen stehen wir gerne zur Verfügung. Wir wünschen Ihnen einen schönen Tag :-) !",
+                                                          "fromUser": false,
+                                                          "id": "58e381ac1a707a0c00c99734"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "text": "Angaben anpassen",
+                                                      "thenDialog": null,
+                                                      "thenRef": 1,
+                                                      "then": []
+                                                    },
+                                                    {
+                                                      "text": "Andere Garage wählen",
+                                                      "thenDialog": null,
+                                                      "thenRef": 2,
+                                                      "then": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "text": "Mehr Informationen",
+                                              "thenDialog": null,
+                                              "thenRef": 1,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Karte",
+                                              "thenDialog": null,
+                                              "thenRef": 2,
+                                              "then": []
+                                            }
+                                          ],
+                                          "fromUser": false,
+                                          "id": "58e36c291a707a0c00c9960b"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "text": "Nein",
+                                      "thenDialog": null,
+                                      "thenRef": 1,
+                                      "then": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "text": "Parkschaden",
+                  "type": "tbuttons",
+                  "subtitle": "Bitte auswählen",
+                  "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/95cf58eb6137b9parkschadenjpg.jpg",
+                  "choices": [
+                    "Parkschaden"
+                  ],
+                  "choicesText": "Parkschaden.Choices",
+                  "answer": [
+                    {
+                      "text": "Parkschaden",
+                      "thenDialog": null,
+                      "thenRef": 0,
+                      "then": []
+                    }
+                  ]
+                },
+                {
+                  "text": "Marderschaden",
+                  "type": "tbuttons",
+                  "subtitle": "Bitte auswählen",
+                  "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/69e82fe6c453a189marderschadenjpg.jpg",
+                  "choices": [
+                    "Marderschaden"
+                  ],
+                  "choicesText": "Marderschaden.Choices",
+                  "answer": [
+                    {
+                      "text": "Marderschaden",
+                      "thenDialog": null,
+                      "thenRef": 0,
+                      "then": []
+                    }
+                  ]
+                },
+                {
+                  "text": "Hagelschaden",
+                  "type": "tbuttons",
+                  "subtitle": "Bitte auswählen",
+                  "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/b03a9a718a581fa8be7f5ca84fehagelschadenjpg.jpg",
+                  "choices": [
+                    "Hagelschaden"
+                  ],
+                  "choicesText": "Hagelschaden.Choices",
+                  "answer": [
+                    {
+                      "text": "Hagelschaden",
+                      "thenDialog": null,
+                      "thenRef": 0,
+                      "then": []
+                    }
+                  ]
+                },
+                {
+                  "text": "Weitere Schäden",
+                  "type": "tbuttons",
+                  "subtitle": "Bitte auswählen",
+                  "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/6c9ee2abe91e4057fec074weitere%20schdenjpg.jpg",
+                  "choices": [
+                    "Verkehrsunfall",
+                    "Einbruch/Diebstahl",
+                    "Weitere Schäden"
+                  ],
+                  "choicesText": "Weitere Schäden.Choices",
+                  "answer": [
+                    {
+                      "text": "Verkehrsunfall",
+                      "thenDialog": null,
+                      "thenRef": 0,
+                      "then": []
+                    },
+                    {
+                      "text": "Einbruch/Diebstahl",
+                      "thenDialog": null,
+                      "thenRef": 1,
+                      "then": []
+                    },
+                    {
+                      "text": "Weitere Schäden",
+                      "thenDialog": null,
+                      "thenRef": 2,
+                      "then": []
+                    }
+                  ]
+                }
+              ],
+              "answer": [
+                {
+                  "text": "Glassschaden",
+                  "thenDialog": null,
+                  "thenRef": 0,
+                  "then": [
+                    {
+                      "type": "prompt",
+                      "text": "Gerne erfassen wir mit Ihnen einen Glasschaden. Um Sie besser bedienen zu können, brauchen wir einige Angaben. Wie lautet Ihr Vorname und Name?",
+                      "fromUser": false,
+                      "id": "58e340a15ae3221a004ff068",
+                      "answer": {
+                        "type": "text",
+                        "text": "Mike Ackermann",
+                        "fromUser": true,
+                        "id": "58e340fd5ae3221a004ff069"
+                      }
+                    },
+                    {
+                      "type": "prompt",
+                      "text": "Bitte geben Sie uns noch Ihr Geburtsdatum an",
+                      "fromUser": false,
+                      "id": "58e3423d5ae3221a004ff06f",
+                      "answer": {
+                        "type": "text",
+                        "text": "10.02.1982",
+                        "fromUser": true,
+                        "id": "58e342705ae3221a004ff070"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": "Danke Herr Ackermann :-) ! \nFür welches Ihrer Fahrzeuge möchten Sie einen Glasschaden melden?",
+                      "fromUser": false,
+                      "id": "58de362fa3e20df32a8342bd"
+                    },
+                    {
+                      "type": "buttons",
+                      "text": "Wählen Sie Ihr Fahrzeug aus:",
+                      "choices": [
+                        "Renault Espace ZH170180",
+                        "Mini Cooper 3 Door ZH450123"
+                      ],
+                      "fromUser": false,
+                      "id": "58de36d2a3e20df32a8342c7",
+                      "choicesText": "Wählen Sie Ihr Fahrzeug aus:.Choices",
+                      "answer": [
+                        {
+                          "text": "Renault Espace ZH170180",
+                          "thenDialog": null,
+                          "thenRef": 0,
+                          "then": []
+                        },
+                        {
+                          "text": "Mini Cooper 3 Door ZH450123",
+                          "thenDialog": null,
+                          "thenRef": 1,
+                          "then": [
+                            {
+                              "type": "prompt",
+                              "text": "Wann (Datum, Uhrzeit) ist der Schaden aufgetreten?",
+                              "fromUser": false,
+                              "id": "58de372ca3e20df32a8342cc",
+                              "answer": {
+                                "type": "text",
+                                "text": "Am 04.04.2017 um 10:30 :-(",
+                                "fromUser": true,
+                                "id": "58de37a1a3e20df32a8342cd"
+                              }
+                            },
+                            {
+                              "type": "prompt",
+                              "text": "Können Sie uns bitte den Schadenort übermitteln? Tipp: Nutzen Sie die Lokalisierungs-Funktion vom Messenger :-) .",
+                              "url": "https://s3.amazonaws.com/botsociety.prod.us/e944ae1754f390etipp%20locationpng.png",
+                              "fromUser": false,
+                              "id": "58e343f65ae3221a004ff07d",
+                              "answer": {
+                                "type": "text",
+                                "text": "Pionierstrasse 3, 8400 Winterthur",
+                                "fromUser": true,
+                                "id": "58e3496c5b774c51013f55e3"
+                              }
+                            },
+                            {
+                              "type": "buttons",
+                              "text": "Danke! Wurde dabei die Windschutz- Seiten- Dach- oder Heckscheibe beschädigt?",
+                              "choices": [
+                                "Ja",
+                                "Nein"
+                              ],
+                              "fromUser": false,
+                              "id": "58e34c76994d985b01575e81",
+                              "choicesText": "Danke! Wurde dabei die Windschutz- Seiten- Dach- oder Heckscheibe beschädigt?.Choices",
+                              "answer": [
+                                {
+                                  "text": "Ja",
+                                  "thenDialog": null,
+                                  "thenRef": 0,
+                                  "then": [
+                                    {
+                                      "type": "prompt",
+                                      "text": "Der Glasschaden an Ihrem Mini Cooper 3 ist über Ihre Autoversicherung gedeckt. Mittels Angabe von PLZ oder Ort können Sie nun ganz einfach einen Partner für die Reparatur Ihres Autos finden.",
+                                      "fromUser": false,
+                                      "id": "58e34e60994d985b01575e82",
+                                      "answer": {
+                                        "type": "text",
+                                        "text": "8217 Wilchingen",
+                                        "fromUser": true,
+                                        "id": "58e34e7a994d985b01575e83"
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "text": "Alles klar! Bei Berücksichtigung einer der folgenden Partner-Betriebe entfällt der Selbstbehalt :-)",
+                                      "fromUser": false,
+                                      "id": "58e35f831a707a0c00c99540"
+                                    },
+                                    {
+                                      "type": "tbuttons",
+                                      "text": "",
+                                      "carousel": [
+                                        {
+                                          "text": "Müller Garage",
+                                          "type": "tbuttons",
+                                          "subtitle": "Dorfstrasse 17, 8217 Wilchingen",
+                                          "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/d5f665352b49d3d07262d63a2e52157babf1802garage%20wilchingenpng.png",
+                                          "choices": [
+                                            "Auswählen",
+                                            "Mehr Details",
+                                            "Karte"
+                                          ],
+                                          "choicesText": "Müller Garage.Choices",
+                                          "answer": [
+                                            {
+                                              "text": "Auswählen",
+                                              "thenDialog": null,
+                                              "thenRef": 0,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Mehr Details",
+                                              "thenDialog": null,
+                                              "thenRef": 1,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Karte",
+                                              "thenDialog": null,
+                                              "thenRef": 2,
+                                              "then": []
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "text": "Carroserie J. Bräm",
+                                          "type": "tbuttons",
+                                          "subtitle": "Unterrietstrasse 44, 8217 Wilchingen",
+                                          "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/0f3e562ed636d347eac41440c21b2garage%20brmpng.png",
+                                          "choices": [
+                                            "Auswählen",
+                                            "Mehr Details",
+                                            "Karte"
+                                          ],
+                                          "choicesText": "Carroserie J. Bräm.Choices",
+                                          "answer": [
+                                            {
+                                              "text": "Auswählen",
+                                              "thenDialog": null,
+                                              "thenRef": 0,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Mehr Details",
+                                              "thenDialog": null,
+                                              "thenRef": 1,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Karte",
+                                              "thenDialog": null,
+                                              "thenRef": 2,
+                                              "then": []
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "text": "Garage Wyland",
+                                          "type": "tbuttons",
+                                          "subtitle": "Hauptstrasse 97, 8217 Wilchingen",
+                                          "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/3795f6a9f7d65b3b60a11c411a11garage%20wylandpng.png",
+                                          "choices": [
+                                            "Auswählen",
+                                            "Mehr Informationen",
+                                            "Karte"
+                                          ],
+                                          "choicesText": "Garage Wyland.Choices",
+                                          "answer": [
+                                            {
+                                              "text": "Auswählen",
+                                              "thenDialog": null,
+                                              "thenRef": 0,
+                                              "then": [
+                                                {
+                                                  "type": "text",
+                                                  "text": "Bestens! Hier die Angaben der ausgewählten Garage:",
+                                                  "fromUser": false,
+                                                  "id": "58e36d191a707a0c00c99610"
+                                                },
+                                                {
+                                                  "type": "text",
+                                                  "text": "Darf Sie die Wyland Garage anhand der folgenden Angaben kontaktieren?\n\nMike Ackermann\nTel. +41 79 507 45 23\nm.ackermann@gmail.com",
+                                                  "fromUser": false,
+                                                  "id": "58e375681a707a0c00c99657"
+                                                },
+                                                {
+                                                  "type": "images",
+                                                  "text": "Wyland Garage\nHauptstrasse 97\n8217 Wilchingen\nTel. 052 681 21 14\ninfo@wyland-garage.ch",
+                                                  "url": "https://s3.amazonaws.com/botsociety.prod.us/5e471d85394d6ef20d3864wyland_garage1jpg.jpg",
+                                                  "fromUser": false,
+                                                  "id": "58e36e871a707a0c00c9961d"
+                                                },
+                                                {
+                                                  "type": "quickreplies",
+                                                  "choices": [
+                                                    "Ja gerne",
+                                                    "Angaben anpassen",
+                                                    "Andere Garage wählen"
+                                                  ],
+                                                  "fromUser": false,
+                                                  "id": "58e3762c1a707a0c00c9965a",
+                                                  "choicesText": "undefined.Choices",
+                                                  "answer": [
+                                                    {
+                                                      "text": "Ja gerne",
+                                                      "thenDialog": null,
+                                                      "thenRef": 0,
+                                                      "then": [
+                                                        {
+                                                          "type": "text",
+                                                          "text": "Vielen Dank! Sie finden unter folgendem Link alle Angaben zu Ihrem Schaden-fall. Bei Rückfragen stehen wir gerne zur Verfügung. Wir wünschen Ihnen einen schönen Tag :-) !",
+                                                          "fromUser": false,
+                                                          "id": "58e381ac1a707a0c00c99734"
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "text": "Angaben anpassen",
+                                                      "thenDialog": null,
+                                                      "thenRef": 1,
+                                                      "then": []
+                                                    },
+                                                    {
+                                                      "text": "Andere Garage wählen",
+                                                      "thenDialog": null,
+                                                      "thenRef": 2,
+                                                      "then": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "text": "Mehr Informationen",
+                                              "thenDialog": null,
+                                              "thenRef": 1,
+                                              "then": []
+                                            },
+                                            {
+                                              "text": "Karte",
+                                              "thenDialog": null,
+                                              "thenRef": 2,
+                                              "then": []
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "answer": [
+                                        {
+                                          "text": "Auswählen",
+                                          "thenDialog": null,
+                                          "thenRef": 0,
+                                          "then": []
+                                        },
+                                        {
+                                          "text": "Mehr Details",
+                                          "thenDialog": null,
+                                          "thenRef": 1,
+                                          "then": []
+                                        },
+                                        {
+                                          "text": "Karte",
+                                          "thenDialog": null,
+                                          "thenRef": 2,
+                                          "then": []
+                                        },
+                                        {
+                                          "text": "Auswählen",
+                                          "thenDialog": null,
+                                          "thenRef": 0,
+                                          "then": []
+                                        },
+                                        {
+                                          "text": "Mehr Details",
+                                          "thenDialog": null,
+                                          "thenRef": 1,
+                                          "then": []
+                                        },
+                                        {
+                                          "text": "Karte",
+                                          "thenDialog": null,
+                                          "thenRef": 2,
+                                          "then": []
+                                        },
+                                        {
+                                          "text": "Auswählen",
+                                          "thenDialog": null,
+                                          "thenRef": 0,
+                                          "then": [
+                                            {
+                                              "type": "text",
+                                              "text": "Bestens! Hier die Angaben der ausgewählten Garage:",
+                                              "fromUser": false,
+                                              "id": "58e36d191a707a0c00c99610"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "text": "Darf Sie die Wyland Garage anhand der folgenden Angaben kontaktieren?\n\nMike Ackermann\nTel. +41 79 507 45 23\nm.ackermann@gmail.com",
+                                              "fromUser": false,
+                                              "id": "58e375681a707a0c00c99657"
+                                            },
+                                            {
+                                              "type": "images",
+                                              "text": "Wyland Garage\nHauptstrasse 97\n8217 Wilchingen\nTel. 052 681 21 14\ninfo@wyland-garage.ch",
+                                              "url": "https://s3.amazonaws.com/botsociety.prod.us/5e471d85394d6ef20d3864wyland_garage1jpg.jpg",
+                                              "fromUser": false,
+                                              "id": "58e36e871a707a0c00c9961d"
+                                            },
+                                            {
+                                              "type": "quickreplies",
+                                              "choices": [
+                                                "Ja gerne",
+                                                "Angaben anpassen",
+                                                "Andere Garage wählen"
+                                              ],
+                                              "fromUser": false,
+                                              "id": "58e3762c1a707a0c00c9965a",
+                                              "choicesText": "undefined.Choices",
+                                              "answer": [
+                                                {
+                                                  "text": "Ja gerne",
+                                                  "thenDialog": null,
+                                                  "thenRef": 0,
+                                                  "then": [
+                                                    {
+                                                      "type": "text",
+                                                      "text": "Vielen Dank! Sie finden unter folgendem Link alle Angaben zu Ihrem Schaden-fall. Bei Rückfragen stehen wir gerne zur Verfügung. Wir wünschen Ihnen einen schönen Tag :-) !",
+                                                      "fromUser": false,
+                                                      "id": "58e381ac1a707a0c00c99734"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "text": "Angaben anpassen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 1,
+                                                  "then": []
+                                                },
+                                                {
+                                                  "text": "Andere Garage wählen",
+                                                  "thenDialog": null,
+                                                  "thenRef": 2,
+                                                  "then": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "text": "Mehr Informationen",
+                                          "thenDialog": null,
+                                          "thenRef": 1,
+                                          "then": []
+                                        },
+                                        {
+                                          "text": "Karte",
+                                          "thenDialog": null,
+                                          "thenRef": 2,
+                                          "then": []
+                                        }
+                                      ],
+                                      "fromUser": false,
+                                      "id": "58e36c291a707a0c00c9960b"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "text": "Nein",
+                                  "thenDialog": null,
+                                  "thenRef": 1,
+                                  "then": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "text": "Parkschaden",
+                  "thenDialog": null,
+                  "thenRef": 0,
+                  "then": []
+                },
+                {
+                  "text": "Marderschaden",
+                  "thenDialog": null,
+                  "thenRef": 0,
+                  "then": []
+                },
+                {
+                  "text": "Hagelschaden",
+                  "thenDialog": null,
+                  "thenRef": 0,
+                  "then": []
+                },
+                {
+                  "text": "Verkehrsunfall",
+                  "thenDialog": null,
+                  "thenRef": 0,
+                  "then": []
+                },
+                {
+                  "text": "Einbruch/Diebstahl",
+                  "thenDialog": null,
+                  "thenRef": 1,
+                  "then": []
+                },
+                {
+                  "text": "Weitere Schäden",
+                  "thenDialog": null,
+                  "thenRef": 2,
+                  "then": []
+                }
+              ],
+              "fromUser": false,
+              "id": "58da1614c4e3869b0ff5b516"
+            }
+          ]
+        },
+        {
+          "text": "Hausrat",
+          "thenDialog": null,
+          "thenRef": 1,
+          "then": []
+        },
+        {
+          "text": "Sonstige Schäden",
+          "thenDialog": null,
+          "thenRef": 2,
+          "then": []
+        },
+        {
+          "text": "Kontaktformular",
+          "thenDialog": null,
+          "thenRef": 0,
+          "then": []
+        },
+        {
+          "text": "AXA 24-Stunden-Telefon",
+          "thenDialog": null,
+          "thenRef": 1,
+          "then": []
+        },
+        {
+          "text": "Agentur- & Beratersuche",
+          "thenDialog": null,
+          "thenRef": 2,
+          "then": []
+        },
+        {
+          "text": "Adressänderung",
+          "thenDialog": null,
+          "thenRef": 0,
+          "then": []
+        },
+        {
+          "text": "Namensänderung",
+          "thenDialog": null,
+          "thenRef": 1,
+          "then": []
+        },
+        {
+          "text": "Weitere",
+          "thenDialog": null,
+          "thenRef": 2,
+          "then": []
+        },
+        {
+          "text": "Auto",
+          "thenDialog": null,
+          "thenRef": 0,
+          "then": []
+        },
+        {
+          "text": "Hausrat",
+          "thenDialog": null,
+          "thenRef": 1,
+          "then": []
+        },
+        {
+          "text": "Weitere Versicherungen",
+          "thenDialog": null,
+          "thenRef": 2,
+          "then": []
+        }
+      ],
+      "fromUser": false,
+      "id": "58da0c0de401195f0f871f13"
+    }
+  ]
+}

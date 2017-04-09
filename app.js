@@ -36,7 +36,10 @@ var _db = {};
 var examples = c.conversation().object();
 var example = examples[0];
 for (var i = 0; i < examples.length; ++i) {
-  var exampleToLoad = examples[i];
+  addBotExample(examples[i]);
+}
+
+function addBotExample(exampleToLoad) {
   _db[exampleToLoad.bot.conversationId]= {
     conversation: exampleToLoad.conversation, 
     botdata: exampleToLoad.bot,
@@ -127,9 +130,15 @@ function findDialog(session, dialogName, conversations) {
 }
 
 function findFirstNonEmptyAnswersNotEnitityIndex(currentDialog, entity) {
-  //search for first non-empty then[]
+  //search for first non-empty then[] with same entity - carousel multi options
   for (var i = 0; i < currentDialog.answer.length; ++i) {    
-    if (currentDialog.answer[i].text != entity && currentDialog.answer[i].then.length > 0) {
+    if (currentDialog.answer[i].text === entity && currentDialog.answer[i].then.length > 0) {
+      return i
+    }
+  }
+  // fallback - search for any entry
+  for (var i = 0; i < currentDialog.answer.length; ++i) {    
+    if (currentDialog.answer[i].then.length > 0) {
       return i
     }
   }

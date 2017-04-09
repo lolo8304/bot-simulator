@@ -77,14 +77,15 @@ A small tool to extract botsociety bots to JSON and run it as a real chat-bot us
 - past content of (chrome/create-JSON-from-bot.js) file
 - run "snippet" via "content menu / run"
 - copy  output in console from {{ ... }}
-- paste ouput as inner part of [conversation-simulation.js](conversation-simulation.js) as written "paste here"
-- start not using "npm start" or "nodemon"
+- paste a new file in [examples](./examples/)
+- add new file entry into [conversation-simulation.js](conversation-simulation.js)
+- start now using "npm start" or "nodemon"
 - start chat-bot using Emulator
 
 # Update bot after change in botsociety.io
 - run script again in chrome
 - copy
-- paste in [conversation-simulation.js](conversation-simulation.js)
+- paste in your file in [examples](./examples/)
 - restart or autostart by nodemon
 - "new conversation" or just type start
 - iterate and iterate ...
