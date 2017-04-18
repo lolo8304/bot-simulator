@@ -24,16 +24,17 @@ var fans = document.querySelectorAll('div[class^="fans"]')[0].innerText;
 var category = document.querySelectorAll('div[class^="page_category"]')[0].innerText;
 var image = document.querySelectorAll('div[class^="profile-picture"]')[0].attributes["data-picture"].nodeValue;
 var conversationId = window.location.pathname.split('/').pop();
+var serverDomain = window.location.origin;
 
-var previewURL = "https://botsociety.io/s/"+conversationId;
+var previewURL = serverDomain+"/s/"+conversationId;
 
-$.getJSON("https://botsociety.io/branches/getBranchesByConversationId?conversationId=" + conversationId
+$.getJSON(serverDomain+"/branches/getBranchesByConversationId?conversationId=" + conversationId
 , function (data) { 
   if (DEBUG) { console.log(data); }
   MAIN_TREE = data;
   for (var i = 0; i < data.length; ++i) {
 
-    $.getJSON("https://botsociety.io/branches/" + data[i]._id, function(item) {
+    $.getJSON(serverDomain+"/branches/" + data[i]._id, function(item) {
       if (item) { ITEMS[item._id] = item; }
       COUNTER++;
       if (COUNTER == MAIN_TREE.length) {
