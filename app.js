@@ -14,7 +14,7 @@ var c = require("./converstation-simulation");
 // Setup Restify Server
 var server = restify.createServer();
 var port = process.env.port || process.env.PORT || 3978;
-// test
+
 server.listen(port, function () {
   console.log('%s listening to %s', server.name, server.url);
 });
