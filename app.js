@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------------
-A simple echo bot for the Microsoft Bot Framework. 
+A simple echo bot for the Microsoft Bot Framework.
 -----------------------------------------------------------------------------*/
 
 var builder = require('./core/');
@@ -14,7 +14,7 @@ var c = require("./converstation-simulation");
 // Setup Restify Server
 var server = restify.createServer();
 var port = process.env.port || process.env.PORT || 3978;
-
+// test
 server.listen(port, function () {
   console.log('%s listening to %s', server.name, server.url);
 });
@@ -27,7 +27,7 @@ var connector = new builder.ChatConnector({
 // This line MUST appear before any route declaration such as the one below
 server.use(restify.bodyParser());
 
-// Listen for messages from users 
+// Listen for messages from users
 server.post('/api/messages', connector.listen());
 
 var bot = new builder.UniversalBot(connector);
@@ -41,7 +41,7 @@ for (var i = 0; i < examples.length; ++i) {
 
 function addBotExample(exampleToLoad) {
   _db[exampleToLoad.bot.conversationId]= {
-    conversation: exampleToLoad.conversation, 
+    conversation: exampleToLoad.conversation,
     botdata: exampleToLoad.bot,
     messages: prepareConversations(exampleToLoad.conversation, {})
   };
@@ -82,7 +82,7 @@ server.use(
 server.post('/conversations/:conversationId', function (req, res, next) {
   var data = JSON.parse(decodeURIComponent(req.body));
   _db[req.params.conversationId]= {
-    conversation: data.conversation, 
+    conversation: data.conversation,
     botdata: data.bot,
     messages: prepareConversations(data.conversation, {})
   };
@@ -131,13 +131,13 @@ function findDialog(session, dialogName, conversations) {
 
 function findFirstNonEmptyAnswersNotEnitityIndex(currentDialog, entity) {
   //search for first non-empty then[] with same entity - carousel multi options
-  for (var i = 0; i < currentDialog.answer.length; ++i) {    
+  for (var i = 0; i < currentDialog.answer.length; ++i) {
     if (currentDialog.answer[i].text === entity && currentDialog.answer[i].then.length > 0) {
       return i
     }
   }
   // fallback - search for any entry
-  for (var i = 0; i < currentDialog.answer.length; ++i) {    
+  for (var i = 0; i < currentDialog.answer.length; ++i) {
     if (currentDialog.answer[i].then.length > 0) {
       return i
     }
@@ -155,7 +155,7 @@ function findNextConversations(session, currentDialogObject, results) {
     if (results.response) {
       var entity = results.response.entity;
 
-      for (var i = 0; i < currentDialog.answer.length; ++i) {    
+      for (var i = 0; i < currentDialog.answer.length; ++i) {
         if (currentDialog.answer[i].text === entity) {
           //thenRef Index is used with pattern $=? to reuse existing trees to not copy
           var thenRefDialog = currentDialog.answer[i].thenDialog;
@@ -217,7 +217,7 @@ function startList(session) {
             ]);
         msg.addAttachment(card);
       }
-    }       
+    }
     session.send(msg);
   } else {
     session.send("no bots are installed. Install them via 'chrome plugin' from https://botsociety.io");
@@ -304,7 +304,7 @@ function runDialog(session, conversations, i) {
   var nextDialog = conversations[i];
   if (!nextDialog) { return; }
   session.userData.currentMessage = nextDialog.id;
-    
+
   if (nextDialog.type === "text") {
     session.send(nextDialog.text);
     return runDialog(session, conversations, i+1);
@@ -342,7 +342,7 @@ function runDialog(session, conversations, i) {
       session.send(msg);
   } else if (nextDialog.type === "buttons") {
     builder.Prompts.choice(
-      session, nextDialog.text, 
+      session, nextDialog.text,
       nextDialog.choices, {listStyle: builder.ListStyle["button"]});
   } else if (nextDialog.type === "prompt") {
     builder.Prompts.text(session,nextDialog.text);

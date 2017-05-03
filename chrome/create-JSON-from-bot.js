@@ -1,6 +1,4 @@
-var MAIN_TREE = null;
 var ITEMS = {};
-var COUNTER = 0;
 
 // control the execution
 var DEBUG = false;
@@ -12,7 +10,7 @@ var GENERATE_LABELS = false;
 var ADD_CONVERSATION = false;
 //test local: start ngrok in command line with your port
 //    ngrok http 3979
-//var ADD_CONVERSATION_URL = "https://3a5607ee.ngrok.io"
+//var ADD_CONVERSATION_URL = "https://your-server.domain.com"
 
 var botnameDiv=document.querySelectorAll('div[class^="botname"]')[0];
 if (!botnameDiv) {
@@ -22,26 +20,27 @@ if (!botnameDiv) {
 var botname = document.querySelectorAll('div[class^="botname"]')[0].innerText;
 var fans = document.querySelectorAll('div[class^="fans"]')[0].innerText;
 var category = document.querySelectorAll('div[class^="page_category"]')[0].innerText;
-var image = document.querySelectorAll('div[class^="profile-picture"]')[0].attributes["data-picture"].nodeValue;
-var conversationId = window.location.pathname.split('/').pop();
+var image = document.querySelectorAll('div[class^="profile-picture"]')[0].attributes["data.picture"].nodeValue;
+var conversationId = getConversationFromURL(window.location.href);
 var serverDomain = window.location.origin;
 
 var previewURL = serverDomain+"/s/"+conversationId;
 
-$.getJSON(serverDomain+"/branches/getBranchesByConversationId?conversationId=" + conversationId
+function getConversationFromURL(url) {
+  var paths = url.split('/');
+  for (var i = 0; i < paths.length; ++i) {
+    if (paths[i] === "conversations") {
+      return paths[i+1];
+    }
+  }
+  return "noid";
+}
+
+$.getJSON(serverDomain+"/branches/branchesByConversationIdShow?ignoreLoadingBar=true&conversationId=" + conversationId
 , function (data) { 
   if (DEBUG) { console.log(data); }
-  MAIN_TREE = data;
-  for (var i = 0; i < data.length; ++i) {
-
-    $.getJSON(serverDomain+"/branches/" + data[i]._id, function(item) {
-      if (item) { ITEMS[item._id] = item; }
-      COUNTER++;
-      if (COUNTER == MAIN_TREE.length) {
-        done();
-      }
-    });
-  }
+  ITEMS = data;
+  done();
 });
 
 function createLabelString(labels) {
@@ -67,8 +66,9 @@ function createLabelString(labels) {
 function done() {
 
   var ROOT = null;
-  for (var i = 0; i < MAIN_TREE.length; ++i) {
-    var node = ITEMS[MAIN_TREE[i]._id];
+  for (var _id in ITEMS) {
+   
+    var node = ITEMS[_id];
     if (DEBUG) { console.log(node); }
     if (node._branches_in.length) {
       if (!ITEMS[node._branches_in[0]]) {
