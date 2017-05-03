@@ -65,6 +65,14 @@ function prepareConversations(conversations, messages) {
   return messages;
 }
 
+var fs = require('fs');
+server.get('/', function (req, res, next) {
+  var contents = fs.readFileSync('./index.html', 'utf8');
+  res.setHeader('content-type', 'text/html');
+  res.end(new Buffer(contents));
+});
+
+
 /** GET conversations stored in botly */
 
 server.get('/conversations', function (req, res, next) {
