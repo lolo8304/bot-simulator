@@ -81,11 +81,11 @@ Make sure you always use https URLs!
   ![ScreenShor](images/setDeplCred.png)
 
 - go to deployement options and configure required settings
-  ⋅⋅* choose Local Git Repository
-  ⋅⋅* click OK
+    * choose Local Git Repository
+    * click OK
 - go to Application settings and add App settings
-  ⋅⋅* MICROSOFT_APP_ID
-  ⋅⋅* MICROSOFT_APP_PASSWORD
+    * MICROSOFT_APP_ID
+    * MICROSOFT_APP_PASSWORD
 - go to Overview and copy 'Git clone url'
 - add git remote repository paths
   ```bash
