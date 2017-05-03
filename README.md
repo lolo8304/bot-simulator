@@ -5,7 +5,7 @@ But in Botsociety it is not possible to test the different Connectors and real i
 A small tool to extract botsociety bots to JSON and run it as a real chat-bot using Microsoft bot-framework.
 
 ## Principle explained
-- you create your own bot mockup or open an existing one using botsociety.io 
+- you create your own bot mockup or open an existing one using botsociety.io
 - run a script inside "chrome" browser to capture all internal details of the Bot
 - use the output and store it in a defined javascript file
 - register a new bot at Microsoft (to get APP-ID and Password)
@@ -27,7 +27,7 @@ A small tool to extract botsociety bots to JSON and run it as a real chat-bot us
   git clone https://github.axa.com/pierre-loic-doulcet/botsociety-to-JSON
   ```
 - register a new bot at https://dev.botframework.com/ (no need to deploy yet. just defining)
-- create the needed APP-ID and APP-PASSWORD at botframework.com 
+- create the needed APP-ID and APP-PASSWORD at botframework.com
 - download https://docs.botframework.com/en-us/tools/bot-framework-emulator/  and run it locally
 - download https://ngrok.com/
 - configure the emulator
@@ -59,16 +59,47 @@ A small tool to extract botsociety bots to JSON and run it as a real chat-bot us
   ./startnode.sh
   ```
 - go to emulator
-- run "new conversation" 
+- run "new conversation"
 
   ![ScreenShot](images/new-conversation.png)
 
   ![ScreenShot](images/chat1.png)
 - enter "start" in chat line
-- the you should see this
+- then you should see this
 
   ![ScreenShot](images/chat2.png)
 
+# Deploy the bot to Azure
+Make sure you always use https URLs!
+
+- create Azure App Service
+
+  ![ScreenShot](images/newAppServiceAzure.png)
+
+- define deployment credentials and save changes
+
+  ![ScreenShor](images/setDeplCred.png)
+
+- go to deployement options and configure required settings
+-- choose Local Git Repository
+-- click OK
+- go to Application settings and add App settings
+-- MICROSOFT_APP_ID
+-- MICROSOFT_APP_PASSWORD
+- go to Overview and copy 'Git clone url'
+- add git remote repository paths
+  ```bash
+  git remote add azure YOUR_GIT_CLONE_URL_HERE
+  ```
+- execute the following commands to create a commit that contains all of your code
+  ```bash
+  git add .
+  git commit -m "the perfect code"
+  ```
+- execute the command to push your code to Azure. When prompted for a password, enter the one that you created erlier in the Azure portal (define deployment credentials)
+  ```bash
+  git push azure master
+  ```
 
 # Capture your bot and run it
 - login botsociety.io and open your bot
@@ -95,7 +126,7 @@ A small tool to extract botsociety bots to JSON and run it as a real chat-bot us
 - generated files see [examples](examples/)
 
 
-## How to add $ markers in texts 
+## How to add $ markers in texts
 Issue with botsociety.io
 
 To have a fully functional all-the-time working botsociety.io design, you have to invest a lot of time and especially if you want to verify the UX on all possible "choices".
