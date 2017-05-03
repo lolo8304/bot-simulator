@@ -9,7 +9,7 @@ require('dotenv').config();
 var _ = require('lodash');
 var moment = require('moment');
 
-var c = require("./converstation-simulation");
+var c = require("./conversation-simulation");
 
 // Setup Restify Server
 var server = restify.createServer();
