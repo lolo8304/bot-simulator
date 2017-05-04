@@ -72,6 +72,12 @@ server.get('/', function (req, res, next) {
   res.end(new Buffer(contents));
 });
 
+server.get('/chrome-botsociety-script.js', function (req, res, next) {
+  var contents = fs.readFileSync('./chrome/create-JSON-from-bot.js', 'utf8');
+  res.setHeader('content-type', 'application/json');
+  res.end(new Buffer(contents));
+});
+
 
 /** GET conversations stored in botly */
 
