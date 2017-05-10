@@ -1,0 +1,294 @@
+{
+  "bot": {
+    "conversationId": "59008991f024830b00a53a75",
+    "botname": "Meldung Glasschaden",
+    "fans": "0 people like this",
+    "category": "Business Service",
+    "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/5a43e9ae9cc727ebc747dca4axa_logosvgpng.png",
+    "previewURL": "https://app.botsociety.io/s/59008991f024830b00a53a75"
+  },
+  "conversation": [{
+    "type": "text",
+    "text": "Grüezi, ich bin Sara.\n\nSie können bei mir einen Glasschaden melden. Sie sollten dabei mit den [hier] genannten Bedinungen einverstanden sein.",
+    "fromUser": false,
+    "id": "59008991f024830b00a53a77"
+  }, {
+    "type": "prompt",
+    "text": "Wie heissen Sie? Bitte geben Sie mir ihren Vor-und Nachnamen!",
+    "fromUser": false,
+    "id": "59083f713e12be27003133f0",
+    "answer": {
+      "type": "text",
+      "text": "Michael Sandmaier",
+      "fromUser": true,
+      "id": "5903627745bad81c004fbf04"
+    }
+  }, {
+    "type": "buttons",
+    "text": "Herr Sandmaier, Sie hatten also einen Glasschaden an ihrem Fahrzeug?",
+    "choices": ["JA, an meinem Fahrzeug", "NEIN, aber an einem anderen Fahrzeug"],
+    "fromUser": false,
+    "id": "590363ae45bad81c004fbf0d",
+    "choicesText": "Herr Sandmaier, Sie hatten also einen Glasschaden an ihrem Fahrzeug?.Choices",
+    "answer": [{
+      "text": "JA, an meinem Fahrzeug",
+      "thenDialog": null,
+      "thenRef": 0,
+      "then": [{
+        "type": "prompt",
+        "text": "Wie lautet das Kontrollschild ihres betroffenen Fahrzeugs?",
+        "fromUser": false,
+        "id": "590362c445bad81c004fbf05",
+        "answer": {
+          "type": "text",
+          "text": "ZH 123456",
+          "fromUser": true,
+          "id": "590362cd45bad81c004fbf06"
+        }
+      }, {
+        "type": "text",
+        "text": "Wann haben Sie den Schaden entdeckt?",
+        "fromUser": false,
+        "id": "59083f9d3e12be27003133f1"
+      }, {
+        "type": "quickreplies",
+        "choices": ["heute", "gestern", "ein anderes Datum"],
+        "fromUser": false,
+        "id": "59083fc03e12be27003133f5",
+        "choicesText": "undefined.Choices",
+        "answer": [{
+          "text": "heute",
+          "thenDialog": null,
+          "thenRef": 0,
+          "then": [{
+            "type": "text",
+            "text": "Sie haben den Schaden gestern, am \n1. Mai 2017 entdeckt.\n\nIch prüfe nun ihre Versicherung auf den Schaden. Das kann einen kleinen Moment dauern. Ich bitte um Ihre Geduld.",
+            "fromUser": false,
+            "id": "59088ec4a5f8da31007fd13c"
+          }, {
+            "type": "text",
+            "text": "Wir haben gute Nachrichten: Unsere Prüfung hat ergeben, dass der Schadenfall versichert ist.",
+            "fromUser": false,
+            "id": "59088ec4a5f8da31007fd13d"
+          }, {
+            "type": "text",
+            "text": "Haben Sie den Schaden bereits reparieren lassen?",
+            "fromUser": false,
+            "id": "59088ec4a5f8da31007fd13e"
+          }, {
+            "type": "quickreplies",
+            "choices": ["JA", "NEIN"],
+            "fromUser": false,
+            "id": "59088ec4a5f8da31007fd13f",
+            "choicesText": "undefined.Choices",
+            "answer": [{
+              "text": "JA",
+              "thenDialog": null,
+              "thenRef": 0,
+              "then": []
+            }, {
+              "text": "NEIN",
+              "thenDialog": null,
+              "thenRef": 1,
+              "then": [{
+                "type": "text",
+                "text": "Wir empfehlen Ihnen folgende Garagen:",
+                "fromUser": false,
+                "id": "59088ec4a5f8da31007fd142"
+              }, {
+                "type": "text",
+                "text": "Müller Garage\nDorfstrasse 17\n8217 Wilchingen\n\ngarage.mueller@gmx.ch\n052 874 55 69",
+                "fromUser": false,
+                "id": "59098cef0987f847001a0f4d"
+              }, {
+                "type": "text",
+                "text": "2) Carosserie Bräm\nUnterrietsstrasse 44\n8152 Glattbrugg\n\ncarosserie bräm.mueller@gmail.ch\n052 874 77 66",
+                "fromUser": false,
+                "id": "59098d450987f847001a0f52"
+              }, {
+                "type": "text",
+                "text": "AMAG Garage Muster\nMusterstrasse 3\n8217 Wilchingen\n\ninfo@garage-muster.ch\n052 867 30 54",
+                "fromUser": false,
+                "id": "59098e000987f847001a0f5a"
+              }, {
+                "type": "buttons",
+                "text": "Welche Garage soll für Sie die Reparatur übernehmen?",
+                "choices": ["Müller Garage", "Carosserie Bräm", "AMAG Garage Muster"],
+                "fromUser": false,
+                "id": "59098eb90987f847001a0f64",
+                "choicesText": "Welche Garage soll für Sie die Reparatur übernehmen?.Choices",
+                "answer": [{
+                  "text": "Müller Garage",
+                  "thenDialog": null,
+                  "thenRef": 0,
+                  "then": [{
+                    "type": "buttons",
+                    "text": "Möchte Sie von der Garage Müller kontaktiert werden?",
+                    "choices": ["JA", "NEIN, ich melde mich dort selbst"],
+                    "fromUser": false,
+                    "id": "59088ec4a5f8da31007fd143",
+                    "choicesText": "Möchte Sie von der Garage Müller kontaktiert werden?.Choices",
+                    "answer": [{
+                      "text": "JA",
+                      "thenDialog": null,
+                      "thenRef": 0,
+                      "then": [{
+                        "type": "text",
+                        "text": "Sehr gut, dann haben wir es geschafft. Vielen Dank für Ihre Mithilfe. Ich fasse für Sie zusammen:",
+                        "fromUser": false,
+                        "id": "59088ec4a5f8da31007fd145"
+                      }, {
+                        "type": "text",
+                        "text": "Der Schaden an ihrem Fahrzeug (ZH 123456) ist von Ihrer Police gedeckt.\n\nDie Müller Garage meldet sich bei Ihnen und organisiert für Sie die Reparatur.\n\nIch melde mich bei Ihnen wieder auf diesem Kanal sobald es Neues gibt.",
+                        "fromUser": false,
+                        "id": "59088ec4a5f8da31007fd146"
+                      }]
+                    }, {
+                      "text": "NEIN, ich melde mich dort selbst",
+                      "thenDialog": null,
+                      "thenRef": 1,
+                      "then": []
+                    }]
+                  }]
+                }, {
+                  "text": "Carosserie Bräm",
+                  "thenDialog": null,
+                  "thenRef": 1,
+                  "then": []
+                }, {
+                  "text": "AMAG Garage Muster",
+                  "thenDialog": null,
+                  "thenRef": 2,
+                  "then": []
+                }]
+              }]
+            }]
+          }]
+        }, {
+          "text": "gestern",
+          "thenDialog": null,
+          "thenRef": 1,
+          "then": [{
+            "type": "text",
+            "text": "Sie haben den Schaden gestern, am \n1. Mai 2017 entdeckt.\n\nIch prüfe nun ihre Versicherung auf den Schaden. Das kann einen kleinen Moment dauern. Ich bitte um Ihre Geduld.",
+            "fromUser": false,
+            "id": "59084d683e12be27003134ad"
+          }, {
+            "type": "text",
+            "text": "Wir haben gute Nachrichten: Unsere Prüfung hat ergeben, dass der Schadenfall versichert ist.",
+            "fromUser": false,
+            "id": "590841fb3e12be27003133fc"
+          }, {
+            "type": "text",
+            "text": "Haben Sie den Schaden bereits reparieren lassen?",
+            "fromUser": false,
+            "id": "590847dd3e12be2700313468"
+          }, {
+            "type": "quickreplies",
+            "choices": ["JA", "NEIN"],
+            "fromUser": false,
+            "id": "59084ac83e12be2700313483",
+            "choicesText": "undefined.Choices",
+            "answer": [{
+              "text": "JA",
+              "thenDialog": null,
+              "thenRef": 0,
+              "then": []
+            }, {
+              "text": "NEIN",
+              "thenDialog": null,
+              "thenRef": 1,
+              "then": [{
+                "type": "text",
+                "text": "Falls Sie eine geeignete Garage suchen, dann empfehlen wir Ihnen:\n\nMüller Garage\nDorfstrasse 17\n8217 Wilchingen\n\ngarage.mueller@gmx.ch\n052 874 55 69",
+                "fromUser": false,
+                "id": "59084ba03e12be2700313488"
+              }, {
+                "type": "buttons",
+                "text": "Möchte Sie von der Garage kontaktiert werden?",
+                "choices": ["JA", "NEIN, ich melde mich dort selbst"],
+                "fromUser": false,
+                "id": "59087b11a5f8da31007fd03a",
+                "choicesText": "Möchte Sie von der Garage kontaktiert werden?.Choices",
+                "answer": [{
+                  "text": "JA",
+                  "thenDialog": null,
+                  "thenRef": 0,
+                  "then": [{
+                    "type": "text",
+                    "text": "Sehr gut, dann haben wir es geschafft. Vielen Dank für Ihre Mithilfe. Ich fasse für Sie zusammen:",
+                    "fromUser": false,
+                    "id": "59087b3aa5f8da31007fd03f"
+                  }, {
+                    "type": "text",
+                    "text": "Der Schaden an ihrem Fahrzeug (ZH 123456) ist von Ihrer Police gedeckt.\n\nDie Müller Garage meldet sich bei Ihnen und organisiert für Sie die Reparatur.\n\nIch melde mich bei Ihnen wieder auf diesem Kanal sobald es Neues gibt.",
+                    "fromUser": false,
+                    "id": "59087cb7a5f8da31007fd056"
+                  }]
+                }, {
+                  "text": "NEIN, ich melde mich dort selbst",
+                  "thenDialog": null,
+                  "thenRef": 1,
+                  "then": []
+                }]
+              }]
+            }]
+          }]
+        }, {
+          "text": "ein anderes Datum",
+          "thenDialog": null,
+          "thenRef": 2,
+          "then": [{
+            "type": "prompt",
+            "text": "Bitte geben Sie das Datum an",
+            "fromUser": false,
+            "id": "59084a6c3e12be270031347f",
+            "answer": {
+              "type": "text",
+              "text": "30. April",
+              "fromUser": true,
+              "id": "59084a813e12be2700313480"
+            }
+          }]
+        }]
+      }]
+    }, {
+      "text": "NEIN, aber an einem anderen Fahrzeug",
+      "thenDialog": null,
+      "thenRef": 1,
+      "then": [{
+        "type": "prompt",
+        "text": "Wie heisst der Besitzer des beschädigten Fahrzeugs? Bitte geben sie Vor- und Nachnamen an.",
+        "fromUser": false,
+        "id": "5908374050e3d31b0039f242",
+        "answer": {
+          "type": "text",
+          "text": "Johanna Elster",
+          "fromUser": true,
+          "id": "5908374f50e3d31b0039f243"
+        }
+      }, {
+        "type": "prompt",
+        "text": "Können Sie uns eine Telefonnummer von Johanna Elster angeben?",
+        "fromUser": false,
+        "id": "59083d3b3e12be27003133c5",
+        "answer": {
+          "type": "text",
+          "text": "Ja, 078 678 56 78",
+          "fromUser": true,
+          "id": "59083d533e12be27003133c6"
+        }
+      }, {
+        "type": "text",
+        "text": "Vielen Dank! In diesem Fall werden wir uns mit Johanna Elster in Verbindung setzen und den Schadenfall klären.",
+        "fromUser": false,
+        "id": "59083d873e12be27003133c9"
+      }, {
+        "type": "text",
+        "text": "Gibt es noch etwas, dass sie uns mitteilen möchten?",
+        "fromUser": false,
+        "id": "59083d9c3e12be27003133ce"
+      }]
+    }]
+  }]
+}

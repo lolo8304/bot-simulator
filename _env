@@ -1,5 +1,7 @@
 //document following process envs and rename to .env
 //please do not store .env file on GIT
+//define those settings on server
+//if you're using Azure the key should have the same name
 
 MICROSOFT_APP_ID=
 MICROSOFT_APP_PASSWORD=

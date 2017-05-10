@@ -9,12 +9,12 @@ require('dotenv').config();
 var _ = require('lodash');
 var moment = require('moment');
 
-var c = require("./converstation-simulation");
+var c = require("./conversation-simulation");
 
 // Setup Restify Server
 var server = restify.createServer();
 var port = process.env.port || process.env.PORT || 3978;
-// test
+
 server.listen(port, function () {
   console.log('%s listening to %s', server.name, server.url);
 });
@@ -64,6 +64,20 @@ function prepareConversations(conversations, messages) {
   }
   return messages;
 }
+
+var fs = require('fs');
+server.get('/', function (req, res, next) {
+  var contents = fs.readFileSync('./index.html', 'utf8');
+  res.setHeader('content-type', 'text/html');
+  res.end(new Buffer(contents));
+});
+
+server.get('/chrome-botsociety-script.js', function (req, res, next) {
+  var contents = fs.readFileSync('./chrome/create-JSON-from-bot.js', 'utf8');
+  res.setHeader('content-type', 'application/javascript');
+  res.end(new Buffer(contents));
+});
+
 
 /** GET conversations stored in botly */
 
