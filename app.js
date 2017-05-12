@@ -66,42 +66,33 @@ function prepareConversations(conversations, messages) {
 }
 
 var fs = require('fs');
-server.get('/', function (req, res, next) {
-  var contents = fs.readFileSync('./index.html', 'utf8');
+
+function replaceEnvVariable(res, contents, variable) {
   if (!process.env.SKYPE_BOT_ID) {
     res.status(400);
     res.send("SKYPE_BOT_ID not defined as env variable");
     res.end();
-    return;
+    return undefined;
   }
-  if (!process.env.MICROSOFT_APP_NAME) {
-    res.status(400);
-    res.send("MICROSOFT_APP_NAME not defined as env variable");
-    res.end();  
-    return;
-  }
-  if (!process.env.MICROSOFT_WEBCHAT_ID) {
-    res.status(400);
-    res.send("MICROSOFT_WEBCHAT_ID not defined as env variable");
-    res.end();  
-    return;
-  }
-  contents = contents.replace("$SKYPE_BOT_ID", process.env.SKYPE_BOT_ID);
-  contents = contents.replace("$MICROSOFT_APP_NAME", process.env.MICROSOFT_APP_NAME);
-  contents = contents.replace("$MICROSOFT_WEBCHAT_ID", process.env.MICROSOFT_WEBCHAT_ID);
+  return contents.replace("$"+variable, process.env[variable]);
+}
+
+server.get('/', function (req, res, next) {
+  var contents = fs.readFileSync('./index.html', 'utf8');
+  contents = replaceEnvVariable(res, contents, "SKYPE_BOT_ID");
+  if (!contents) return;
+  contents = replaceEnvVariable(res, contents, "MICROSOFT_APP_NAME");
+  if (!contents) return;
+  contents = replaceEnvVariable(res, contents, "MICROSOFT_WEBCHAT_ID");
+  if (!contents) return;
   res.setHeader('content-type', 'text/html');
   res.end(new Buffer(contents));
 });
 
 server.get('/chrome-botsociety-script.js', function (req, res, next) {
   var contents = fs.readFileSync('./chrome/create-JSON-from-bot.js', 'utf8');
-  if (!process.env.BOT_DOMAIN_URL) {
-    res.status(400);
-    res.send("BOT_DOMAIN_URL not defined as env variable");
-    res.end();
-    return;
-  }
-  contents = contents.replace("$BOT_DOMAIN_URL", process.env.BOT_DOMAIN_URL);
+  contents = replaceEnvVariable(res, contents, "BOT_DOMAIN_URL");
+  if (!contents) return;
   res.setHeader('content-type', 'application/javascript');
   res.end(new Buffer(contents));
 });
