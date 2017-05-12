@@ -1,0 +1,122 @@
+{
+  "bot": {
+    "conversationId": "5912c507526ed6430055ab4d",
+    "botname": "Emploji-Test",
+    "fans": "130469 people like this",
+    "category": "Insurance Company",
+    "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/4f1f2496555c41emplojisimulatorpng.png",
+    "previewURL": "https://beta.botsociety.io/s/5912c507526ed6430055ab4d"
+  },
+  "conversation": [
+    {
+      "type": "text",
+      "text": "Willkommen - mein Name ist Emploji. Wie kann ich Dir helfen?",
+      "fromUser": false,
+      "id": "5912e26540d579230085a2ae"
+    },
+    {
+      "type": "buttons",
+      "text": "Angebot",
+      "choices": [
+        "Zeiterfassung",
+        "Abwesenheiten",
+        "Spesenerfassung"
+      ],
+      "fromUser": false,
+      "id": "5912e27240d579230085a2b2",
+      "choicesText": "Angebot.Choices",
+      "answer": [
+        {
+          "text": "Zeiterfassung",
+          "thenDialog": null,
+          "thenRef": 0,
+          "then": []
+        },
+        {
+          "text": "Abwesenheiten",
+          "thenDialog": null,
+          "thenRef": 1,
+          "then": [
+            {
+              "type": "buttons",
+              "text": "OK. was genau?",
+              "choices": [
+                "Neu erstellen",
+                "Restbestand abfragen",
+                "Bestätigen"
+              ],
+              "fromUser": false,
+              "id": "5912e53e40d579230085a2c1",
+              "choicesText": "OK. was genau?.Choices",
+              "answer": [
+                {
+                  "text": "Neu erstellen",
+                  "thenDialog": null,
+                  "thenRef": 0,
+                  "then": []
+                },
+                {
+                  "text": "Restbestand abfragen",
+                  "thenDialog": null,
+                  "thenRef": 1,
+                  "then": []
+                },
+                {
+                  "text": "Bestätigen",
+                  "thenDialog": null,
+                  "thenRef": 2,
+                  "then": [
+                    {
+                      "type": "text",
+                      "text": "Sie haben seit 1.4.2017 folgende Abwesenheiten gebucht\n- Ferien, 10.4.2017, 2 Tage\n- Krank, 15.4.2017, 1 Tag",
+                      "fromUser": false,
+                      "id": "5912e56740d579230085a2c3"
+                    },
+                    {
+                      "type": "buttons",
+                      "text": "Stimmt das so?",
+                      "choices": [
+                        "Ja",
+                        "Nein"
+                      ],
+                      "fromUser": false,
+                      "id": "5912e5a240d579230085a2c8",
+                      "choicesText": "Stimmt das so?.Choices",
+                      "answer": [
+                        {
+                          "text": "Ja",
+                          "thenDialog": null,
+                          "thenRef": 0,
+                          "then": [
+                            {
+                              "type": "text",
+                              "text": "Besten Dank - Ihre Bestätigung ist gespeichert",
+                              "fromUser": false,
+                              "id": "5912e5be40d579230085a2ca"
+                            }
+                          ]
+                        },
+                        {
+                          "text": "Nein",
+                          "thenDialog": null,
+                          "thenRef": 1,
+                          "then": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "Spesenerfassung",
+          "thenDialog": null,
+          "thenRef": 2,
+          "then": []
+        }
+      ]
+    }
+  ]
+}

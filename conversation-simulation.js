@@ -2,7 +2,7 @@ exports.conversation = function () {
   return {
     object: function () {
       return [
-        require("./examples/glas.json")
+        require("./examples/test-bot.json")
       ]
     }
 
