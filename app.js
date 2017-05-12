@@ -95,7 +95,7 @@ server.get('/', function (req, res, next) {
 
 server.get('/chrome-botsociety-script.js', function (req, res, next) {
   var contents = fs.readFileSync('./chrome/create-JSON-from-bot.js', 'utf8');
-  if (process.env.BOT_DOMAIN_URL) {
+  if (!process.env.BOT_DOMAIN_URL) {
     res.status(400);
     res.send("BOT_DOMAIN_URL not defined as env variable");
     res.end();
