@@ -7,10 +7,10 @@ var DEBUG = false;
 var GENERATE_LABELS = false;
 
 // true = install content of bot directly in botframework endpoint
-var ADD_CONVERSATION = false;
+var ADD_CONVERSATION = true;
 //test local: start ngrok in command line with your port
 //    ngrok http 3979
-//var ADD_CONVERSATION_URL = "https://your-server.domain.com"
+var ADD_CONVERSATION_URL = "$BOT_DOMAIN_URL"
 
 var botnameDiv=document.querySelectorAll('div[class^="botname"]')[0];
 if (!botnameDiv) {
