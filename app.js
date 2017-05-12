@@ -101,6 +101,7 @@ server.get('/chrome-botsociety-script.js', function (req, res, next) {
     res.end();
     return;
   }
+  contents = contents.replace("$BOT_DOMAIN_URL", process.env.BOT_DOMAIN_URL);
   res.setHeader('content-type', 'application/javascript');
   res.end(new Buffer(contents));
 });
