@@ -94,10 +94,13 @@ function done() {
 
   var bot = { "conversationId": conversationId, "botname" : botname, "fans" : fans, "category" : category, "imageURL" : image, "previewURL": previewURL};
   var conversationData = {"bot": bot, "conversation" : conversation};
-  console.log(JSON.stringify(conversationData));
   if (ADD_CONVERSATION) {
+    console.log("bot posting to "+ADD_CONVERSATION_URL+" ...");
     $.post(ADD_CONVERSATION_URL+"/conversations/"+conversationId, JSON.stringify(conversationData), function(response) {
+        console.log("... successfully done");
     }, 'json');
+  } else {
+    console.log(JSON.stringify(conversationData));
   }
   if (GENERATE_LABELS) {
     console.log(createLabelString(labels));

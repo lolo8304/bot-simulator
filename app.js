@@ -109,7 +109,7 @@ server.use(
   function crossOrigin(req,res,next){
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     return next();
   }
 );
@@ -121,9 +121,13 @@ server.post('/conversations/:conversationId', function (req, res, next) {
     botdata: data.bot,
     messages: prepareConversations(data.conversation, {})
   };
+  res.status(201);
+  res.send("{ 'status' : 'ok'}");
+  res.end();
 });
 server.get('/conversations/:conversationId', function (req, res, next) {
   res.send(_db[req.params.conversationId]);
+  res.end();
 });
 
 

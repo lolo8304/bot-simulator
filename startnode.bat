@@ -1,1 +1,1 @@
-nodemon -e js,json --watch . --exec npm start
+nodemon -e js,json,env --watch . --exec npm start
