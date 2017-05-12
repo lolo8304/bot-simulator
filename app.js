@@ -68,9 +68,9 @@ function prepareConversations(conversations, messages) {
 var fs = require('fs');
 
 function replaceEnvVariable(res, contents, variable) {
-  if (!process.env.SKYPE_BOT_ID) {
+  if (!process.env[variable]) {
     res.status(400);
-    res.send("SKYPE_BOT_ID not defined as env variable");
+    res.send(variable+" not defined as env variable");
     res.end();
     return undefined;
   }
