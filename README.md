@@ -29,9 +29,12 @@ readme must be updated for
 ## Preconditions to run bot
 - installed nodejs (>6.0)
 - clone / fork git repo locally
-<code>
-    git clone https://github.axa.com/pierre-loic-doulcet/botsociety-to-JSON
-</code>
+
+```
+#!bash
+git clone https://github.axa.com/pierre-loic-doulcet/botsociety-to-JSON
+```
+
 - register a new bot at https://dev.botframework.com/ (no need to deploy yet. just defining)
 - create the needed APP-ID and APP-PASSWORD at botframework.com
 - download https://docs.botframework.com/en-us/tools/bot-framework-emulator/  and run it locally
