@@ -4,6 +4,11 @@ But in Botsociety it is not possible to test the different Connectors and real i
 
 A small tool to extract botsociety bots to JSON and run it as a real chat-bot using Microsoft bot-framework.
 
+## update
+readme must be updated for
+- deployment to testbot
+- configurations of testbot
+
 ## Principle explained
 - you create your own bot mockup or open an existing one using botsociety.io
 - run a script inside "chrome" browser to capture all internal details of the Bot
