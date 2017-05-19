@@ -44,9 +44,10 @@ git clone https://github.axa.com/pierre-loic-doulcet/botsociety-to-JSON
   ![ScreenShot](images/emulator.settings.png)
 
   ![ScreenShot](images/ngrok.png)
+
 - copy _env file to .env
 - adapt according to the Microsoft Botframework settings
-  ```
+```
   #!bash
   //document following entries. they will be used as process.env.*
   //please do not store .env file on GIT. .gitignore is already done
@@ -54,22 +55,24 @@ git clone https://github.axa.com/pierre-loic-doulcet/botsociety-to-JSON
   MICROSOFT_APP_PASSWORD=...
   //adapt the port if needed
   PORT=3978
-  ```
+```
 - example bot entries are stored in 'converstation-simulation.js'
 - run on command line
-  ```
+
+```
   #!bash
   cd botsociety-to-JSON
   npm install
   npm start
-  ```
+```
+
 - to use automatic restart use nodemon, if you are able to install globally. If not use nodemon from local node_modules directory
-  ```
+```
   #!bash
   //install nodemon
   sudo npm install -g nodemon
   ./startnode.sh
-  ```
+```
 - go to emulator
 - run "new conversation"
 
