@@ -11,6 +11,7 @@ readme must be updated for
 
 ## Principle explained
 - you create your own bot mockup or open an existing one using botsociety.io
+- open your testbot index page and get "
 - run a script inside "chrome" browser to capture all internal details of the Bot
 - use the output and store it in a defined javascript file
 - register a new bot at Microsoft (to get APP-ID and Password)
@@ -28,9 +29,9 @@ readme must be updated for
 ## Preconditions to run bot
 - installed nodejs (>6.0)
 - clone / fork git repo locally
-  ```bash
+  <code>bash
   git clone https://github.axa.com/pierre-loic-doulcet/botsociety-to-JSON
-  ```
+  </code>
 - register a new bot at https://dev.botframework.com/ (no need to deploy yet. just defining)
 - create the needed APP-ID and APP-PASSWORD at botframework.com
 - download https://docs.botframework.com/en-us/tools/bot-framework-emulator/  and run it locally
