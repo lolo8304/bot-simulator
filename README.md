@@ -29,9 +29,9 @@ readme must be updated for
 ## Preconditions to run bot
 - installed nodejs (>6.0)
 - clone / fork git repo locally
-  <code>bash
-  git clone https://github.axa.com/pierre-loic-doulcet/botsociety-to-JSON
-  </code>
+<code>
+    git clone https://github.axa.com/pierre-loic-doulcet/botsociety-to-JSON
+</code>
 - register a new bot at https://dev.botframework.com/ (no need to deploy yet. just defining)
 - create the needed APP-ID and APP-PASSWORD at botframework.com
 - download https://docs.botframework.com/en-us/tools/bot-framework-emulator/  and run it locally
@@ -43,27 +43,27 @@ readme must be updated for
   ![ScreenShot](images/ngrok.png)
 - copy _env file to .env
 - adapt according to the Microsoft Botframework settings
-  ```bash
+  ~~~~bash
   //document following entries. they will be used as process.env.*
   //please do not store .env file on GIT. .gitignore is already done
   MICROSOFT_APP_ID=....
   MICROSOFT_APP_PASSWORD=...
   //adapt the port if needed
   PORT=3978
-  ```
+  ~~~~
 - example bot entries are stored in 'converstation-simulation.js'
 - run on command line
-  ```bash
+  ~~~~bash
   cd botsociety-to-JSON
   npm install
   npm start
-  ```
+  ~~~~
 - to use automatic restart use nodemon, if you are able to install globally. If not use nodemon from local node_modules directory
-  ```bash
+  ~~~~bash
   //install nodemon
   sudo npm install -g nodemon
   ./startnode.sh
-  ```
+  ~~~~
 - go to emulator
 - run "new conversation"
 
@@ -94,18 +94,18 @@ Make sure you always use https URLs!
     * MICROSOFT_APP_PASSWORD
 - go to Overview and copy 'Git clone url'
 - add git remote repository paths
-  ```bash
+  ~~~~bash
   git remote add azure YOUR_GIT_CLONE_URL_HERE
-  ```
+  ~~~~
 - execute the following commands to create a commit that contains all of your code
-  ```bash
+  ~~~~bash
   git add .
   git commit -m "the perfect code"
-  ```
+  ~~~~
 - execute the command to push your code to Azure. When prompted for a password, enter the one that you created erlier in the Azure portal (define deployment credentials)
-  ```bash
+  ~~~~bash
   git push azure master
-  ```
+  ~~~~
 
 # Capture your bot and run it
 - login botsociety.io and open your bot
