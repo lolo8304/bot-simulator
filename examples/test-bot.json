@@ -1,10 +1,10 @@
 {
   "bot": {
-    "conversationId": "5912c507526ed6430055ab4d",
-    "botname": "Emploji-Test",
+    "conversationId": "2017.12.12",
+    "botname": "Emploji-Simulator",
     "fans": "130469 people like this",
     "category": "Insurance Company",
-    "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/4f1f2496555c41emplojisimulatorpng.png",
+    "imageURL": "https://emploji-simulator.herokuapp.com/images/emploji-simulator.png",
     "previewURL": "https://emploji-simulator.herokuapp.com"
   },
   "conversation": [
