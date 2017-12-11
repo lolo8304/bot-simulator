@@ -1,7 +1,7 @@
 {
-  "name": "botsociety-to-json",
+  "name": "bot-simulator",
   "version": "0.9.1",
-  "description": "fully functional chat-bot based on botsociety.io exported structure.",
+  "description": "fully functional simulation of buts.",
   "author": "Lorenz Hänggi, Pierre-Loïc Doulcet.",
   "license": "AXA",
   "dependencies": {
