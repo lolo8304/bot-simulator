@@ -24,8 +24,6 @@ var connector = new builder.ChatConnector({
   appId: process.env.MICROSOFT_APP_ID,
   appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
-// This line MUST appear before any route declaration such as the one below
-server.use(restify.bodyParser());
 
 // Listen for messages from users
 server.post('/api/messages', connector.listen());
@@ -66,6 +64,7 @@ function prepareConversations(conversations, messages) {
 }
 
 var fs = require('fs');
+modelhelper = require("./modules/modelhelper.js");
 
 function replaceEnvVariable(res, contents, variable) {
   if (!process.env[variable]) {
@@ -89,13 +88,26 @@ server.get('/', function (req, res, next) {
   res.end(new Buffer(contents));
 });
 
-server.get('/chrome-botsociety-script.js', function (req, res, next) {
-  var contents = fs.readFileSync('./chrome/create-JSON-from-bot.js', 'utf8');
-  contents = replaceEnvVariable(res, contents, "BOT_DOMAIN_URL");
-  if (!contents) return;
-  res.setHeader('content-type', 'application/javascript');
-  res.end(new Buffer(contents));
+server.get('/images/:name', function (req, res, next) {
+  var imageName = req.params.name;
+  if (isEmpty(imageName)) {
+      return handleError(res,
+          new RestApiError("400", 'image name must be specified'));
+  }
+  if (imageName.indexOf("..") >= 0 || imageName.indexOf("/") >= 0 || imageName.indexOf("$") >= 0 || imageName.indexOf("~") >= 0) {
+      return handleError(res,
+          new RestApiError("400", 'invalid image name - only "name.ext" allowed'));
+  }
+  var ext = imageName.split(".");
+  if (ext.length == 0) {
+      return handleError(res,
+          new RestApiError("400", 'image has not extension'));
+  }
+  var contents = fs.readFileSync('./images/' + imageName, '');
+  res.setHeader('Content-Type', 'image/' + ext[ext.length - 1]);
+  res.end(contents);
 });
+
 
 
 /** GET conversations stored in botly */
@@ -385,10 +397,12 @@ function runDialog(session, conversations, i) {
       nextDialog.choices, {listStyle: builder.ListStyle["button"]});
   } else if (nextDialog.type === "prompt") {
     builder.Prompts.text(session,nextDialog.text);
+  } else if (nextDialog.type === "confirm") {
+    builder.Prompts.confirm(session,nextDialog.text);
   } else if (nextDialog.type === "quickreplies") {
     builder.Prompts.choice(
-      session, "",
-      nextDialog.choices, {listStyle: builder.ListStyle["button"]});
+      session, nextDialog.text,
+      nextDialog.choices, {listStyle: builder.ListStyle["list"]});
   }
   return {
     current: nextDialog,

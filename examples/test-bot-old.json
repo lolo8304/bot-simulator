@@ -5,11 +5,10 @@
     "fans": "130469 people like this",
     "category": "Insurance Company",
     "imageURL": "https://s3.amazonaws.com/botsociety.prod.us/4f1f2496555c41emplojisimulatorpng.png",
-    "previewURL": "https://emploji-simulator.herokuapp.com"
+    "previewURL": "https://beta.botsociety.io/s/5912c507526ed6430055ab4d"
   },
   "conversation": [
     {
-      "dialog" : "startOfAll",
       "type": "text",
       "text": "Willkommen - mein Name ist Emploji. Wie kann ich Dir helfen?",
       "fromUser": false,
@@ -39,7 +38,7 @@
           "thenRef": 1,
           "then": [
             {
-              "type": "quickreplies",
+              "type": "buttons",
               "text": "OK. was genau?",
               "choices": [
                 "Neu erstellen",
@@ -52,7 +51,7 @@
               "answer": [
                 {
                   "text": "Neu erstellen",
-                  "thenDialog": "startOfAll",
+                  "thenDialog": null,
                   "thenRef": 0,
                   "then": []
                 },
@@ -74,7 +73,7 @@
                       "id": "5912e56740d579230085a2c3"
                     },
                     {
-                      "type": "confirm",
+                      "type": "buttons",
                       "text": "Stimmt das so?",
                       "choices": [
                         "Ja",

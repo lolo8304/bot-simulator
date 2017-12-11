@@ -5,14 +5,14 @@
 
 MICROSOFT_APP_ID=
 MICROSOFT_APP_PASSWORD=
-PORT=3978
+PORT=3979
 
 SKYPE_BOT_ID=
 MICROSOFT_APP_NAME=
 MICROSOFT_WEBCHAT_ID=
 
 ## uncomment for localhost
-## BOT_DOMAIN_URL=http://localhost:3978
+## BOT_DOMAIN_URL=http://localhost:3979
 
 ## uncomment for production
 BOT_DOMAIN_URL=your production domain name
