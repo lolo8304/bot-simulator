@@ -74,8 +74,8 @@
                       "type": "confirm",
                       "text": "Stimmt das so?",
                       "choices": [
-                        "Yes, Ja",
-                        "No, Nein"
+                        "Ja",
+                        "Nein"
                       ],
                       "fromUser": false,
                       "choicesText": "Stimmt das so?.Choices",

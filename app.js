@@ -417,7 +417,10 @@ function runDialog(session, conversations, i) {
   } else if (nextDialog.type === "prompt") {
     builder.Prompts.text(session,nextDialog.text);
   } else if (nextDialog.type === "confirm") {
-    builder.Prompts.confirm(session,nextDialog.text);
+    builder.Prompts.choice(
+      session, nextDialog.text,
+      nextDialog.choices, {listStyle: builder.ListStyle["button"]});
+//    builder.Prompts.confirm(session,nextDialog.text);
   } else if (nextDialog.type === "quickreplies") {
     builder.Prompts.choice(
       session, nextDialog.text,
