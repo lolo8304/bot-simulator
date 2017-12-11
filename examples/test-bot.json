@@ -9,11 +9,10 @@
   },
   "conversation": [
     {
-      "dialog" : "startOfAll",
+      "dialog" : "StartAgain",
       "type": "text",
       "text": "Willkommen - mein Name ist Emploji. Wie kann ich Dir helfen?",
-      "fromUser": false,
-      "id": "5912e26540d579230085a2ae"
+      "fromUser": false
     },
     {
       "type": "buttons",
@@ -24,7 +23,6 @@
         "Spesenerfassung"
       ],
       "fromUser": false,
-      "id": "5912e27240d579230085a2b2",
       "choicesText": "Angebot.Choices",
       "answer": [
         {
@@ -39,20 +37,20 @@
           "thenRef": 1,
           "then": [
             {
-              "type": "quickreplies",
+              "type": "buttons",
               "text": "OK. was genau?",
               "choices": [
                 "Neu erstellen",
                 "Restbestand abfragen",
-                "Bestätigen"
+                "Bestätigen",
+                "Nochmals starten"
               ],
               "fromUser": false,
-              "id": "5912e53e40d579230085a2c1",
               "choicesText": "OK. was genau?.Choices",
               "answer": [
                 {
                   "text": "Neu erstellen",
-                  "thenDialog": "startOfAll",
+                  "thenDialog": "",
                   "thenRef": 0,
                   "then": []
                 },
@@ -70,35 +68,32 @@
                     {
                       "type": "text",
                       "text": "Sie haben seit 1.4.2017 folgende Abwesenheiten gebucht\n- Ferien, 10.4.2017, 2 Tage\n- Krank, 15.4.2017, 1 Tag",
-                      "fromUser": false,
-                      "id": "5912e56740d579230085a2c3"
+                      "fromUser": false
                     },
                     {
                       "type": "confirm",
                       "text": "Stimmt das so?",
                       "choices": [
-                        "Ja",
-                        "Nein"
+                        "Yes, Ja",
+                        "No, Nein"
                       ],
                       "fromUser": false,
-                      "id": "5912e5a240d579230085a2c8",
                       "choicesText": "Stimmt das so?.Choices",
                       "answer": [
                         {
-                          "text": "Ja",
+                          "text": "Yes, Ja",
                           "thenDialog": null,
                           "thenRef": 0,
                           "then": [
                             {
                               "type": "text",
                               "text": "Besten Dank - Ihre Bestätigung ist gespeichert",
-                              "fromUser": false,
-                              "id": "5912e5be40d579230085a2ca"
+                              "fromUser": false
                             }
                           ]
                         },
                         {
-                          "text": "Nein",
+                          "text": "No, Nein",
                           "thenDialog": null,
                           "thenRef": 1,
                           "then": []
@@ -106,6 +101,12 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "text": "Nochmals starten",
+                  "thenDialog": "StartAgain",
+                  "thenRef": 3,
+                  "then": []
                 }
               ]
             }

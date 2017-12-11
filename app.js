@@ -8,6 +8,8 @@ var request = require('request');
 require('dotenv').config();
 var _ = require('lodash');
 var moment = require('moment');
+const uuidv4 = require('uuid/v4');
+
 
 var c = require("./conversation-simulation");
 
@@ -48,6 +50,7 @@ function addBotExample(exampleToLoad) {
 function prepareConversations(conversations, messages) {
   for (var i = 0; i < conversations.length; ++i) {
     var c = conversations[i];
+    c.id = uuidv4();
     messages[c.id] = {
       current: c,
       conversations: conversations,
@@ -156,7 +159,7 @@ bot.on('conversationUpdate', function (message) {
                   }
                   var reply = new builder.Message()
                           .address(message.address)
-                          .text("Hallo %s.\n\nWe are all auto generated test-bots from https://botsociety.io.\n\nUse **start list** to see my colleagues.\n\nHave fun.", name);
+                          .text("Hallo %s.\n\nWe are all dialog simulation bots.\n\nUse **start list** to see my colleagues.\n\nHave fun.", name);
                   bot.send(reply);
               }
           });
@@ -172,9 +175,11 @@ function findDialog(session, dialogName, conversations) {
     if (conversations[i].dialog === dialogName) {
       return {conversations: conversations, index: i}
     }
-    for (var j = 0; j < conversations[i].answer.length; ++j) {
-      var dialog = findDialog(session, dialogName, conversations[i].answer[j].then);
-      if (dialog) { return dialog; }
+    if (conversations[i].answer) {
+      for (var j = 0; j < conversations[i].answer.length; ++j) {
+        var dialog = findDialog(session, dialogName, conversations[i].answer[j].then);
+        if (dialog) { return dialog; }
+      }
     }
   }
   return null;
@@ -183,7 +188,7 @@ function findDialog(session, dialogName, conversations) {
 function findFirstNonEmptyAnswersNotEnitityIndex(currentDialog, entity) {
   //search for first non-empty then[] with same entity - carousel multi options
   for (var i = 0; i < currentDialog.answer.length; ++i) {
-    if (currentDialog.answer[i].text === entity && currentDialog.answer[i].then.length > 0) {
+    if (verifyAnswer(currentDialog.answer[i].text, entity) && currentDialog.answer[i].then.length > 0) {
       return i
     }
   }
@@ -196,6 +201,17 @@ function findFirstNonEmptyAnswersNotEnitityIndex(currentDialog, entity) {
   return null;
 }
 
+function verifyAnswer(givenAnswerSeperated, answer) {
+  givenAnswerSeperated = givenAnswerSeperated.trim().toLowerCase();
+  answer = answer.trim().toLowerCase();
+  var answers = givenAnswerSeperated.split(",");
+  for (var i = 0; i < answers.length; ++i) {
+    if (answers[i].trim() == answer) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function findNextConversations(session, currentDialogObject, results) {
   var currentDialog = currentDialogObject.current
@@ -205,9 +221,12 @@ function findNextConversations(session, currentDialogObject, results) {
   } else {
     if (results.response) {
       var entity = results.response.entity;
+      if (currentDialog.type === "confirm") {
+        entity = results.response ? "Yes" : "No";
+      }
 
       for (var i = 0; i < currentDialog.answer.length; ++i) {
-        if (currentDialog.answer[i].text === entity) {
+        if (verifyAnswer(currentDialog.answer[i].text, entity)) {
           //thenRef Index is used with pattern $=? to reuse existing trees to not copy
           var thenRefDialog = currentDialog.answer[i].thenDialog;
           var thenRefIndex = currentDialog.answer[i].thenRef;
@@ -264,14 +283,14 @@ function startList(session) {
             .buttons([
                   builder.CardAction.imBack(session, "start "+key, "start Bot"),
                   builder.CardAction.imBack(session, "remove "+key, "remove Bot"),
-                  builder.CardAction.openUrl(session, botdata.previewURL, 'botsociety.io')
+                  builder.CardAction.openUrl(session, botdata.previewURL, 'url')
             ]);
         msg.addAttachment(card);
       }
     }
     session.send(msg);
   } else {
-    session.send("no bots are installed. Install them via 'chrome plugin' from https://botsociety.io");
+    session.send("no bots are installed");
   }
   session.userData.conversationId = null;
   session.endDialog();
@@ -313,7 +332,7 @@ bot.dialog('/', [
       }
       var botdata = _db[session.userData.conversationId].botdata;
       var card = new builder.HeroCard(session)
-          .text("Hi - my name is %s, a simulated bot from botsociety.io",botdata.botname)
+          .text("Hi - my name is %s",botdata.botname)
           .subtitle(botdata.fans+", category: "+botdata.category)
           .images([
                 builder.CardImage.create(session, botdata.imageURL)
@@ -337,7 +356,7 @@ bot.dialog('/', [
       session.userData.currentMessage = conversations.conversations[conversations.index].id;
       session.replaceDialog("/", conversations.conversations[conversations.index].id);
     } else {
-      session.endDialog();
+      session.endDialog("** end bot **");
     }
   }
 ])
