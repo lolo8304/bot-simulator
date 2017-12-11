@@ -69,6 +69,10 @@ function prepareConversations(conversations, messages) {
 var fs = require('fs');
 modelhelper = require("./modules/modelhelper.js");
 
+function isEmpty(obj) {
+  return obj == undefined || obj.length == 0;
+}
+
 function replaceEnvVariable(res, contents, variable) {
   if (!process.env[variable]) {
     res.status(400);
@@ -106,9 +110,14 @@ server.get('/images/:name', function (req, res, next) {
       return handleError(res,
           new RestApiError("400", 'image has not extension'));
   }
-  var contents = fs.readFileSync('./images/' + imageName, '');
-  res.setHeader('Content-Type', 'image/' + ext[ext.length - 1]);
-  res.end(contents);
+  try {
+    var contents = fs.readFileSync('./images/' + imageName, '');
+    res.setHeader('Content-Type', 'image/' + ext[ext.length - 1]);
+    res.end(contents);      
+  } catch (error) {
+    res.status(404);  
+    res.send();  
+  }
 });
 
 
