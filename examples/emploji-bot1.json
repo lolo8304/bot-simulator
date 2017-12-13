@@ -45,7 +45,14 @@
               "type": "prompt",
               "text": "Bitte Zeitraum von bis eingeben",
               "fromUser": false
+            },
+            {
+              "dialog" : "",
+              "type": "text",
+              "text": "Vielen Dank. Die Absenz wurde erfasst",
+              "fromUser": false
             }
+
           ]
         },
         {
@@ -70,7 +77,20 @@
           "text": "andere Absenz",
           "thenDialog": null,
           "thenRef": 5,
-          "then": []
+          "then": [
+            {
+              "dialog" : "AndereAbsenzAnlegen",
+              "type": "prompt",
+              "text": "Was für eine Absenz willst du erfassen?",
+              "fromUser": false
+            },
+            {
+              "type": "text",
+              "text": "",
+              "thenDialog": "SimpleAbsenzAnlegen",
+              "fromUser": false
+            }
+          ]
         }
       ]
     }
