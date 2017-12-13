@@ -9,12 +9,7 @@
   },
   "conversation": [
     {
-      "dialog" : "start",
-      "type": "text",
-      "text": "Willkommen - mein Name ist Emploji und helfe Dir bei Deinen Admin Aufgaben",
-      "fromUser": false
-    },
-    {
+      "dialog": "start",
       "type": "buttons",
       "text": "Hallo Thierry, was willst du tun?",
       "choices": [
@@ -33,6 +28,63 @@
           "thenDialog": null,
           "thenRef": 0,
           "then": [
+            {
+              "dialog" : "Monatsabschluss",
+              "type": "prompt",
+              "text": "für welchen Monat?",
+              "fromUser": false
+            },
+            {
+              "dialog" : "",
+              "type": "prompt",
+              "text": "Bitte bestätige folgedende Absenzen im November:\n\n- 14.09 - 16.09 Ferien\n\n- 02.10  krank",
+              "fromUser": false
+            },
+            {
+              "type": "buttons",
+              "text": "",
+              "choices": [
+                "OK",
+                "Noch was erfassen",
+                "Abbruch"
+              ],
+              "fromUser": false,
+              "choicesText": "Themen.Choices",
+              "answer": [
+                {
+                  "text": "OK",
+                  "thenDialog": null,
+                  "thenRef": 0,
+                  "then": [
+                    {
+                      "dialog" : "",
+                      "type": "text",
+                      "text": "Vielen Dank. Der Monatsabschluss wurde erfasst.",
+                      "fromUser": false
+                    }
+                  ]
+                },
+                {
+                  "text": "Noch was erfassen",
+                  "thenDialog": "start",
+                  "thenRef": 0,
+                  "then": []
+                },
+                {
+                  "text": "Abbruch",
+                  "thenDialog": null,
+                  "thenRef": 0,
+                  "then": [
+                    {
+                      "dialog" : "",
+                      "type": "text",
+                      "text": "Prozess abgebrochen. Bis später.",
+                      "fromUser": false
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         },
         {
