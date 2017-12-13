@@ -1,0 +1,77 @@
+{
+  "bot": {
+    "conversationId": "emploji1",
+    "botname": "Monatsabschluss / Absenz erfassen",
+    "fans": "130469 people like this",
+    "category": "Insurance Company",
+    "imageURL": "https://emploji-simulator.herokuapp.com/images/emploji-simulator.png",
+    "previewURL": "https://emploji-simulator.herokuapp.com"
+  },
+  "conversation": [
+    {
+      "dialog" : "start",
+      "type": "text",
+      "text": "Willkommen - mein Name ist Emploji und helfe Dir bei Deinen Admin Aufgaben",
+      "fromUser": false
+    },
+    {
+      "type": "buttons",
+      "text": "Hallo Thierry, was willst du tun?",
+      "choices": [
+        "Monatsabschluss",
+        "Absenz anlegen",
+        "Krankheit",
+        "Unfall",
+        "Kompensation",
+        "andere Absenz"
+      ],
+      "fromUser": false,
+      "choicesText": "Themen.Choices",
+      "answer": [
+        {
+          "text": "Monatsabschluss",
+          "thenDialog": null,
+          "thenRef": 0,
+          "then": [
+            {
+              "dialog" : "",
+              "type": "prompt",
+              "text": "Bitte Zeitraum von bis eingeben",
+              "fromUser": false
+            }
+          ]
+        },
+        {
+          "text": "Absenz anlegen",
+          "thenDialog": null,
+          "thenRef": 1,
+          "then": []
+        },
+        {
+          "text": "Krankheit",
+          "thenDialog": null,
+          "thenRef": 2,
+          "then": []
+        },
+        {
+          "text": "Unfall",
+          "thenDialog": null,
+          "thenRef": 3,
+          "then": []
+        },
+        {
+          "text": "Kompensation",
+          "thenDialog": null,
+          "thenRef": 4,
+          "then": []
+        },
+        {
+          "text": "andere Absenz",
+          "thenDialog": null,
+          "thenRef": 5,
+          "then": []
+        }
+      ]
+    }
+  ]
+}
