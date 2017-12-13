@@ -31,7 +31,7 @@
             {
               "dialog" : "Monatsabschluss",
               "type": "prompt",
-              "text": "für welchen Monat?",
+              "text": "Für welchen Monat? Letzte Bestätigung war 31.08.17",
               "fromUser": false
             },
             {
