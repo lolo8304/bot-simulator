@@ -36,7 +36,7 @@
             },
             {
               "dialog" : "",
-              "type": "prompt",
+              "type": "text",
               "text": "Bitte bestätige folgedende Absenzen im November:\n\n- 14.09 - 16.09 Ferien\n\n- 02.10  krank",
               "fromUser": false
             },
