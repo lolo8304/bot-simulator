@@ -38,7 +38,13 @@
               "type": "prompt",
               "text": "Bitte Zeitraum von bis eingeben",
               "fromUser": false
-            }
+            },
+            {
+              "dialog" : "",
+              "type": "prompt",
+              "text": "Bitte Zeitraum 2 von bis eingeben",
+              "fromUser": false
+            }            
           ]
         },
         {
