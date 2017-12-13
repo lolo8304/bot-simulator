@@ -85,9 +85,15 @@
               "fromUser": false
             },
             {
+              "dialog" : "",
+              "type": "prompt",
+              "text": "Bitte Zeitraum von bis eingeben",
+              "fromUser": false
+            },
+            {
+              "dialog" : "",
               "type": "text",
-              "text": "",
-              "thenDialog": "SimpleAbsenzAnlegen",
+              "text": "Vielen Dank. Die Absenz wurde erfasst",
               "fromUser": false
             }
           ]
