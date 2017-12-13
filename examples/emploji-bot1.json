@@ -33,41 +33,36 @@
           "thenDialog": null,
           "thenRef": 0,
           "then": [
-            {
-              "dialog" : "",
-              "type": "prompt",
-              "text": "Bitte Zeitraum von bis eingeben",
-              "fromUser": false
-            },
-            {
-              "dialog" : "",
-              "type": "prompt",
-              "text": "Bitte Zeitraum 2 von bis eingeben",
-              "fromUser": false
-            }            
           ]
         },
         {
           "text": "Absenz anlegen",
           "thenDialog": null,
           "thenRef": 1,
-          "then": []
+          "then": [
+            {
+              "dialog" : "SimpleAbsenzAnlegen",
+              "type": "prompt",
+              "text": "Bitte Zeitraum von bis eingeben",
+              "fromUser": false
+            }
+          ]
         },
         {
           "text": "Krankheit",
-          "thenDialog": null,
+          "thenDialog": "SimpleAbsenzAnlegen",
           "thenRef": 2,
           "then": []
         },
         {
           "text": "Unfall",
-          "thenDialog": null,
+          "thenDialog": "SimpleAbsenzAnlegen",
           "thenRef": 3,
           "then": []
         },
         {
           "text": "Kompensation",
-          "thenDialog": null,
+          "thenDialog": "SimpleAbsenzAnlegen",
           "thenRef": 4,
           "then": []
         },
